@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rediseño Tecnobg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap">
+<style>
+/* Layout: presenter hub — brand header, three proposal cards, each opening a full prototype. Dark brand look, single theme. */
+:root{
+  --bg:#0d1430; --card:#151e44; --line:#26336a; --ink:#eef1fa; --muted:#a8b2d6;
+  --navy:#334f9d; --sky:#2cbbee; --f1:#8fd3ef;
+  --body:"Lexend",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:300 16px/1.6 var(--body);overflow-x:clip}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;gap:28px}
+header{display:grid;gap:14px}
+header img{height:64px;width:auto}
+h1{margin:0;font:600 clamp(30px,7vw,52px)/1.05 var(--body);text-wrap:balance;letter-spacing:-.01em}
+.sub{margin:0;color:var(--muted);max-width:62ch}
+.how{display:flex;flex-wrap:wrap;gap:8px}
+.how span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;text-decoration:none;color:var(--ink);transition:transform .3s,border-color .3s}
+.card:hover,.card:focus-visible{transform:translateY(-4px);border-color:var(--sky)}
+.card:focus-visible{outline:2px solid var(--f1);outline-offset:3px}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.card:hover .shot img{transform:scale(1.06)}
+.shot .tag{position:absolute;left:12px;top:12px;background:rgba(13,20,48,.85);border-radius:999px;padding:5px 11px;font:500 12px var(--body)}
+.bd{padding:18px 18px 20px;display:grid;gap:10px;align-content:start}
+.bd h2{margin:0;font:600 22px/1.2 var(--body)}
+.bd p{margin:0;color:var(--muted);font-size:15px}
+.fx{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.fx span{font-size:12px;border-radius:999px;padding:4px 10px;background:#1f2a5a;color:#cdd6f3}
+.open{margin-top:6px;font-weight:600;color:var(--f1)}
+.meter{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--muted)}
+.meter i{width:18px;height:5px;border-radius:3px;background:var(--line)}
+.meter i.on{background:var(--sky)}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <img src="img/logo-blanco.png" alt="Grupo Tecnobg" width="69" height="64">
+    <h1>Propuestas de rediseño para tecnobg.com</h1>
+    <p class="sub">Tres prototipos navegables con el contenido actual del sitio y fotos propias. Están pensados primero para celular: ábrelos y desliza para ver las transiciones.</p>
+    <div class="how"><span>Mejor en celular</span><span>Botón “Pendientes” para mostrar u ocultar datos por confirmar</span><span>Incluye páginas internas: Nosotros, Pólizas, Bolsa de trabajo y legales</span></div>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="operacion.html">
+      <div class="shot"><img src="img/condensadora.webp" alt="" width="1024" height="1024" style="object-position:50% 40%"><span class="tag">Propuesta 02</span></div>
+      <div class="bd">
+        <div class="meter" aria-label="Nivel de riesgo creativo 2 de 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><span style="margin-left:6px">Moderado</span></div>
+        <h2>Operación primero</h2>
+        <p>La portada pregunta qué necesita el cliente y lo lleva directo a emergencia, reparación, mantenimiento o pólizas. Claro, rápido y orientado a contacto.</p>
+        <div class="fx"><span>Revelado de imagen</span><span>Selector animado</span><span>Contadores</span><span>Línea de proceso con scroll</span><span>Carrusel de trabajo, una foto a la vez</span><span>Barra fija de contacto</span></div>
+        <span class="open">Abrir prototipo →</span>
+      </div>
+    </a>
+    <a class="card" href="tecnico.html">
+      <div class="shot"><img src="img/refrigerador.webp" alt="" width="1270" height="920" style="object-position:20% 50%"><span class="tag">Propuesta 03</span></div>
+      <div class="bd">
+        <div class="meter" aria-label="Nivel de riesgo creativo 3 de 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><span style="margin-left:6px">Moderno</span></div>
+        <h2>Ficha técnica</h2>
+        <p>Formato de expediente corporativo: capítulos numerados, ficha de datos clave y tipografía con serifa. Transmite rigor, formalidad y experiencia.</p>
+        <div class="fx"><span>Títulos que emergen por líneas</span><span>Revelado lateral de foto</span><span>Carrusel horizontal fijado</span><span>Línea de proceso con scroll</span><span>Frase que se ilumina</span><span>Botón de WhatsApp fijo</span></div>
+        <span class="open">Abrir prototipo →</span>
+      </div>
+    </a>
+    <a class="card" href="cinematico.html">
+      <div class="shot"><img src="img/extraccion.webp" alt="" width="1600" height="900"><span class="tag">Propuesta 05</span></div>
+      <div class="bd">
+        <div class="meter" aria-label="Nivel de riesgo creativo 5 de 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><span style="margin-left:6px">Arriesgado</span></div>
+        <h2>Cinemático</h2>
+        <p>Narrativa por capítulos al estilo GTA VI: escenas a pantalla completa que se reemplazan con el scroll, con tipografía grande y sobria en azul profundo.</p>
+        <div class="fx"><span>Pantalla de carga</span><span>Texto con imagen dentro</span><span>Escenas fijadas</span><span>Transiciones entre capítulos</span><span>Proceso horizontal</span><span>Botones flotantes de contacto</span></div>
+        <span class="open">Abrir prototipo →</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>Prototipo de presentación. Los textos, cifras y datos de contacto provienen del sitio actual; lo marcado como pendiente se confirmará con Tecnobg. Los formularios no envían información.</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tecnobg · Ficha técnica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout: calm corporate dossier — one idea per section, generous whitespace, details on demand. Light, formal, single theme. */
+:root{
+  --paper:#f6f7fa; --white:#ffffff; --ink:#16213f; --muted:#5a6481; --rule:#dde2ee;
+  --navy:#334f9d; --deep:#1e2d5f; --accent:#1f7fb8; --red:#9b2c2c; --wa:#1f8f4e;
+  --serif:"Source Serif 4",Georgia,serif; --sans:"Source Sans 3",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--sans);padding-top:env(safe-area-inset-top,0px)}
+img{max-width:100%;display:block}
+a{color:var(--navy)}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:600;text-wrap:balance;letter-spacing:-.01em;color:var(--deep)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+button{font:inherit;cursor:pointer}
+.lbl{font:600 12px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+.demo{background:var(--deep);color:#c3cce6;font:500 12px/1 var(--sans)}
+.demo .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px}
+.demo a{color:#fff;text-decoration:none;font-weight:600}
+.pend-toggle{background:transparent;border:1px solid #50639d;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px}
+.pend{display:inline-flex;align-items:center;background:#fff6d6;color:#6b4a00;border:1px dashed #cfa400;border-radius:4px;padding:3px 8px;font:600 11px/1.3 var(--sans)}
+body.no-pend .pend{display:none}
+
+header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;min-height:66px;gap:12px}
+.logo{height:42px;width:auto}
+.hd-r{display:flex;align-items:center;gap:8px}
+.cta-sm{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--navy);color:#fff;text-decoration:none;font:600 14px var(--sans);border-radius:6px}
+.menubtn{width:44px;height:44px;background:transparent;border:1px solid var(--rule);border-radius:6px;color:var(--deep);display:flex;align-items:center;justify-content:center}
+.top nav{display:none;gap:26px;font:500 15px var(--sans)}
+.top nav a{color:var(--ink);text-decoration:none}
+@media (min-width:1000px){.top nav{display:flex}}
+
+.menu{position:fixed;inset:0;z-index:60;background:var(--white);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 20px 28px}
+.menu .mh{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.menu nav{display:grid;margin-top:10px}
+.menu nav a{padding:16px 0;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none;font:600 24px var(--serif)}
+.menu .mf{margin-top:auto;display:grid;gap:10px;color:var(--muted);font-size:15px}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:6px;font:600 16px var(--sans);text-decoration:none;border:none;padding:0 22px}
+.btn.pri{background:var(--navy);color:#fff}
+.btn.sec{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+
+/* Hero */
+.hero{background:var(--white)}
+.hero .wrap{display:grid;gap:28px;padding-block:40px 48px}
+@media (min-width:1000px){.hero .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:56px;padding-block:72px}}
+.hero h1{font-size:clamp(36px,9vw,60px);line-height:1.06}
+.hero h1 i{font-style:italic;font-weight:500;color:var(--navy)}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:block}
+.hero .intro{margin:0;font-size:19px;color:var(--muted);max-width:40ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.photo{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:4px}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+/* Key facts */
+.facts{background:var(--deep);color:#fff}
+.facts .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.fact{padding:26px 10px 24px;text-align:center}
+.fact+.fact{border-left:1px solid rgba(255,255,255,.14)}
+.fact b{display:block;font:600 clamp(30px,8vw,48px)/1 var(--serif);font-variant-numeric:lining-nums}
+.fact span{display:block;margin-top:8px;font-size:13px;color:#c3cce6}
+
+section.sec{padding-block:72px}
+.head{display:grid;gap:12px;margin-bottom:32px;max-width:620px}
+.head h2{font-size:clamp(30px,7.5vw,44px);line-height:1.1}
+.head h2 i{font-weight:500;color:var(--navy)}
+.head p{margin:0;font-size:18px;color:var(--muted)}
+
+/* Services reel */
+.reel{position:relative;overflow:hidden}
+.reel-track{display:flex;gap:18px;width:max-content;padding-inline:16px}
+.svc{flex:0 0 min(80vw,380px);background:var(--white);border:1px solid var(--rule);border-radius:4px;display:grid;grid-template-rows:auto 1fr}
+.svc .ph{aspect-ratio:3/2;overflow:hidden}
+.svc .ph img{width:100%;height:100%;object-fit:cover}
+.svc .bd{padding:22px;display:grid;gap:10px;align-content:start}
+.svc h3{font-size:24px;line-height:1.15}
+.svc p{margin:0;color:var(--muted)}
+.svc .more{font:600 15px var(--sans);color:var(--navy);text-decoration:none;margin-top:6px}
+.svc.em .more{color:var(--red)}
+.reel-hint{display:flex;align-items:center;gap:12px;margin:18px auto 0;padding-inline:16px;max-width:1120px;font-size:13px;color:var(--muted)}
+.progress{flex:1;height:2px;background:var(--rule)}
+.progress i{display:block;height:100%;background:var(--navy);transform-origin:left;transform:scaleX(0)}
+
+/* Areas */
+.areas{display:grid;gap:22px}
+@media (min-width:1000px){.areas{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}}
+.ar{display:grid;gap:14px}
+.ar .ph{aspect-ratio:4/3;overflow:hidden;border-radius:4px}
+.ar .ph img{width:100%;height:100%;object-fit:cover}
+.ar h3{font-size:22px}
+.ar p{margin:0;color:var(--muted)}
+
+/* Process: titles at a glance, detail on tap */
+.steps{display:grid;gap:0;border-top:1px solid var(--rule)}
+@media (min-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}}
+.steps details{border-bottom:1px solid var(--rule)}
+.steps summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px;padding:18px 0;font:600 18px/1.35 var(--serif);color:var(--deep)}
+.steps summary::-webkit-details-marker{display:none}
+.steps summary .n{font:italic 500 20px var(--serif);color:var(--accent)}
+.steps summary::after{content:"+";font:400 22px/1 var(--sans);color:var(--navy)}
+.steps details[open] summary::after{content:"−"}
+.steps p{margin:0 0 18px 52px;color:var(--muted)}
+
+/* Standard */
+.std{background:var(--white)}
+.words{font:500 clamp(26px,6.5vw,44px)/1.22 var(--serif);margin:0 0 40px;color:var(--deep);max-width:24ch}
+.words span{opacity:.18}
+.bl{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px 48px}
+.bl li b{display:block;font:600 18px var(--serif);color:var(--deep)}
+.bl li span{color:var(--muted)}
+
+/* Clients */
+.marq{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-track{display:flex;gap:40px;width:max-content;animation:marq 34s linear infinite}
+.marq-track span{flex:none;display:flex;align-items:center;justify-content:center;width:140px;height:56px;border:1px solid var(--rule);border-radius:4px;background:var(--white);font:500 12px var(--sans);color:#8a93ad}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* FAQ */
+.faq details{border-top:1px solid var(--rule);padding:18px 0}
+.faq details:last-of-type{border-bottom:1px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;font:600 18px/1.35 var(--serif);color:var(--deep)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 22px/1 var(--sans);color:var(--navy)}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:10px 0 0;color:var(--muted);max-width:62ch}
+.more-q{margin-top:18px;background:transparent;border:none;color:var(--navy);font:600 16px var(--sans);padding:10px 0;min-height:44px}
+
+/* Contact */
+.contact{display:grid;gap:28px}
+@media (min-width:1000px){.contact{grid-template-columns:.8fr 1.2fr;gap:64px}}
+.cdata{display:grid;gap:18px;align-content:start}
+.cdata small{display:block;font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.cdata b{font:600 19px var(--serif);color:var(--deep);user-select:all}
+.order{display:grid;gap:14px}
+.order label{display:grid;gap:6px;font:600 14px var(--sans);color:var(--deep)}
+.order input,.order textarea{min-height:50px;background:var(--white);border:1px solid #c6cde0;border-radius:4px;color:var(--ink);padding:0 12px;font:400 16px var(--sans)}
+.order textarea{padding:12px;min-height:110px}
+.order input:focus,.order textarea:focus{border-color:var(--navy);outline:none}
+.ok{margin:0;color:#14532d;background:#e7f6ee;padding:10px 12px;border-radius:4px;font-weight:600}
+
+footer{background:var(--deep);color:#c3cce6;padding-block:40px 110px;font-size:14px}
+footer .wrap{display:grid;gap:16px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer a{color:#fff;text-decoration:none}
+
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:8px;min-height:54px;padding:0 18px 0 14px;border-radius:999px;background:var(--wa);color:#fff;text-decoration:none;font:600 15px var(--sans);box-shadow:0 10px 26px rgba(22,33,63,.28)}
+@media (prefers-reduced-motion:reduce){.marq-track{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap"><a href="index.html">← Propuestas</a><span>03 · Ficha técnica</span><button class="pend-toggle" id="pendBtn" type="button" aria-pressed="true">Pendientes: sí</button></div></div>
+
+<header class="top"><div class="wrap">
+  <a href="#inicio" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/logo-azul.png" alt="Grupo Tecnobg" width="45" height="42"></a>
+  <nav aria-label="Principal"><a href="tecnico-paginas.html#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="tecnico-paginas.html#polizas">Pólizas</a><a href="#preguntas-frecuentes">Preguntas frecuentes</a><a href="tecnico-paginas.html#bolsa-de-trabajo">Bolsa de trabajo</a></nav>
+  <div class="hd-r"><a class="cta-sm" href="#contacto">Cotizar</a><button class="menubtn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mh"><img src="img/logo-azul.png" alt="Grupo Tecnobg" width="45" height="42" style="height:42px;width:auto"><button class="menubtn" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <nav aria-label="Menú móvil">
+    <a href="tecnico-paginas.html#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="tecnico-paginas.html#polizas">Pólizas</a>
+    <a href="#preguntas-frecuentes">Preguntas frecuentes</a>
+    <a href="tecnico-paginas.html#bolsa-de-trabajo">Bolsa de trabajo</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <div class="mf"><a class="btn pri" href="#contacto">Solicitar cotización</a><span>WhatsApp y llamadas: 56 4603 7573 · Lunes a sábado, 9:00 a 18:00</span></div>
+</div>
+
+<main id="inicio">
+<section class="hero" id="hero"><div class="wrap">
+  <div style="display:grid;gap:22px">
+    <span class="lbl">Sector HORECA · México</span>
+    <h1 aria-label="Reparación y mantenimiento preventivo especializado"><span class="line"><span>Reparación y</span></span><span class="line"><span>mantenimiento <i>preventivo</i></span></span><span class="line"><span>especializado</span></span></h1>
+    <p class="intro">Solución con tecnología a tu medida para línea fría, línea caliente y aire acondicionado.</p>
+    <div class="ctas"><a class="btn pri" href="#contacto">Solicitar cotización</a><a class="btn sec" href="#servicios">Ver servicios</a></div>
+  </div>
+  <figure class="photo" id="photo"><img src="img/refrigerador.webp" alt="Técnico de Tecnobg revisando un refrigerador vertical de tres puertas" width="1270" height="920" style="object-position:20% 50%"></figure>
+</div></section>
+
+<section class="facts" aria-label="Datos clave"><div class="wrap">
+  <div class="fact"><b data-count="25" data-prefix="+">+25</b><span>años de experiencia</span></div>
+  <div class="fact"><b>30 días</b><span>de garantía</span></div>
+  <div class="fact"><b>&lt;24 h</b><span>respuesta a urgencias</span></div>
+</div></section>
+
+<section class="sec" id="servicios" style="padding-inline:0">
+  <div class="wrap head"><span class="lbl">Servicios</span><h2>Lo que hacemos <i>por tu operación</i></h2></div>
+  <div class="reel" id="reel"><div class="reel-track" id="track">
+    <article class="svc"><div class="ph"><img src="img/condensadora.webp" alt="Técnico revisando unidad condensadora" loading="lazy" width="1024" height="1024"></div><div class="bd"><h3>Mantenimiento preventivo</h3><p>Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.</p><a class="more" href="#">Conocer el servicio →</a></div></article>
+    <article class="svc"><div class="ph"><img src="img/soldadura-compresor.webp" alt="Técnico soldando la línea de un compresor" loading="lazy" width="576" height="1024" style="object-position:50% 60%"></div><div class="bd"><h3>Reparación de equipo</h3><p>Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p><a class="more" href="#">Conocer el servicio →</a></div></article>
+    <article class="svc em"><div class="ph"><img src="img/vitrina.webp" alt="Técnico reparando una vitrina refrigerada" loading="lazy" width="1060" height="913"></div><div class="bd"><h3>Servicio de emergencia</h3><p>Atendemos y resolvemos las incidencias críticas el mismo día de tu reporte.</p><a class="more" href="https://wa.me/525646037573">Solicitar emergencia →</a></div></article>
+    <article class="svc"><div class="ph"><img src="img/equipo-plaza.webp" alt="Dos técnicos de mantenimiento de Tecnobg en una tienda" loading="lazy" width="600" height="337"></div><div class="bd"><h3>Pólizas</h3><p>Nuestras pólizas son una solución diseñada para empresas que buscan previsión, estabilidad y control en sus equipos.</p><a class="more" href="tecnico-paginas.html#polizas">¡Protege tus equipos ahora! →</a></div></article>
+  </div></div>
+  <div class="reel-hint"><span>Desliza</span><span class="progress"><i id="prog"></i></span></div>
+</section>
+
+<section class="sec std"><div class="wrap">
+  <div class="head"><span class="lbl">Áreas de servicio</span><h2>Frío, calor <i>y aire</i></h2><p>Atendemos sistemas de aire acondicionado, refrigeración, extracción y ventilación, tanto comerciales como industriales.</p></div>
+  <div class="areas">
+    <article class="ar reveal"><div class="ph"><img src="img/evaporador.webp" alt="Evaporador en cámara de refrigeración" loading="lazy" width="576" height="1024" style="object-position:50% 25%"></div><h3>Línea fría</h3><p>Refrigeración bajo control, con eficiencia térmica y conservación de su materia prima.</p></article>
+    <article class="ar reveal"><div class="ph"><img src="img/aire-azotea.webp" alt="Unidad de aire acondicionado en azotea" loading="lazy" width="1100" height="920"></div><h3>Aire acondicionado</h3><p>Confort, eficiencia energética y funcionamiento continuo.</p></article>
+    <article class="ar reveal"><div class="ph"><img src="img/freidora.webp" alt="Reparación de freidora industrial" loading="lazy" width="1080" height="913" style="object-position:25% 50%"></div><h3>Línea caliente</h3><p>Mantenimiento preventivo y reparación de equipos de línea caliente. <span class="pend">Pendiente: descripción propia</span></p></article>
+  </div>
+</div></section>
+
+<section class="sec" id="proceso"><div class="wrap">
+  <div class="head"><span class="lbl">Proceso</span><h2>Del reporte <i>a la entrega</i></h2><p>Seis pasos claros. Toca cada uno para ver el detalle.</p></div>
+  <div class="steps" id="steps">
+    <details><summary><span class="n">1</span>Recepción inmediata de tu solicitud</summary><p>Recibimos tu reporte por WhatsApp, correo o llamada telefónica.</p></details>
+    <details><summary><span class="n">2</span>Asignación rápida del servicio</summary><p>Nuestro equipo de logística registra la información y asigna de inmediato al personal técnico especializado.</p></details>
+    <details><summary><span class="n">3</span>Diagnóstico profesional</summary><p>Nuestros técnicos acuden a tus instalaciones para evaluar el equipo y detectar la causa del problema.</p></details>
+    <details><summary><span class="n">4</span>Buscamos la mejor solución</summary><p>Si la reparación puede realizarse en el momento, se presenta la cotización para tu autorización. Si el equipo requiere refacciones, te informamos el diagnóstico y la solución más adecuada.</p></details>
+    <details><summary><span class="n">5</span>Cotización clara y autorización ágil</summary><p>Enviamos la cotización detallada para su aprobación.</p></details>
+    <details><summary><span class="n">6</span>Ejecución final y entrega operativa</summary><p>Con la autorización y las refacciones listas, programamos la visita final para dejar tu equipo funcionando correctamente.</p></details>
+  </div>
+</div></section>
+
+<section class="sec std"><div class="wrap">
+  <span class="lbl" style="display:block;margin-bottom:18px">Por qué Tecnobg</span>
+  <p class="words" id="words">“Confianza y garantía no son promesas, son el estándar con el que trabajamos”</p>
+  <ul class="bl">
+    <li><b>Garantía de 30 días</b><span>en cualquier reparación o mantenimiento.</span></li>
+    <li><b>Cumplimiento legal y REPSE vigente</b><span class="pend">Pendiente: número de registro</span></li>
+    <li><b>Respuesta a urgencias</b><span>en menos de 24 horas.</span></li>
+    <li><b>Cobertura operativa</b><span>donde su negocio lo requiera.</span></li>
+  </ul>
+</div></section>
+
+<section class="sec" style="padding-block:56px"><div class="wrap" style="display:grid;gap:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><span class="lbl">Marcas clientes</span><span class="pend">Pendiente: archivos de los 12 logos</span></div>
+  <div class="marq" aria-hidden="true"><div class="marq-track" id="marq"></div></div>
+</div></section>
+
+<section class="sec std" id="preguntas-frecuentes"><div class="wrap faq">
+  <div class="head"><span class="lbl">Preguntas frecuentes</span><h2>¿Cómo podemos <i>ayudarte?</i></h2></div>
+  <details><summary>¿Cuál es el tiempo de respuesta?</summary><p>Nuestro tiempo de respuesta es menor a 24 horas. En casos de urgencia, podemos atender el mismo día.</p></details>
+  <details><summary>¿Cuentan con garantía en las reparaciones?</summary><p>Sí, todas nuestras reparaciones y refacciones cuentan con garantía, asegurando la calidad del servicio y la tranquilidad de nuestros clientes.</p></details>
+  <details><summary>¿Tienen cobertura en otros estados?</summary><p>Sí, contamos con cobertura en distintas zonas del país, principalmente en Puebla, Toluca, Guadalajara, Baja California, Querétaro, entre otros.</p></details>
+  <details><summary>¿Qué tipo de equipos atienden?</summary><p>Atendemos sistemas de aire acondicionado, refrigeración, extracción y ventilación, tanto comerciales como industriales.</p></details>
+  <details><summary>¿Cómo puedo solicitar un servicio?</summary><p>Puedes contactarnos por teléfono, WhatsApp o correo electrónico. Nuestro equipo te dará atención inmediata.</p></details>
+  <div id="moreQ" hidden>
+    <details><summary>¿Pueden acudir hoy a revisar mi equipo?</summary><p>Sí, ofrecemos atención de urgencias el mismo día o en un plazo máximo de 24 horas, dependiendo de la disponibilidad.</p></details>
+    <details><summary>¿Tienen experiencia trabajando en plazas comerciales?</summary><p>Sí, conocemos los procesos de acceso, permisos y logística dentro de plazas comerciales, lo que nos permite brindar un servicio ágil y sin contratiempos.</p></details>
+    <details><summary>¿Ofrecen mantenimiento preventivo?</summary><p>Sí, contamos con programas de mantenimiento preventivo diseñados para alargar la vida útil de los equipos y evitar fallas inesperadas.</p></details>
+    <details><summary>¿Realizan instalaciones?</summary><p>Sí, realizamos instalación de equipos nuevos, así como reemplazos y adecuaciones según las necesidades del cliente.</p></details>
+    <details><summary>¿Qué pasa si mi equipo tiene mucho tiempo sin funcionar?</summary><p>Podemos evaluar el estado del equipo y recomendar si es viable repararlo o si es mejor reemplazarlo.</p></details>
+    <details><summary>¿Qué horarios de atención de WhatsApp manejan?</summary><p>Trabajamos de lunes a sábado de 9 am a 6 pm.</p></details>
+  </div>
+  <button class="more-q" id="moreBtn" type="button" aria-expanded="false" aria-controls="moreQ">Ver más preguntas</button>
+</div></section>
+
+<section class="sec" id="contacto"><div class="wrap">
+  <div class="head"><span class="lbl">Contacto</span><h2>Solicita una <i>cotización</i></h2><p>Respuesta en menos de 24 horas.</p></div>
+  <div class="contact">
+    <div class="cdata">
+      <div><small>WhatsApp y llamadas</small><b>56 4603 7573</b></div>
+      <div><small>Correo</small><b>ventas@tecnobg.com</b></div>
+      <div><small>Horario</small><b>Lunes a sábado · 9:00 a 18:00</b></div>
+    </div>
+    <form class="order" id="form" novalidate>
+      <label for="o-nombre">Nombre completo<input id="o-nombre" type="text" autocomplete="name"></label>
+      <label for="o-empresa">Empresa<input id="o-empresa" type="text" autocomplete="organization"></label>
+      <label for="o-tel">Número de WhatsApp<input id="o-tel" type="tel" autocomplete="tel"></label>
+      <label for="o-mail">Correo electrónico<input id="o-mail" type="email" autocomplete="email"></label>
+      <label for="o-msg">¿Cómo te podemos ayudar?<textarea id="o-msg"></textarea></label>
+      <button class="btn pri" type="submit">Enviar cotización</button>
+      <p class="ok" id="ok" hidden>Así se verá la confirmación. En el prototipo no se envía nada.</p>
+      <p style="margin:0;font-size:14px;color:var(--muted)">Al enviar aceptas el <a href="tecnico-paginas.html#aviso-de-privacidad">aviso de privacidad</a>.</p>
+    </form>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <img src="img/logo-blanco.png" alt="Grupo Tecnobg" width="60" height="56" style="height:56px;width:auto">
+  <nav aria-label="Pie de página"><a href="tecnico-paginas.html#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="tecnico-paginas.html#polizas">Pólizas</a><a href="#preguntas-frecuentes">Preguntas frecuentes</a><a href="tecnico-paginas.html#bolsa-de-trabajo">Bolsa de trabajo</a></nav>
+  <nav aria-label="Redes sociales"><a href="https://www.facebook.com/tecnobg">Facebook</a><a href="https://www.instagram.com/tecno.bg">Instagram</a><a href="https://www.linkedin.com/company/tecnobg/">LinkedIn</a></nav>
+  <nav aria-label="Legal" style="font-size:13px"><a href="tecnico-paginas.html#aviso-de-privacidad">Aviso de privacidad</a><a href="tecnico-paginas.html#terminos-y-condiciones">Términos y condiciones</a><a href="tecnico-paginas.html#uso-de-cookies">Uso de cookies</a></nav>
+  <p style="margin:0">Servicio en toda la República Mexicana · Todos los derechos reservados. Tecnobg 2026.</p>
+</div></footer>
+
+<a class="fab" href="https://wa.me/525646037573" aria-label="Escribir por WhatsApp al 56 4603 7573"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>WhatsApp</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var pendBtn=document.getElementById('pendBtn');
+  function setPend(on){document.body.classList.toggle('no-pend',!on);pendBtn.setAttribute('aria-pressed',on?'true':'false');pendBtn.textContent='Pendientes: '+(on?'sí':'no');try{localStorage.setItem('tbg-pend',on?'1':'0')}catch(e){}}
+  var saved='1';try{saved=localStorage.getItem('tbg-pend')||'1'}catch(e){}
+  setPend(saved==='1');
+  pendBtn.addEventListener('click',function(){setPend(document.body.classList.contains('no-pend'))});
+
+  var menu=document.getElementById('menu'),mb=document.getElementById('menuBtn');
+  function openMenu(o){menu.hidden=!o;mb.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';if(o){document.getElementById('menuClose').focus()}else{mb.focus()}}
+  mb.addEventListener('click',function(){openMenu(true)});
+  document.getElementById('menuClose').addEventListener('click',function(){openMenu(false)});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){openMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!menu.hidden)openMenu(false)});
+
+  var mq=document.getElementById('marq');
+  for(var r=0;r<2;r++){for(var k=1;k<=12;k++){var s=document.createElement('span');s.textContent='Marca cliente '+(k<10?'0':'')+k;mq.appendChild(s)}}
+
+  var moreBtn=document.getElementById('moreBtn'),moreQ=document.getElementById('moreQ');
+  moreBtn.addEventListener('click',function(){var open=moreQ.hidden;moreQ.hidden=!open;moreBtn.setAttribute('aria-expanded',open?'true':'false');moreBtn.textContent=open?'Ver menos preguntas':'Ver más preguntas';if(open&&window.gsap)gsap.from(moreQ.children,{opacity:0,y:12,duration:.4,stagger:.05})});
+
+  document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').hidden=false});
+
+  var hasG=typeof window.gsap!=='undefined';
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!hasG||reduce){[].forEach.call(document.querySelectorAll('.words span'),function(s){s.style.opacity=1});return}
+  gsap.registerPlugin(ScrollTrigger);
+
+  var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.from('.hero .lbl',{opacity:0,y:8,duration:.5})
+    .from('.hero .line>span',{yPercent:105,duration:.9,stagger:.09,ease:'power4.out'},'-=.2')
+    .from('.hero .intro',{opacity:0,y:14,duration:.6},'-=.5')
+    .from('.ctas .btn',{opacity:0,y:10,duration:.45,stagger:.08},'-=.35')
+    .fromTo('#photo',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.1,ease:'power3.inOut'},'-=.9')
+    .from('#photo img',{scale:1.12,duration:1.4,ease:'power2.out'},'<');
+
+  gsap.utils.toArray('[data-count]').forEach(function(el){
+    var o={v:0},end=+el.dataset.count,pre=el.dataset.prefix||'';
+    gsap.to(o,{v:end,duration:1.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true},onUpdate:function(){el.textContent=pre+Math.round(o.v)}});
+  });
+  gsap.from('.fact',{opacity:0,y:14,duration:.6,stagger:.1,scrollTrigger:{trigger:'.facts',start:'top 90%',once:true}});
+
+  gsap.utils.toArray('.head').forEach(function(h){
+    gsap.from(h.children,{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:h,start:'top 86%',once:true}});
+  });
+
+  var track=document.getElementById('track'),reel=document.getElementById('reel');
+  function dist(){return Math.max(0,track.scrollWidth-window.innerWidth)}
+  gsap.to(track,{x:function(){return -dist()},ease:'none',scrollTrigger:{trigger:reel,start:'center center',end:function(){return '+='+dist()},pin:'#servicios',scrub:.6,invalidateOnRefresh:true,onUpdate:function(st){gsap.set('#prog',{scaleX:st.progress})}}});
+
+  gsap.utils.toArray('.reveal').forEach(function(c,i){
+    gsap.from(c,{opacity:0,y:36,duration:.8,ease:'power3.out',delay:(i%3)*.1,scrollTrigger:{trigger:c,start:'top 88%',once:true}});
+  });
+  gsap.from('.steps details',{opacity:0,y:14,duration:.5,stagger:.06,scrollTrigger:{trigger:'#steps',start:'top 85%',once:true}});
+
+  var w=document.getElementById('words');
+  w.innerHTML=w.textContent.split(' ').map(function(x){return '<span>'+x+'</span>'}).join(' ');
+  gsap.to('#words span',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:'#words',start:'top 85%',end:'bottom 50%',scrub:true}});
+  gsap.from('.bl li',{opacity:0,y:16,duration:.5,stagger:.08,scrollTrigger:{trigger:'.bl',start:'top 88%',once:true}});
+  gsap.from('.faq > details',{opacity:0,y:12,duration:.45,stagger:.05,scrollTrigger:{trigger:'#preguntas-frecuentes',start:'top 80%',once:true}});
+  gsap.from('.cdata > div, .order',{opacity:0,y:20,duration:.6,stagger:.08,scrollTrigger:{trigger:'.contact',start:'top 85%',once:true}});
+})();
+</script>
+</body>
+</html>
