@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tecnobg · Ficha técnica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<style>
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:clip}
+body{padding-top:env(safe-area-inset-top,0px)}
+img{max-width:100%;display:block}
+h1,h2{margin:0;text-wrap:balance}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid #2cbbee;outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px}
+.demo{font:500 12px/1 system-ui,sans-serif}
+.demo .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px}
+.demo a{color:#fff;text-decoration:none;font-weight:600}
+.pend-toggle{background:transparent;border:1px solid #4a5a8f;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px}
+.pend{display:inline-flex;align-items:center;background:#fff6d6;color:#6b4a00;border:1px dashed #cfa400;border-radius:8px;padding:4px 10px;font:600 12px/1.4 system-ui,sans-serif;margin:0}
+p.pend{display:block}
+body.no-pend .pend{display:none}
+header.top .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;min-height:64px;gap:10px}
+header.top .r{display:flex;align-items:center;gap:8px}
+.logo{height:42px;width:auto}
+.ibtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:none}
+.menu{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 20px 30px}
+.menu .mh{display:flex;justify-content:space-between;align-items:center}
+.menu nav{display:grid;margin-top:28px}
+.menu nav a{text-decoration:none;padding:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;max-width:900px;margin:0 auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;padding:8px 14px;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.view{display:grid;gap:28px;padding-block:18px 60px}
+.pg-hero{display:grid;gap:14px}
+.pg-hero h1{margin:0}
+.lead{margin:0;max-width:52ch}
+.meta{margin:0;font-size:14px;opacity:.85}
+.pg-photo{margin:0;overflow:hidden;aspect-ratio:16/9}
+.pg-photo img{width:100%;height:100%;object-fit:cover}
+.stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stats3 > div{padding:16px 10px;text-align:center;display:grid;gap:4px}
+.stats3 span{font-size:13px}
+.blk{display:grid;gap:12px}
+.blk p{margin:0}
+.pq{margin:0}
+.ticks{margin:0;padding:0;list-style:none;display:grid}
+.ticks li{padding:14px 0}
+.ticks b{display:block;margin-bottom:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;font-weight:600;font-size:16px;text-decoration:none;border:none;padding:0 22px}
+.frm{display:grid;gap:12px}
+.f{display:grid;gap:6px;font-weight:600;font-size:14px}
+.f input,.f textarea,.f select{min-height:50px;padding:0 12px;font:inherit;font-weight:400;font-size:16px;width:100%}
+.f textarea{min-height:110px;padding:12px}
+.f input[type=file]{padding:12px}
+.ok{margin:0;background:#e7f6ee;color:#14532d;padding:10px 12px;border-radius:8px;font-weight:600}
+.toc ol{margin:10px 0 0;padding-left:20px;display:grid;gap:6px}
+.lbody{display:grid;gap:16px}
+.lsec{display:grid;gap:10px;scroll-margin-top:90px}
+.lsec p{margin:0}
+footer{padding-block:30px 120px;font-size:14px}
+footer .wrap{max-width:1160px;display:grid;gap:12px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer a{text-decoration:none}
+
+:root{--paper:#f6f7fa;--white:#fff;--ink:#16213f;--muted:#56607d;--rule:#d6dbe8;--navy:#334f9d;--deep:#1e2d5f;--accent:#1f7fb8;--wa:#1f8f4e;--serif:"Source Serif 4",Georgia,serif;--sans:"Source Sans 3",system-ui,sans-serif;color-scheme:light}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans)}
+h1,h2{font-family:var(--serif);font-weight:600;color:var(--deep);letter-spacing:-.01em}
+.demo{background:var(--deep);color:#c3cce6}
+header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.ibtn{border:1px solid var(--rule);color:var(--deep);border-radius:6px;background:transparent}
+.hq{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--navy);color:#fff;text-decoration:none;font:600 14px var(--sans);border-radius:6px}
+.menu{background:var(--white);color:var(--ink)}
+.menu nav a{color:var(--ink);font:600 24px var(--serif);border-bottom:1px solid var(--rule)}
+.tabs a{border-bottom:2px solid transparent;color:var(--muted);border-radius:0;padding-inline:4px}
+.tabs a[aria-current="page"]{color:var(--deep);border-bottom-color:var(--navy)}
+.eyebrow{font:600 12px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.pg-hero h1{font-size:clamp(34px,8.5vw,58px);line-height:1.05}
+.pg-hero h1 em{font-style:italic;font-weight:500;color:var(--navy)}
+.lead{font-size:19px;color:var(--muted)}
+.pg-photo{border-radius:4px}
+.stats3{background:var(--deep);color:#fff;border-radius:4px}
+.stats3 > div{border-right:1px solid rgba(255,255,255,.14)}
+.stats3 > div:last-child{border-right:none}
+.stats3 b{font:600 36px var(--serif)}
+.stats3 span{color:#c3cce6}
+.blk{border-top:1px solid var(--rule);padding-top:22px}
+.blk h2{font-size:26px}
+.pq{font:italic 500 clamp(22px,5.5vw,32px)/1.3 var(--serif);color:var(--deep);border-block:1px solid var(--rule);padding-block:22px}
+.ticks li{border-top:1px solid var(--rule)}
+.ticks b{font:600 18px var(--serif);color:var(--deep)}
+.btn.pri{background:var(--navy);color:#fff;border-radius:6px}
+.f input,.f textarea,.f select{border:1px solid #c6cde0;border-radius:4px;background:#fff}
+.toc{border-top:2px solid var(--deep);padding-top:14px}
+.lsec{border-top:1px solid var(--rule);padding-top:20px}
+.lsec h2{font-size:22px}
+footer{background:var(--deep);color:#c3cce6}
+.cta{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40}
+.cta a{display:flex;align-items:center;gap:8px;min-height:54px;padding:0 18px 0 14px;border-radius:999px;background:var(--wa);color:#fff;text-decoration:none;font:600 15px var(--sans);box-shadow:0 10px 26px rgba(22,33,63,.28)}
+</style>
+</head>
+<body>
+<div class="demo"><div class="wrap"><a href="index.html">← Propuestas</a><span>03 · Ficha técnica · Páginas</span><button class="pend-toggle" id="pendBtn" type="button" aria-pressed="true">Pendientes: sí</button></div></div>
+<header class="top"><div class="wrap">
+  <a href="tecnico.html" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/logo-azul.png" alt="Grupo Tecnobg" width="45" height="42"></a>
+  <div class="r"><a class="hq" href="tecnico.html#contacto">Cotizar</a><button class="ibtn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mh"><img src="img/logo-azul.png" alt="Grupo Tecnobg" width="45" height="42" style="height:42px;width:auto"><button class="ibtn" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <nav aria-label="Menú móvil"><a href="#nosotros">Nosotros</a><a href="tecnico.html#servicios">Servicios</a><a href="#polizas">Pólizas</a><a href="tecnico.html#preguntas-frecuentes">Preguntas frecuentes</a><a href="#bolsa-de-trabajo">Bolsa de trabajo</a><a href="tecnico.html#contacto">Contacto</a></nav>
+</div>
+<nav class="tabs" aria-label="Páginas"><a href="#nosotros" data-nav="nosotros">Nosotros</a><a href="#polizas" data-nav="polizas">Pólizas</a><a href="#bolsa-de-trabajo" data-nav="bolsa-de-trabajo">Bolsa de trabajo</a><a href="#aviso-de-privacidad" data-nav="aviso-de-privacidad">Aviso de privacidad</a><a href="#terminos-y-condiciones" data-nav="terminos-y-condiciones">Términos y condiciones</a><a href="#uso-de-cookies" data-nav="uso-de-cookies">Uso de cookies</a></nav>
+<main><section class="view wrap" id="nosotros" data-title="Nosotros" hidden>
+<header class="pg-hero">
+  <span class="eyebrow">Nosotros</span>
+  <h1>Grupo <em>Tecnobg</em></h1>
+  <p class="lead">Reparación y mantenimiento preventivo especializado en sector HORECA en México. ¡Somos expertos, escríbenos ahora mismo!</p>
+</header>
+<figure class="pg-photo"><img src="img/equipo-plaza.webp" alt="Dos técnicos de mantenimiento de Tecnobg recorriendo una tienda" width="600" height="337"></figure>
+<div class="stats3"><div><b>+25</b><span>años de experiencia</span></div><div><b>+35</b><span>marcas</span></div><div><b>+50</b><span>soluciones</span></div></div>
+<section class="blk"><h2>Nuestros técnicos están en constante capacitación</h2><p>Nuestros técnicos están capacitándose constantemente en las últimas tecnologías para brindar a tus equipos un servicio de calidad.</p></section>
+<blockquote class="pq">“Confianza y garantía no son promesas, son el estándar con el que trabajamos”</blockquote>
+<section class="blk"><h2>Historia, misión y valores</h2><p class="pend">Pendiente: traer el contenido de la página /nosotros/ del sitio actual (historia, misión, visión, valores, equipo).</p></section>
+<a class="btn pri" href="tecnico.html#contacto">Solicitar cotización</a></section><section class="view wrap" id="polizas" data-title="Pólizas" hidden>
+<header class="pg-hero">
+  <span class="eyebrow">Para empresas</span>
+  <h1>Pólizas de <em>mantenimiento</em></h1>
+  <p class="lead">Nuestras pólizas son una solución diseñada para empresas que buscan previsión, estabilidad y control en sus equipos.</p>
+</header>
+<figure class="pg-photo"><img src="img/vitrina.webp" alt="Técnico revisando una vitrina refrigerada" width="1060" height="913"></figure>
+<section class="blk"><h2>Previsión, estabilidad y control</h2><ul class="ticks"><li><b>Previsión</b>Mantenimiento preventivo programado: un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.</li><li><b>Respuesta</b>Atención a urgencias en menos de 24 horas.</li><li><b>Respaldo</b>Garantía de 30 días en cualquier reparación o mantenimiento. Cumplimiento legal y REPSE vigente.</li></ul></section>
+<section class="blk"><h2>Qué incluye cada póliza</h2><p class="pend">Pendiente: alcance de la póliza, periodicidad de visitas, equipos cubiertos y niveles o planes disponibles (página /polizas/ actual).</p></section>
+<section class="blk"><h2>Solicita información</h2>
+<form class="frm" data-ok="Así se verá la confirmación. En el prototipo no se envía nada.">
+<label class="f" for="p-nombre"><span>Nombre completo</span><input id="p-nombre" type="text" autocomplete="name"></label><label class="f" for="p-empresa"><span>Empresa</span><input id="p-empresa" type="text" autocomplete="organization"></label><label class="f" for="p-tel"><span>Número de WhatsApp</span><input id="p-tel" type="tel" autocomplete="tel"></label><label class="f" for="p-mail"><span>Correo electrónico</span><input id="p-mail" type="email" autocomplete="email"></label><label class="f" for="p-equipos"><span>Número aproximado de equipos</span><input id="p-equipos" type="number"></label><label class="f" for="p-msg"><span>¿Qué equipos necesitas cubrir?</span><textarea id="p-msg"></textarea></label>
+<p class="pend">Campo nuevo propuesto: número aproximado de equipos.</p>
+<button class="btn pri" type="submit">Solicitar información de pólizas</button><p class="ok" hidden></p></form></section></section><section class="view wrap" id="bolsa-de-trabajo" data-title="Bolsa de trabajo" hidden>
+<header class="pg-hero">
+  <span class="eyebrow">Bolsa de trabajo</span>
+  <h1>Trabaja en <em>Tecnobg</em></h1>
+  <p class="lead">Buscamos técnicos y personal que quieran crecer con nosotros en el mantenimiento de equipos para el sector HORECA.</p>
+  <p class="pend">Texto propuesto: confirmar redacción con Tecnobg.</p>
+</header>
+<figure class="pg-photo"><img src="img/soldadura-compresor.webp" alt="Técnico de Tecnobg soldando la línea de un compresor" width="576" height="1024" style="object-position:50% 55%"></figure>
+<section class="blk"><h2>Vacantes disponibles</h2><p class="pend">Pendiente: lista de vacantes vigentes (puesto, zona, requisitos).</p></section>
+<section class="blk"><h2>Envía tu solicitud</h2>
+<form class="frm" data-ok="Así se verá la confirmación. En el prototipo no se envía nada.">
+<label class="f" for="b-nombre"><span>Nombre completo</span><input id="b-nombre" type="text" autocomplete="name"></label><label class="f" for="b-tel"><span>Teléfono o WhatsApp</span><input id="b-tel" type="tel" autocomplete="tel"></label><label class="f" for="b-mail"><span>Correo electrónico</span><input id="b-mail" type="email" autocomplete="email"></label>
+<label class="f" for="b-area"><span>Área de interés</span><select id="b-area"><option>Técnico</option><option>Administrativo</option><option>Otro</option></select></label>
+<label class="f" for="b-ciudad"><span>Ciudad de residencia</span><input id="b-ciudad" type="text" autocomplete="address-level2"></label>
+<label class="f" for="b-cv"><span>Currículum (PDF)</span><input id="b-cv" type="file" accept=".pdf,.doc,.docx"></label>
+<label class="f" for="b-msg"><span>Cuéntanos tu experiencia</span><textarea id="b-msg"></textarea></label>
+<p class="pend">Campos propuestos: confirmar contra el formulario actual de /bolsa-de-trabajo/ y las áreas reales.</p>
+<button class="btn pri" type="submit">Enviar solicitud</button><p class="ok" hidden></p></form></section></section><section class="view wrap" id="aviso-de-privacidad" data-title="Aviso de privacidad" hidden>
+<header class="pg-hero"><span class="eyebrow">Legal</span><h1>Aviso de <em>privacidad</em></h1><p class="lead">Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p><p class="meta">Última actualización: <span class="pend">pendiente</span></p></header>
+<nav class="toc" aria-label="Contenido"><span class="eyebrow">Contenido</span><ol><li><a href="#" data-jump="ap-1">Identidad y domicilio del responsable</a></li><li><a href="#" data-jump="ap-2">Datos personales que recabamos</a></li><li><a href="#" data-jump="ap-3">Finalidades del tratamiento</a></li><li><a href="#" data-jump="ap-4">Transferencias de datos</a></li><li><a href="#" data-jump="ap-5">Derechos ARCO y cómo ejercerlos</a></li><li><a href="#" data-jump="ap-6">Cookies y tecnologías de rastreo</a></li><li><a href="#" data-jump="ap-7">Cambios a este aviso</a></li></ol></nav><div class="lbody"><article class="lsec" id="ap-1"><h2>Identidad y domicilio del responsable</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-2"><h2>Datos personales que recabamos</h2><p>A través del formulario de cotización del sitio se solicitan: nombre completo, empresa, número de WhatsApp, correo electrónico y el mensaje con la descripción del servicio.</p><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-3"><h2>Finalidades del tratamiento</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-4"><h2>Transferencias de datos</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-5"><h2>Derechos ARCO y cómo ejercerlos</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-6"><h2>Cookies y tecnologías de rastreo</h2><p>Consulta la página de uso de cookies.</p></article><article class="lsec" id="ap-7"><h2>Cambios a este aviso</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article></div></section><section class="view wrap" id="terminos-y-condiciones" data-title="Términos y condiciones" hidden>
+<header class="pg-hero"><span class="eyebrow">Legal</span><h1>Términos y <em>condiciones</em></h1><p class="lead">Condiciones de uso de este sitio y de los servicios de Grupo Tecnobg.</p><p class="meta">Última actualización: <span class="pend">pendiente</span></p></header>
+<nav class="toc" aria-label="Contenido"><span class="eyebrow">Contenido</span><ol><li><a href="#" data-jump="tc-1">Objeto</a></li><li><a href="#" data-jump="tc-2">Uso del sitio</a></li><li><a href="#" data-jump="tc-3">Cotizaciones y autorización de servicios</a></li><li><a href="#" data-jump="tc-4">Garantía</a></li><li><a href="#" data-jump="tc-5">Propiedad intelectual</a></li><li><a href="#" data-jump="tc-6">Legislación aplicable</a></li></ol></nav><div class="lbody"><article class="lsec" id="tc-1"><h2>Objeto</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-2"><h2>Uso del sitio</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-3"><h2>Cotizaciones y autorización de servicios</h2><p>Enviamos la cotización detallada para su aprobación antes de ejecutar el servicio.</p><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-4"><h2>Garantía</h2><p>Garantía de 30 días en cualquier reparación o mantenimiento.</p><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-5"><h2>Propiedad intelectual</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-6"><h2>Legislación aplicable</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article></div></section><section class="view wrap" id="uso-de-cookies" data-title="Uso de cookies" hidden>
+<header class="pg-hero"><span class="eyebrow">Legal</span><h1>Uso de <em>cookies</em></h1><p class="lead">Cómo usa este sitio las cookies y tecnologías similares.</p><p class="meta">Última actualización: <span class="pend">pendiente</span></p></header>
+<nav class="toc" aria-label="Contenido"><span class="eyebrow">Contenido</span><ol><li><a href="#" data-jump="ck-1">¿Qué son las cookies?</a></li><li><a href="#" data-jump="ck-2">Herramientas que usa el sitio</a></li><li><a href="#" data-jump="ck-3">Cómo desactivarlas</a></li><li><a href="#" data-jump="ck-4">Cambios a esta política</a></li></ol></nav><div class="lbody"><article class="lsec" id="ck-1"><h2>¿Qué son las cookies?</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-2"><h2>Herramientas que usa el sitio</h2><p>El sitio actual carga Google Analytics, la etiqueta de conversiones de Google Ads y LinkedIn Insight Tag.</p><p class="pend">Pendiente: confirmar qué herramientas se conservarán en el sitio nuevo y su finalidad.</p></article><article class="lsec" id="ck-3"><h2>Cómo desactivarlas</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-4"><h2>Cambios a esta política</h2><p class="pend">Pendiente: texto legal redactado y validado por Tecnobg o su asesor legal.</p></article></div></section></main>
+<footer><div class="wrap">
+  <nav aria-label="Pie de página"><a href="#nosotros" style="color:#fff">Nosotros</a><a href="tecnico.html#servicios" style="color:#fff">Servicios</a><a href="#polizas" style="color:#fff">Pólizas</a><a href="tecnico.html#preguntas-frecuentes" style="color:#fff">Preguntas frecuentes</a><a href="#bolsa-de-trabajo" style="color:#fff">Bolsa de trabajo</a></nav>
+  <nav aria-label="Legal"><a href="#aviso-de-privacidad" style="color:#fff">Aviso de privacidad</a><a href="#terminos-y-condiciones" style="color:#fff">Términos y condiciones</a><a href="#uso-de-cookies" style="color:#fff">Uso de cookies</a></nav>
+  <p style="margin:0">Todos los derechos reservados. Tecnobg 2026.</p>
+</div></footer>
+<div class="cta"><a href="https://wa.me/525646037573" aria-label="Escribir por WhatsApp al 56 4603 7573"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>WhatsApp</a></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var pendBtn=document.getElementById('pendBtn');
+  function setPend(on){document.body.classList.toggle('no-pend',!on);pendBtn.setAttribute('aria-pressed',on?'true':'false');pendBtn.textContent='Pendientes: '+(on?'sí':'no');try{localStorage.setItem('tbg-pend',on?'1':'0')}catch(e){}}
+  var saved='1';try{saved=localStorage.getItem('tbg-pend')||'1'}catch(e){}
+  setPend(saved==='1');
+  pendBtn.addEventListener('click',function(){setPend(document.body.classList.contains('no-pend'))});
+
+  var menu=document.getElementById('menu'),mb=document.getElementById('menuBtn');
+  function openMenu(o){menu.hidden=!o;mb.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';if(o){document.getElementById('menuClose').focus()}}
+  mb.addEventListener('click',function(){openMenu(true)});
+  document.getElementById('menuClose').addEventListener('click',function(){openMenu(false)});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){openMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!menu.hidden)openMenu(false)});
+
+  [].forEach.call(document.querySelectorAll('.frm'),function(f){f.addEventListener('submit',function(e){e.preventDefault();var ok=f.querySelector('.ok');ok.textContent=f.dataset.ok;ok.hidden=false})});
+  [].forEach.call(document.querySelectorAll('[data-jump]'),function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.getElementById(a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var base=document.title.split(' · ')[0];
+  function show(){
+    var id=(location.hash||'#nosotros').slice(1),v=document.getElementById(id);
+    if(!v||!v.classList.contains('view')){v=views[0];id=v.id}
+    views.forEach(function(x){x.hidden=x!==v});
+    [].forEach.call(document.querySelectorAll('[data-nav]'),function(a){a.setAttribute('aria-current',a.dataset.nav===id?'page':'false')});
+    document.title=base+' · '+v.dataset.title;
+    window.scrollTo(0,0);
+    if(window.gsap&&!reduce){
+      gsap.from(v.querySelectorAll('.pg-hero > *'),{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out'});
+      var ph=v.querySelector('.pg-photo');
+      if(ph){gsap.fromTo(ph,{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:1.1,ease:'power3.inOut',delay:.2});gsap.from(ph.querySelector('img'),{scale:1.2,duration:1.5,ease:'power2.out',delay:.2})}
+      gsap.from(v.querySelectorAll('.blk, .stats3, .pq, .toc, .lsec, .btn.pri'),{opacity:0,y:24,duration:.6,stagger:.07,delay:.3,ease:'power3.out'});
+    }
+  }
+  addEventListener('hashchange',show);
+  show();
+})();
+</script>
+</body>
+</html>
