@@ -42,6 +42,19 @@ h1{margin:0;font:600 clamp(30px,7vw,52px)/1.05 var(--body);text-wrap:balance;let
 .meter{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--muted)}
 .meter i{width:18px;height:5px;border-radius:3px;background:var(--line)}
 .meter i.on{background:var(--sky)}
+/* Live final-version banner, above the reference proposals */
+.final{background:linear-gradient(135deg,#1e2d5f,#334f9d);border:1px solid var(--sky);border-radius:22px;padding:22px 20px;display:grid;gap:12px}
+.final .kicker{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--body);color:var(--f1)}
+.final .kicker i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 0 rgba(44,187,238,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(44,187,238,0)}100%{box-shadow:0 0 0 0 rgba(44,187,238,0)}}
+.final h2{margin:0;font:600 clamp(22px,5vw,30px)/1.15 var(--body)}
+.final p{margin:0;color:#cdd6f3;max-width:62ch}
+.final .btn{justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;background:var(--sky);color:#0d1430;font:600 16px var(--body);text-decoration:none;transition:transform .2s,background .2s}
+.final .btn:hover,.final .btn:focus-visible{background:var(--f1);transform:translateY(-2px)}
+.final .btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.final .btn[aria-disabled="true"]{background:var(--line);color:var(--muted);pointer-events:none}
+.ref{margin:0;font:600 18px var(--body);color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.final .kicker i{animation:none}}
 footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
 </style>
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
@@ -52,10 +65,18 @@ footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);paddin
   <header>
     <img src="img/logo-blanco.png" alt="Grupo Tecnobg" width="69" height="64">
     <h1>Propuestas de rediseño para tecnobg.com</h1>
-    <p class="sub">Tres prototipos navegables con el contenido actual del sitio y fotos propias. Están pensados primero para celular: ábrelos y desliza para ver las transiciones.</p>
+    <p class="sub">Tres prototipos navegables con el contenido actual del sitio y fotos propias. Ya se eligió la dirección y se está construyendo el diseño final; estas propuestas se quedan como referencia.</p>
     <div class="how"><span>Mejor en celular</span><span>Botón “Pendientes” para mostrar u ocultar datos por confirmar</span><span>Incluye páginas internas: Nosotros, Pólizas, Bolsa de trabajo y legales</span></div>
   </header>
 
+  <section class="final" aria-labelledby="final-t">
+    <span class="kicker"><i aria-hidden="true"></i>En desarrollo</span>
+    <h2 id="final-t">Versión final del sitio</h2>
+    <p>Consulta en vivo el diseño final mientras se construye. Los cambios se publican aquí conforme avanzan.</p>
+    <a class="btn" id="final-link" href="#" target="_blank" rel="noopener" aria-disabled="true">Próximamente</a>
+  </section>
+
+  <h2 class="ref">Propuestas anteriores (referencia)</h2>
   <div class="cards">
     <a class="card" href="operacion.html">
       <div class="shot"><img src="img/condensadora.webp" alt="" width="1024" height="1024" style="object-position:50% 40%"><span class="tag">Propuesta 02</span></div>
@@ -92,5 +113,15 @@ footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);paddin
   <footer>Prototipo de presentación. Los textos, cifras y datos de contacto provienen del sitio actual; lo marcado como pendiente se confirmará con Tecnobg. Los formularios no envían información.</footer>
 </div>
 
+<script>
+// URL de la versión final en vivo. Cámbiala aquí; si está vacía el botón muestra "Próximamente".
+const FINAL_URL = "";
+if (FINAL_URL) {
+  const a = document.getElementById("final-link");
+  a.href = FINAL_URL;
+  a.textContent = "Ver versión final en vivo →";
+  a.removeAttribute("aria-disabled");
+}
+</script>
 </body>
 </html>

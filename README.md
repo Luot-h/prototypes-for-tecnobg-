@@ -6,7 +6,7 @@ Sitio estático de presentación con 3 propuestas. No necesita compilación: se 
 
 | Archivo | Qué es |
 |---|---|
-| `index.html` | Portada con las 3 propuestas |
+| `index.html` | Portada: botón a la versión final en vivo y las 3 propuestas como referencia |
 | `operacion.html` / `operacion-paginas.html` | Propuesta 02 · Operación primero, y sus páginas internas |
 | `tecnico.html` / `tecnico-paginas.html` | Propuesta 03 · Ficha técnica, y sus páginas internas |
 | `cinematico.html` / `cinematico-paginas.html` | Propuesta 05 · Cinemático, y sus páginas internas |
@@ -16,6 +16,10 @@ Sitio estático de presentación con 3 propuestas. No necesita compilación: se 
 El CSS y el JavaScript de cada página están dentro de su propio HTML. Las animaciones usan GSAP 3.12.5 desde cdnjs, así que se necesita conexión a internet.
 
 Las páginas internas cambian de sección con el hash de la URL, por ejemplo `operacion-paginas.html#polizas` o `#bolsa-de-trabajo`.
+
+## Botón a la versión final
+
+En `index.html`, al final, cambia `const FINAL_URL = "";` por la URL del sitio final (por ejemplo `"https://tecnobg-final.vercel.app"`). Mientras esté vacía, el botón muestra "Próximamente" y no se puede pulsar.
 
 ## Publicar
 
