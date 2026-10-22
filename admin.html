@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel Tecnobg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Panel de administración de Tecnobg: propuesta visual (sin backend). Se programará en Laravel con roles y permisos de spatie/laravel-permission.
+   Usa las tipografías y colores de final.html. Cada pantalla es una vista elegida por el #hash. */
+[hidden]{display:none!important}
+@font-face{font-family:"Recharge";src:url("fonts/recharge-bold.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"HP Simplified";src:url("fonts/hp-simplified.woff2") format("woff2");font-weight:400;font-display:swap}
+:root{
+  --night:#191c37; --night2:#1e2d5f; --navy:#334f9d; --ink-d:#152149; --light:#f5f6fa; --muted:#6b7493; --line:#e3e7f1;
+  --g-blue:linear-gradient(90deg,#4cc1f0,#219fda 55%,#148bcc);
+  --ok:#1f8f4e; --ok-bg:#e3f5ea; --warn:#8a5a00; --warn-bg:#fff4cc; --bad:#c21f22; --bad-bg:#fde7e7; --info:#14629a; --info-bg:#e1f2fc; --off:#5b6380; --off-bg:#eceff5;
+  --head:"Lexend",system-ui,sans-serif; --body:"HP Simplified",system-ui,sans-serif; --tech:"Recharge","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --side:264px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--light);color:var(--ink-d);font:400 16px/1.5 var(--body)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid #219fda;outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:10px;border:1px solid transparent;font:400 14px/1 var(--tech);text-decoration:none;color:#fff;white-space:nowrap;background:var(--g-blue)}
+.btn:hover{filter:brightness(1.06)}
+.btn.sec{background:#fff;color:var(--ink-d);border-color:#cfd6e8;font:500 14px/1 var(--head)}
+.btn.danger{background:#fff;color:var(--bad);border-color:#f2c2c3;font:500 14px/1 var(--head)}
+.btn.sm{min-height:36px;padding:0 14px}
+.ico{width:18px;height:18px;flex:none}
+
+/* Acceso */
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:radial-gradient(1200px 600px at 80% -10%,rgba(76,193,240,.22),transparent 60%),linear-gradient(160deg,#1e2d5f,#191c37 60%);color:#f2f4fa}
+.auth-card{width:100%;max-width:420px;display:grid;gap:22px}
+.auth-card .logo{width:190px;justify-self:center}
+.auth-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);border-radius:20px;padding:28px;display:grid;gap:16px}
+.auth-box h1{font:700 30px/1.1 var(--head)}
+.auth-box p{color:#b9c0dc;font-size:15px}
+.auth label{display:grid;gap:6px;font:500 14px var(--head)}
+.auth input[type=email],.auth input[type=password]{min-height:48px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(25,28,55,.55);color:#fff}
+.auth .row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.auth .row label{display:flex;align-items:center;gap:8px;font:400 14px var(--body)}
+.auth .row a{color:#9fdcf7}
+.auth .btn{width:100%;min-height:50px;font-size:15px}
+.auth .note{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#b9c0dc;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+.auth .foot{text-align:center;font-size:13px;color:#8d96bd}
+.auth .foot a{color:#cfd7f2}
+
+/* Estructura del panel */
+.app{min-height:100vh}
+.side{position:fixed;inset:0 auto 0 0;width:var(--side);background:linear-gradient(180deg,#1e2d5f,#191c37);color:#dfe5f7;display:flex;flex-direction:column;z-index:60;transform:translateX(-100%);transition:transform .3s}
+.side.open{transform:none;box-shadow:0 0 0 100vmax rgba(10,12,30,.5)}
+@media (min-width:1000px){.side{transform:none}.main{margin-left:var(--side)}.burger{display:none!important}}
+.side .brand{display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.side .brand img{height:34px;width:auto}
+.side .brand span{font:600 11px var(--head);letter-spacing:.08em;text-transform:uppercase;color:#9fb0e0;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 6px}
+.side nav{flex:1;overflow:auto;padding:12px 12px 20px;display:grid;align-content:start;gap:2px}
+.side .grp{font:600 11px var(--head);letter-spacing:.1em;text-transform:uppercase;color:#7f8bb8;padding:16px 10px 6px}
+.side nav a{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;font:400 15px var(--head);color:#dfe5f7}
+.side nav a:hover{background:rgba(255,255,255,.08)}
+.side nav a.on{background:rgba(76,193,240,.16);color:#fff;box-shadow:inset 3px 0 0 #4cc1f0}
+.side nav a .n{margin-left:auto;background:#e42528;color:#fff;font:600 11px/1 var(--head);border-radius:999px;padding:4px 7px}
+.side .me{display:flex;align-items:center;gap:10px;padding:16px 18px;border-top:1px solid rgba(255,255,255,.08)}
+.av{width:38px;height:38px;flex:none;border-radius:50%;background:var(--g-blue);display:flex;align-items:center;justify-content:center;color:#fff;font:600 13px var(--head)}
+.av.s{width:30px;height:30px;font-size:11px}
+.me b{display:block;font:600 14px var(--head);color:#fff}
+.me small{color:#9fb0e0;font-size:13px}
+.me a{margin-left:auto;color:#9fb0e0;display:flex}
+.top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;min-height:66px;padding:0 16px;background:rgba(245,246,250,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+@media (min-width:1000px){.top{padding:0 28px}}
+.burger{width:42px;height:42px;border-radius:10px;border:1px solid #cfd6e8;background:#fff;display:flex;align-items:center;justify-content:center}
+.crumbs{font:500 14px var(--head);color:var(--muted)}
+.top .sp{flex:1}
+.asrole{display:flex;align-items:center;gap:8px;font:500 13px var(--head);color:var(--muted);background:#fff;border:1px dashed #b8c1da;border-radius:10px;padding:4px 4px 4px 12px}
+.asrole select{border:none;background:var(--light);border-radius:8px;min-height:34px;padding:0 8px;font:600 13px var(--head);color:var(--ink-d)}
+.top .site{display:none}
+@media (max-width:759px){.crumbs{display:none}.asrole{font-size:0;gap:0;padding:3px}.asrole select{max-width:150px}}
+@media (min-width:760px){.top .site{display:inline-flex}}
+.main{min-width:0}
+.page{padding:24px 16px 80px;max-width:1280px}
+@media (min-width:1000px){.page{padding:30px 28px 80px}}
+.ph{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:22px}
+.ph h1{font:700 clamp(26px,4vw,34px)/1.1 var(--head)}
+.ph p{color:var(--muted);margin-top:6px}
+.ph .acts{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Componentes */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px}
+.card.pad{padding:20px}
+.card h2{font:600 17px var(--head)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px;margin-bottom:18px}
+.stat{padding:18px 20px;display:grid;gap:4px}
+.stat span{color:var(--muted);font:500 14px var(--head)}
+.stat b{font:700 34px/1.1 var(--head);letter-spacing:-.02em}
+.stat small{font-size:13px;color:var(--ok)}
+.grid2{display:grid;gap:18px}
+.grid2>*,.roles>*,.form>*,.fcol>*{min-width:0}
+@media (min-width:1100px){.grid2{grid-template-columns:1.5fr 1fr}}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{min-height:36px;padding:0 12px;border-radius:8px;border:none;background:transparent;font:500 14px var(--head);color:var(--muted)}
+.tabs button.on{background:var(--light);color:var(--ink-d)}
+.tabs button i{font-style:normal;color:#9aa2bd;margin-left:4px}
+.search{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border:1px solid #cfd6e8;border-radius:10px;background:#fff;color:var(--muted)}
+.search input{border:none;outline:none;flex:1;min-width:0;background:transparent;font-size:15px;color:var(--ink-d)}
+.sel{min-height:40px;padding:0 10px;border:1px solid #cfd6e8;border-radius:10px;background:#fff;font:500 14px var(--head)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font:600 12px var(--head);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfd}
+td .t{font:600 15px var(--head);display:block}
+td small{color:var(--muted);font-size:13px}
+.thumb{width:56px;height:42px;border-radius:8px;object-fit:cover;background:#dfe4f0;flex:none}
+.cell{display:flex;align-items:center;gap:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--head);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.ok{background:var(--ok-bg);color:var(--ok)}.warn{background:var(--warn-bg);color:var(--warn)}.bad{background:var(--bad-bg);color:var(--bad)}.info{background:var(--info-bg);color:var(--info)}.off{background:var(--off-bg);color:var(--off)}
+.row-acts{display:flex;gap:4px;justify-content:flex-end}
+.ib{width:36px;height:36px;border-radius:8px;border:1px solid transparent;background:transparent;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none}
+.ib:hover{background:var(--light);color:var(--ink-d);border-color:var(--line)}
+.ib.del:hover{color:var(--bad)}
+.tfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;flex-wrap:wrap}
+.pg{display:flex;gap:4px}
+.pg button{min-width:34px;height:34px;border-radius:8px;border:1px solid #cfd6e8;background:#fff;font:500 13px var(--head)}
+.pg button.on{background:var(--ink-d);color:#fff;border-color:var(--ink-d)}
+.list{display:grid}
+.list>div{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.list>div:first-child{border-top:none}
+.list .grow{flex:1;min-width:0}
+.list b{font:600 14px var(--head);display:block}
+.list small{color:var(--muted);font-size:13px}
+.card .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.card .hd a{font:500 14px var(--head);color:var(--navy);text-decoration:none}
+
+/* Formularios */
+.form{display:grid;gap:18px;align-items:start}
+@media (min-width:1100px){.form{grid-template-columns:1fr 340px}}
+.fcol{display:grid;gap:18px}
+.fld{display:grid;gap:6px}
+.fld>span,.fld>label{font:500 14px var(--head)}
+.fld em{font-style:normal;color:var(--muted);font:400 13px var(--body)}
+.inp{width:100%;min-height:44px;padding:10px 12px;border:1px solid #cfd6e8;border-radius:10px;background:#fff;font-size:15px}
+textarea.inp{resize:vertical;min-height:96px}
+.inp.big{font:600 22px/1.3 var(--head);min-height:54px}
+.two{display:grid;gap:14px}
+@media (min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.slug{font-size:13px;color:var(--muted)}
+.slug b{color:var(--navy);font-weight:500}
+.editor{border:1px solid #cfd6e8;border-radius:12px;background:#fff;overflow:hidden}
+.etb{display:flex;flex-wrap:wrap;gap:2px;padding:6px;border-bottom:1px solid var(--line);background:#fafbfd}
+.etb button{min-width:34px;height:34px;border:none;border-radius:6px;background:transparent;font:600 14px var(--head);color:#45507a}
+.etb button:hover{background:#e8ecf6}
+.etb .sepv{width:1px;background:var(--line);margin:4px 4px}
+.ebody{min-height:320px;padding:18px 20px;outline:none;font-size:17px;line-height:1.7}
+.ebody h2{font:700 22px var(--head);margin:10px 0 4px}
+.ebody p{margin:0 0 12px}
+.drop{border:1.5px dashed #b8c1da;border-radius:12px;background:#fafbfd;padding:18px;text-align:center;color:var(--muted);font-size:14px;display:grid;gap:8px;justify-items:center}
+.cover{position:relative;border-radius:12px;overflow:hidden}
+.cover img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.cover button{position:absolute;right:8px;top:8px}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;font:500 14px var(--head)}
+.switch input{appearance:none;width:44px;height:26px;border-radius:999px;background:#cfd6e8;position:relative;cursor:pointer;flex:none;transition:background .2s}
+.switch input::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch input:checked{background:#219fda}
+.switch input:checked::after{transform:translateX(18px)}
+.seo{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafbfd}
+.seo .u{color:#1a7f37;font-size:13px}
+.seo .t{color:#1a0dab;font:500 18px/1.3 Arial,sans-serif}
+.seo .d{color:#4d5156;font-size:14px;font-family:Arial,sans-serif}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:var(--light);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:13px}
+.savebar{position:sticky;bottom:0;z-index:30;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center;padding:12px 16px;margin:18px -16px -80px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+@media (min-width:1000px){.savebar{margin:18px -28px -80px;padding:12px 28px}}
+.savebar small{margin-right:auto;color:var(--muted)}
+
+/* Ofertas */
+.ocards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px}
+.ocard{overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.ocard figure{margin:0;position:relative;aspect-ratio:16/9;background:#dfe4f0}
+.ocard figure img{width:100%;height:100%;object-fit:cover}
+.ocard figure .pill{position:absolute;left:10px;top:10px}
+.ocard .b{padding:16px;display:grid;gap:8px;align-content:start}
+.ocard h3{font:600 17px/1.3 var(--head)}
+.ocard .m{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+
+/* Postulaciones */
+.kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:14px;overflow-x:auto;padding-bottom:10px}
+.col{background:#eceff5;border-radius:14px;padding:10px;display:grid;gap:10px;align-content:start;min-height:300px}
+.col h3{display:flex;align-items:center;gap:8px;font:600 14px var(--head);padding:4px 6px}
+.col h3 i{font-style:normal;margin-left:auto;color:var(--muted);font-weight:500}
+.col h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.cand{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px;text-align:left;width:100%;transition:box-shadow .2s,transform .2s}
+.cand:hover{box-shadow:0 8px 22px rgba(21,33,73,.1);transform:translateY(-1px)}
+.cand .who{display:flex;align-items:center;gap:10px}
+.cand b{font:600 15px var(--head)}
+.cand small{color:var(--muted);font-size:13px}
+.cand .mt{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+.drawer{position:fixed;inset:0;z-index:90;display:flex;justify-content:flex-end;background:rgba(10,12,30,.45)}
+.drawer .panel{width:min(520px,100%);height:100%;background:#fff;overflow:auto;display:grid;align-content:start}
+.drawer .dh{display:flex;align-items:flex-start;gap:14px;padding:22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:1}
+.drawer .dh h2{font:700 22px var(--head)}
+.drawer .dh p{color:var(--muted);font-size:14px}
+.drawer .dh .ib{margin-left:auto}
+.drawer section{padding:20px 22px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.drawer h3{font:600 13px var(--head);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:8px 12px;font-size:15px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.file{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px}
+.file .fi{width:40px;height:48px;border-radius:6px;background:var(--bad-bg);color:var(--bad);display:flex;align-items:center;justify-content:center;font:700 11px var(--head)}
+.file .grow{flex:1}
+.timeline{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.timeline li{display:grid;grid-template-columns:12px 1fr;gap:12px;font-size:14px}
+.timeline li::before{content:"";width:10px;height:10px;border-radius:50%;background:#219fda;margin-top:5px}
+.timeline small{display:block;color:var(--muted)}
+
+/* Roles y permisos */
+.roles{display:grid;gap:18px;align-items:start}
+@media (min-width:1100px){.roles{grid-template-columns:300px 1fr}}
+.rlist{display:grid;gap:4px;padding:8px}
+.rlist button{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid transparent;background:transparent;border-radius:12px;padding:12px}
+.rlist button.on{background:var(--light);border-color:var(--line)}
+.rlist b{display:block;font:600 15px var(--head)}
+.rlist small{color:var(--muted);font-size:13px}
+.rdot{width:12px;height:12px;border-radius:4px;flex:none;background:var(--c)}
+.matrix th:not(:first-child),.matrix td:not(:first-child){text-align:center}
+.matrix td:first-child b{font:600 15px var(--head);display:block}
+.matrix input{width:20px;height:20px;accent-color:#219fda;cursor:pointer}
+.matrix input:disabled{cursor:not-allowed}
+.matrix .na{color:#c3c9db}
+code{font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--light);border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:#45507a}
+.hint{display:flex;gap:10px;align-items:flex-start;background:var(--info-bg);color:#0f4a75;border-radius:12px;padding:12px 14px;font-size:14px}
+
+/* Modal, aviso y sin permiso */
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:16px;background:rgba(10,12,30,.5)}
+.modal .box{width:min(520px,100%);background:#fff;border-radius:18px;padding:24px;display:grid;gap:16px;max-height:calc(100vh - 32px);overflow:auto}
+.modal h2{font:700 22px var(--head)}
+.modal .acts{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.radio{display:grid;gap:8px}
+.radio label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
+.radio label:has(input:checked){border-color:#219fda;background:#f3fafe}
+.radio b{display:block;font:600 14px var(--head)}
+.radio small{color:var(--muted);font-size:13px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,0);z-index:99;background:var(--ink-d);color:#fff;border-radius:12px;padding:12px 18px;display:flex;gap:10px;align-items:center;font:500 14px var(--head);box-shadow:0 14px 34px rgba(0,0,0,.25)}
+.empty{display:grid;justify-items:center;gap:10px;text-align:center;padding:60px 20px}
+.empty .big{width:64px;height:64px;border-radius:18px;background:var(--bad-bg);color:var(--bad);display:flex;align-items:center;justify-content:center}
+.empty h2{font:700 22px var(--head)}
+.empty p{color:var(--muted);max-width:44ch}
+.demo{position:fixed;right:12px;bottom:12px;z-index:20;font:500 12px var(--head);color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 11 12 4l9 7v9H14v-6h-4v6H3z"/></symbol>
+  <symbol id="i-blog" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h8M8 8h3"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 12V3h9l9 9-9 9zM7.5 7.5h.01"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 7h18v13H3zM8 7V4h8v3M3 13h18"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 4h16v16H4zM4 14h5l1.5 2h3L15 14h5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21c0-4 3-6 7-6s7 2 7 6M16 3.5a4 4 0 0 1 0 7.5M18 15c2.5.5 4 2.5 4 6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6zM9 12l2 2 4-4"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 20h4L19 9l-4-4L4 16zM13 7l4 4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 4v11M7 10l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v6M12 7.5v.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+</svg>
+
+<!-- Acceso: no hay registro público, los usuarios los da de alta un administrador -->
+<div class="auth" id="v-login" data-auth hidden>
+  <div class="auth-card">
+    <img class="logo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85">
+    <form class="auth-box" id="loginForm">
+      <div><h1>Panel de administración</h1><p>Inicia sesión para administrar el blog, las ofertas y la bolsa de trabajo.</p></div>
+      <label>Correo electrónico<input type="email" required value="admin@tecnobg.com" autocomplete="username"></label>
+      <label>Contraseña<input type="password" required value="demo1234" autocomplete="current-password"></label>
+      <div class="row"><label><input type="checkbox" checked> Recordarme</label><a href="#recuperar">¿Olvidaste tu contraseña?</a></div>
+      <button class="btn" type="submit">Iniciar sesión</button>
+      <p class="note"><svg class="ico"><use href="#i-lock"/></svg>No hay registro público. Si necesitas acceso, pídelo al administrador del sitio.</p>
+    </form>
+    <p class="foot"><a href="final.html">← Volver a tecnobg.com</a></p>
+  </div>
+</div>
+
+<div class="auth" id="v-recuperar" data-auth hidden>
+  <div class="auth-card">
+    <img class="logo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85">
+    <form class="auth-box" id="resetForm">
+      <div><h1>Recuperar contraseña</h1><p>Escribe tu correo y te enviaremos un enlace para crear una nueva contraseña.</p></div>
+      <label>Correo electrónico<input type="email" required autocomplete="username"></label>
+      <button class="btn" type="submit">Enviar enlace</button>
+      <p class="note" id="resetOk" hidden><svg class="ico"><use href="#i-check"/></svg>Si el correo está registrado, recibirás el enlace en unos minutos.</p>
+    </form>
+    <p class="foot"><a href="#login">← Volver a iniciar sesión</a></p>
+  </div>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="side" id="side">
+    <div class="brand"><img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85"><span>Panel</span></div>
+    <nav aria-label="Panel">
+      <a href="#resumen" data-nav="resumen"><svg class="ico"><use href="#i-home"/></svg>Resumen</a>
+      <div class="grp" data-perm-any="blog.ver ofertas.ver">Contenido</div>
+      <a href="#blog" data-nav="blog" data-perm="blog.ver"><svg class="ico"><use href="#i-blog"/></svg>Blog</a>
+      <a href="#ofertas" data-nav="ofertas" data-perm="ofertas.ver"><svg class="ico"><use href="#i-tag"/></svg>Ofertas</a>
+      <div class="grp" data-perm-any="vacantes.ver postulaciones.ver">Bolsa de trabajo</div>
+      <a href="#vacantes" data-nav="vacantes" data-perm="vacantes.ver"><svg class="ico"><use href="#i-brief"/></svg>Vacantes</a>
+      <a href="#postulaciones" data-nav="postulaciones" data-perm="postulaciones.ver"><svg class="ico"><use href="#i-inbox"/></svg>Postulaciones<span class="n">4</span></a>
+      <div class="grp" data-perm-any="usuarios.ver roles.gestionar">Administración</div>
+      <a href="#usuarios" data-nav="usuarios" data-perm="usuarios.ver"><svg class="ico"><use href="#i-users"/></svg>Usuarios</a>
+      <a href="#roles" data-nav="roles" data-perm="roles.gestionar"><svg class="ico"><use href="#i-shield"/></svg>Roles y permisos</a>
+    </nav>
+    <div class="me"><span class="av" id="meAv">AR</span><div><b id="meName">Ana Ramírez</b><small id="meRole">Administrador</small></div><a href="#login" aria-label="Cerrar sesión" title="Cerrar sesión"><svg class="ico"><use href="#i-out"/></svg></a></div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú"><svg class="ico"><use href="#i-menu"/></svg></button>
+      <span class="crumbs" id="crumbs">Resumen</span>
+      <span class="sp"></span>
+      <label class="asrole" title="Solo para la propuesta: muestra qué ve cada rol">Ver como
+        <select id="roleSel"><option value="admin">Administrador</option><option value="editor">Editor de contenido</option><option value="rh">Recursos Humanos</option></select>
+      </label>
+      <a class="btn sec sm site" href="final.html" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Ver sitio</a>
+      <a class="av s" href="#perfil" id="topAv" aria-label="Mi perfil" style="text-decoration:none">AR</a>
+    </header>
+
+    <!-- Resumen -->
+    <main class="page view" id="v-resumen" data-crumb="Resumen" hidden>
+      <div class="ph"><div><h1>Hola, <span data-first>Ana</span></h1><p>Esto es lo que pasa hoy en tecnobg.com.</p></div>
+        <div class="acts"><a class="btn sec" href="#blog-editar" data-perm="blog.crear"><svg class="ico"><use href="#i-plus"/></svg>Nuevo artículo</a><a class="btn" href="#vacante-editar" data-perm="vacantes.crear"><svg class="ico"><use href="#i-plus"/></svg>Nueva vacante</a></div></div>
+      <div class="stats">
+        <div class="card stat" data-perm="blog.ver"><span>Artículos publicados</span><b>18</b><small>+3 este mes</small></div>
+        <div class="card stat" data-perm="ofertas.ver"><span>Ofertas activas</span><b>4</b><small style="color:var(--warn)">1 vence esta semana</small></div>
+        <div class="card stat" data-perm="vacantes.ver"><span>Vacantes abiertas</span><b>5</b><small>2 nuevas</small></div>
+        <div class="card stat" data-perm="postulaciones.ver"><span>Postulaciones nuevas</span><b>4</b><small>sin revisar</small></div>
+      </div>
+      <div class="grid2">
+        <div class="card" data-perm="postulaciones.ver">
+          <div class="toolbar" style="justify-content:space-between"><h2 style="font:600 17px var(--head)">Postulaciones recientes</h2><a class="btn sec sm" href="#postulaciones">Ver todas</a></div>
+          <div class="tbl-wrap"><table><thead><tr><th>Candidato</th><th>Vacante</th><th>Estado</th><th>Recibida</th></tr></thead><tbody id="recentApps"></tbody></table></div>
+        </div>
+        <div style="display:grid;gap:18px;align-content:start">
+          <div class="card pad" data-perm="blog.ver"><div class="hd"><h2>Borradores y programados</h2><a href="#blog">Ver blog</a></div>
+            <div class="list">
+              <div><img class="thumb" src="img/final/equipos/lavaloza.webp" alt=""><div class="grow"><b>Lavalozas: cómo evitar el sarro</b><small>Borrador · editado hace 2 h</small></div><span class="pill warn">Borrador</span></div>
+              <div><img class="thumb" src="img/final/equipos/horno-pizza.webp" alt=""><div class="grow"><b>Horno de pizza: limpieza diaria</b><small>Se publica el 28 oct, 9:00</small></div><span class="pill info">Programado</span></div>
+            </div></div>
+          <div class="card pad"><div class="hd"><h2>Actividad reciente</h2></div>
+            <ul class="timeline">
+              <li><div>Luis Ortega publicó <b>“5 señales de que tu cámara…”</b><small>Hace 1 h</small></div></li>
+              <li><div>Mariana Díaz movió a <b>Carlos Méndez</b> a Entrevista<small>Hace 3 h</small></div></li>
+              <li><div>Ana Ramírez creó el usuario <b>Jorge Peña</b> (Editor)<small>Ayer</small></div></li>
+            </ul></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Blog -->
+    <main class="page view" id="v-blog" data-crumb="Contenido / Blog" data-perm="blog.ver" hidden>
+      <div class="ph"><div><h1>Blog</h1><p>Artículos publicados en tecnobg.com/blog.</p></div>
+        <div class="acts"><button class="btn sec" type="button" data-modal="mCats">Categorías</button><a class="btn" href="#blog-editar" data-perm="blog.crear"><svg class="ico"><use href="#i-plus"/></svg>Nuevo artículo</a></div></div>
+      <div class="card">
+        <div class="toolbar">
+          <div class="tabs" data-tabs="posts"><button class="on" data-f="">Todos<i>22</i></button><button data-f="Publicado">Publicados<i>18</i></button><button data-f="Programado">Programados<i>1</i></button><button data-f="Borrador">Borradores<i>3</i></button></div>
+          <label class="search"><svg class="ico"><use href="#i-search"/></svg><input placeholder="Buscar artículo" data-search="posts"></label>
+          <select class="sel" aria-label="Categoría"><option>Todas las categorías</option><option>Línea fría</option><option>Línea caliente</option><option>Mantenimiento</option><option>Operación</option></select>
+        </div>
+        <div class="tbl-wrap"><table><thead><tr><th>Artículo</th><th>Categoría</th><th>Autor</th><th>Estado</th><th>Fecha</th><th></th></tr></thead><tbody id="posts"></tbody></table></div>
+        <div class="tfoot"><span>Mostrando 1–8 de 22</span><div class="pg"><button class="on">1</button><button>2</button><button>3</button></div></div>
+      </div>
+    </main>
+
+    <main class="page view" id="v-blog-editar" data-crumb="Contenido / Blog / Editar artículo" data-perm="blog.crear" hidden>
+      <div class="ph"><div><h1>Editar artículo</h1><p><a href="#blog" style="color:var(--navy)">← Volver al blog</a></p></div>
+        <div class="acts"><a class="btn sec" href="final-paginas.html#blog-articulo" target="_blank" rel="noopener"><svg class="ico"><use href="#i-eye"/></svg>Vista previa</a></div></div>
+      <div class="form">
+        <div class="fcol">
+          <div class="card pad fcol">
+            <div class="fld"><label for="pt">Título</label><input id="pt" class="inp big" value="5 señales de que tu cámara de refrigeración necesita mantenimiento"></div>
+            <p class="slug">tecnobg.com/blog/<b id="slug">5-senales-de-que-tu-camara-de-refrigeracion-necesita-mantenimiento</b></p>
+            <div class="fld"><label for="px">Extracto <em>· aparece en el listado y al compartir</em></label><textarea id="px" class="inp" rows="2">Hielo en el evaporador, puertas que no sellan o un compresor que no descansa: qué revisar antes de que falle.</textarea></div>
+          </div>
+          <div class="editor">
+            <div class="etb" role="toolbar" aria-label="Formato"><button type="button" title="Título">H2</button><button type="button" title="Subtítulo">H3</button><span class="sepv"></span><button type="button" title="Negritas"><b>B</b></button><button type="button" title="Cursivas"><i>I</i></button><button type="button" title="Enlace">🔗</button><span class="sepv"></span><button type="button" title="Lista">• ≡</button><button type="button" title="Lista numerada">1.≡</button><button type="button" title="Cita">❝</button><span class="sepv"></span><button type="button" title="Imagen">🖼</button><button type="button" title="Video">▶</button></div>
+            <div class="ebody" contenteditable="true" aria-label="Contenido del artículo">
+              <p>Una cámara de refrigeración rara vez falla de golpe: casi siempre avisa. Detectar esas señales a tiempo es la diferencia entre una visita programada y perder producto en plena operación.</p>
+              <h2>1. Se forma hielo en el evaporador</h2>
+              <p>Una capa delgada es normal, pero si el hielo cubre las aletas el aire deja de circular y el equipo trabaja de más.</p>
+              <h2>2. La puerta ya no sella</h2>
+              <p>Empaques rotos o bisagras desajustadas dejan entrar aire caliente y humedad…</p>
+            </div>
+          </div>
+          <div class="card pad fcol">
+            <h2>SEO y redes sociales</h2>
+            <div class="fld"><label for="mt">Título para buscadores <em>· 60 caracteres máx.</em></label><input id="mt" class="inp" value="5 señales de que tu cámara de refrigeración necesita mantenimiento"></div>
+            <div class="fld"><label for="md">Descripción <em>· 155 caracteres máx.</em></label><textarea id="md" class="inp" rows="2">Hielo en el evaporador, puertas que no sellan o un compresor que no descansa: qué revisar en tu cámara de refrigeración antes de que falle.</textarea></div>
+            <div class="seo"><div class="u">tecnobg.com › blog › 5-senales-de-que-tu-camara…</div><div class="t">5 señales de que tu cámara de refrigeración necesita mantenimiento</div><div class="d">Hielo en el evaporador, puertas que no sellan o un compresor que no descansa: qué revisar en tu cámara de refrigeración antes de que falle.</div></div>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="card pad fcol">
+            <h2>Publicación</h2>
+            <div class="fld"><span>Estado</span><select class="inp"><option>Publicado</option><option>Borrador</option><option>Programado</option></select></div>
+            <div class="fld"><span>Fecha de publicación</span><input class="inp" type="datetime-local" value="2026-10-14T09:00"></div>
+            <div class="fld"><span>Autor</span><select class="inp"><option>Luis Ortega</option><option>Ana Ramírez</option><option>Jorge Peña</option></select></div>
+            <label class="switch">Destacar en el blog<input type="checkbox" checked></label>
+          </div>
+          <div class="card pad fcol">
+            <h2>Imagen de portada</h2>
+            <div class="cover"><img src="img/final/equipos/camaras.webp" alt=""><button class="btn sec sm" type="button">Cambiar</button></div>
+            <div class="fld"><span>Texto alternativo</span><input class="inp" value="Cámara de refrigeración comercial"></div>
+          </div>
+          <div class="card pad fcol">
+            <h2>Clasificación</h2>
+            <div class="fld"><span>Categoría</span><select class="inp"><option>Línea fría</option><option>Línea caliente</option><option>Mantenimiento</option><option>Operación</option></select></div>
+            <div class="fld"><span>Etiquetas</span><div class="tags"><span>refrigeración ×</span><span>cámaras ×</span><span>mantenimiento ×</span></div><input class="inp" placeholder="Agregar etiqueta"></div>
+          </div>
+        </div>
+      </div>
+      <div class="savebar"><small>Guardado automático hace 1 min</small><button class="btn danger" type="button" data-perm="blog.eliminar" data-confirm="¿Eliminar este artículo?"><svg class="ico"><use href="#i-trash"/></svg>Eliminar</button><button class="btn sec" type="button" data-toast="Borrador guardado">Guardar borrador</button><button class="btn" type="button" data-perm="blog.publicar" data-toast="Artículo publicado">Publicar</button></div>
+    </main>
+
+    <!-- Ofertas -->
+    <main class="page view" id="v-ofertas" data-crumb="Contenido / Ofertas" data-perm="ofertas.ver" hidden>
+      <div class="ph"><div><h1>Ofertas</h1><p>Promociones que se muestran en tecnobg.com/ofertas. Se ocultan solas al vencer.</p></div>
+        <div class="acts"><a class="btn" href="#oferta-editar" data-perm="ofertas.crear"><svg class="ico"><use href="#i-plus"/></svg>Nueva oferta</a></div></div>
+      <div class="card" style="margin-bottom:16px"><div class="toolbar"><div class="tabs" data-tabs="offers"><button class="on" data-f="">Todas<i>6</i></button><button data-f="Activa">Activas<i>4</i></button><button data-f="Programada">Programadas<i>1</i></button><button data-f="Vencida">Vencidas<i>1</i></button></div><label class="search"><svg class="ico"><use href="#i-search"/></svg><input placeholder="Buscar oferta" data-search="offers"></label></div></div>
+      <div class="ocards" id="offers"></div>
+    </main>
+
+    <main class="page view" id="v-oferta-editar" data-crumb="Contenido / Ofertas / Editar oferta" data-perm="ofertas.crear" hidden>
+      <div class="ph"><div><h1>Editar oferta</h1><p><a href="#ofertas" style="color:var(--navy)">← Volver a ofertas</a></p></div></div>
+      <div class="form">
+        <div class="card pad fcol">
+          <div class="fld"><label for="ot">Título</label><input id="ot" class="inp big" value="Mantenimiento preventivo de línea fría"></div>
+          <div class="two"><div class="fld"><span>Etiqueta destacada <em>· p. ej. -15%, 2×1, Paquete</em></span><input class="inp" value="-15%"></div><div class="fld"><span>Servicio relacionado</span><select class="inp"><option>Mantenimiento preventivo</option><option>Reparación</option><option>Pólizas</option><option>Servicio de emergencia</option></select></div></div>
+          <div class="fld"><span>Descripción</span><textarea class="inp" rows="3">Revisión completa de refrigeradores, mesas frías y vitrinas: limpieza de condensador, revisión de gas, empaques y termostato.</textarea></div>
+          <div class="two"><div class="fld"><span>Vigente desde</span><input class="inp" type="date" value="2026-10-01"></div><div class="fld"><span>Vigente hasta</span><input class="inp" type="date" value="2026-11-30"></div></div>
+          <div class="two"><div class="fld"><span>Botón principal</span><select class="inp"><option>WhatsApp con mensaje</option><option>Formulario de cotización</option></select></div><div class="fld"><span>Mensaje de WhatsApp</span><input class="inp" value="Hola, me interesa la oferta: Mantenimiento preventivo de línea fría"></div></div>
+          <div class="fld"><span>Condiciones</span><textarea class="inp" rows="2">Aplica en la zona de cobertura. No acumulable con otras promociones.</textarea></div>
+        </div>
+        <div class="fcol">
+          <div class="card pad fcol"><h2>Publicación</h2><div class="fld"><span>Estado</span><select class="inp"><option>Activa</option><option>Pausada</option></select></div><label class="switch">Oferta destacada<input type="checkbox" checked></label><p class="slug">Al llegar a la fecha de fin, la oferta deja de mostrarse en el sitio.</p></div>
+          <div class="card pad fcol"><h2>Imagen</h2><div class="cover"><img src="img/final/equipos/refrigeradores.webp" alt=""><button class="btn sec sm" type="button">Cambiar</button></div></div>
+        </div>
+      </div>
+      <div class="savebar"><button class="btn danger" type="button" data-perm="ofertas.eliminar" data-confirm="¿Eliminar esta oferta?"><svg class="ico"><use href="#i-trash"/></svg>Eliminar</button><button class="btn" type="button" data-toast="Oferta guardada">Guardar oferta</button></div>
+    </main>
+
+    <!-- Vacantes -->
+    <main class="page view" id="v-vacantes" data-crumb="Bolsa de trabajo / Vacantes" data-perm="vacantes.ver" hidden>
+      <div class="ph"><div><h1>Vacantes</h1><p>Puestos publicados en tecnobg.com/bolsa-de-trabajo.</p></div>
+        <div class="acts"><a class="btn" href="#vacante-editar" data-perm="vacantes.crear"><svg class="ico"><use href="#i-plus"/></svg>Nueva vacante</a></div></div>
+      <div class="card">
+        <div class="toolbar"><div class="tabs" data-tabs="jobs"><button class="on" data-f="">Todas<i>7</i></button><button data-f="Abierta">Abiertas<i>5</i></button><button data-f="Pausada">Pausadas<i>1</i></button><button data-f="Cerrada">Cerradas<i>1</i></button></div><label class="search"><svg class="ico"><use href="#i-search"/></svg><input placeholder="Buscar vacante" data-search="jobs"></label></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Puesto</th><th>Área</th><th>Ubicación</th><th>Postulaciones</th><th>Estado</th><th>Cierra</th><th></th></tr></thead><tbody id="jobs"></tbody></table></div>
+      </div>
+    </main>
+
+    <main class="page view" id="v-vacante-editar" data-crumb="Bolsa de trabajo / Vacantes / Editar vacante" data-perm="vacantes.crear" hidden>
+      <div class="ph"><div><h1>Editar vacante</h1><p><a href="#vacantes" style="color:var(--navy)">← Volver a vacantes</a></p></div><div class="acts"><a class="btn sec" href="final-paginas.html#vacante" target="_blank" rel="noopener"><svg class="ico"><use href="#i-eye"/></svg>Vista previa</a></div></div>
+      <div class="form">
+        <div class="card pad fcol">
+          <div class="fld"><label for="jt">Puesto</label><input id="jt" class="inp big" value="Técnico(a) de refrigeración comercial"></div>
+          <div class="two"><div class="fld"><span>Área</span><select class="inp"><option>Operaciones</option><option>Comercial</option><option>Administración</option></select></div><div class="fld"><span>Ubicación</span><input class="inp" value="Ciudad de México"></div></div>
+          <div class="two"><div class="fld"><span>Jornada</span><select class="inp"><option>Tiempo completo</option><option>Medio tiempo</option><option>Por proyecto</option></select></div><div class="fld"><span>Horario</span><input class="inp" value="Lunes a sábado"></div></div>
+          <div class="two"><div class="fld"><span>Sueldo <em>· opcional</em></span><input class="inp" placeholder="p. ej. $14,000 a $18,000 mensuales"></div><div class="fld"><span>&nbsp;</span><label class="switch" style="min-height:44px">Mostrar “Sueldo a tratar”<input type="checkbox" checked></label></div></div>
+          <div class="fld"><span>Sobre el puesto</span><textarea class="inp" rows="3">Darás servicio de mantenimiento preventivo y correctivo a equipos de refrigeración comercial en restaurantes, tiendas y cocinas industriales de nuestros clientes.</textarea></div>
+          <div class="fld"><span>Responsabilidades <em>· una por línea</em></span><textarea class="inp" rows="3">Diagnóstico y reparación de cámaras, refrigeradores, mesas frías y vitrinas.
+Mantenimiento preventivo según el programa de cada cliente.
+Reporte de servicio con evidencia fotográfica.</textarea></div>
+          <div class="fld"><span>Requisitos <em>· uno por línea</em></span><textarea class="inp" rows="3">Experiencia comprobable en refrigeración comercial.
+Conocimientos de electricidad y manejo de herramienta.
+Disponibilidad para trasladarse en la zona metropolitana.</textarea></div>
+          <div class="fld"><span>Ofrecemos <em>· uno por línea</em></span><textarea class="inp" rows="3">Prestaciones de ley.
+Capacitación constante.
+Herramienta y uniforme.</textarea></div>
+        </div>
+        <div class="fcol">
+          <div class="card pad fcol"><h2>Publicación</h2><div class="fld"><span>Estado</span><select class="inp"><option>Abierta</option><option>Pausada</option><option>Cerrada</option></select></div><div class="fld"><span>Fecha de cierre</span><input class="inp" type="date" value="2026-11-30"></div></div>
+          <div class="card pad fcol"><h2>Postulaciones</h2><label class="switch">Pedir CV en PDF<input type="checkbox" checked></label><label class="switch">CV obligatorio<input type="checkbox"></label><div class="fld"><span>Avisar por correo a</span><input class="inp" value="rh@tecnobg.com"></div></div>
+        </div>
+      </div>
+      <div class="savebar"><button class="btn danger" type="button" data-perm="vacantes.eliminar" data-confirm="¿Eliminar esta vacante? Sus postulaciones se conservarán."><svg class="ico"><use href="#i-trash"/></svg>Eliminar</button><button class="btn" type="button" data-toast="Vacante guardada">Guardar vacante</button></div>
+    </main>
+
+    <!-- Postulaciones -->
+    <main class="page view" id="v-postulaciones" data-crumb="Bolsa de trabajo / Postulaciones" data-perm="postulaciones.ver" hidden>
+      <div class="ph"><div><h1>Postulaciones</h1><p>Da seguimiento a cada candidato desde que se postula hasta su contratación.</p></div>
+        <div class="acts"><select class="sel" id="jobFilter" aria-label="Vacante"><option value="">Todas las vacantes</option></select><button class="btn sec" type="button" data-perm="postulaciones.exportar" data-toast="Se descargó postulaciones.csv"><svg class="ico"><use href="#i-dl"/></svg>Exportar</button></div></div>
+      <div class="kanban" id="kanban"></div>
+    </main>
+
+    <!-- Usuarios -->
+    <main class="page view" id="v-usuarios" data-crumb="Administración / Usuarios" data-perm="usuarios.ver" hidden>
+      <div class="ph"><div><h1>Usuarios</h1><p>Solo las personas que des de alta aquí pueden entrar al panel.</p></div>
+        <div class="acts"><button class="btn" type="button" data-modal="mUser" data-perm="usuarios.crear"><svg class="ico"><use href="#i-plus"/></svg>Nuevo usuario</button></div></div>
+      <div class="card">
+        <div class="toolbar"><label class="search"><svg class="ico"><use href="#i-search"/></svg><input placeholder="Buscar por nombre o correo" data-search="users"></label><select class="sel" aria-label="Rol"><option>Todos los roles</option><option>Administrador</option><option>Editor de contenido</option><option>Recursos Humanos</option></select></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Último acceso</th><th></th></tr></thead><tbody id="users"></tbody></table></div>
+      </div>
+    </main>
+
+    <!-- Roles y permisos -->
+    <main class="page view" id="v-roles" data-crumb="Administración / Roles y permisos" data-perm="roles.gestionar" hidden>
+      <div class="ph"><div><h1>Roles y permisos</h1><p>Cada rol agrupa permisos. Un usuario puede tener uno o varios roles.</p></div>
+        <div class="acts"><button class="btn sec" type="button" data-modal="mRole"><svg class="ico"><use href="#i-plus"/></svg>Nuevo rol</button></div></div>
+      <div class="roles">
+        <div class="card"><div class="rlist" id="rlist"></div></div>
+        <div class="card">
+          <div class="toolbar" style="justify-content:space-between"><div><h2 id="rName" style="font:600 18px var(--head)">Administrador</h2><small id="rDesc" style="color:var(--muted)"></small></div><button class="btn sm" type="button" id="rSave" data-toast="Permisos actualizados">Guardar cambios</button></div>
+          <div class="hint" id="rLock" style="margin:14px 16px 0"><svg class="ico"><use href="#i-info"/></svg><span>El rol Administrador siempre tiene todos los permisos y no se puede editar, para que nadie se quede sin acceso.</span></div>
+          <div class="tbl-wrap"><table class="matrix"><thead><tr><th>Módulo</th><th>Ver</th><th>Crear</th><th>Editar</th><th>Publicar</th><th>Eliminar</th><th>Extra</th></tr></thead><tbody id="matrix"></tbody></table></div>
+          <div class="tfoot"><span>Los nombres en gris son los permisos tal como se guardarán en Laravel (spatie/laravel-permission).</span></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Perfil -->
+    <main class="page view" id="v-perfil" data-crumb="Mi perfil" hidden>
+      <div class="ph"><div><h1>Mi perfil</h1><p>Tus datos de acceso al panel.</p></div></div>
+      <div class="two" style="align-items:start">
+        <div class="card pad fcol"><h2>Datos</h2><div class="fld"><span>Nombre</span><input class="inp" value="Ana Ramírez" data-me-name></div><div class="fld"><span>Correo</span><input class="inp" value="admin@tecnobg.com" type="email"></div><div class="fld"><span>Rol</span><input class="inp" value="Administrador" disabled data-me-role></div><button class="btn" type="button" data-toast="Datos actualizados" style="justify-self:start">Guardar</button></div>
+        <div class="card pad fcol"><h2>Cambiar contraseña</h2><div class="fld"><span>Contraseña actual</span><input class="inp" type="password"></div><div class="fld"><span>Nueva contraseña <em>· mínimo 8 caracteres</em></span><input class="inp" type="password"></div><div class="fld"><span>Confirmar nueva contraseña</span><input class="inp" type="password"></div><button class="btn" type="button" data-toast="Contraseña actualizada" style="justify-self:start">Actualizar contraseña</button></div>
+      </div>
+    </main>
+
+    <!-- Sin permiso (403) -->
+    <main class="page view" id="v-403" data-crumb="Sin permiso" hidden>
+      <div class="card empty"><span class="big"><svg class="ico" style="width:30px;height:30px"><use href="#i-lock"/></svg></span><h2>No tienes permiso para ver esta sección</h2><p>Tu rol no incluye este permiso. Si lo necesitas, pídeselo a un administrador.</p><a class="btn" href="#resumen">Ir al resumen</a></div>
+    </main>
+  </div>
+</div>
+
+<!-- Detalle de postulación -->
+<div class="drawer" id="drawer" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="dName">
+    <div class="dh"><span class="av" id="dAv">CM</span><div><h2 id="dName">Carlos Méndez</h2><p id="dJob">Técnico(a) de refrigeración comercial</p></div><button class="ib" type="button" data-close aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <section><h3>Estado</h3><div class="two"><select class="inp" id="dStatus" data-perm-dis="postulaciones.cambiar-estado"></select><button class="btn" type="button" data-perm="postulaciones.cambiar-estado" data-toast="Estado actualizado">Actualizar estado</button></div></section>
+    <section><h3>Datos de contacto</h3><dl class="kv"><dt>Correo</dt><dd id="dMail">carlos.mendez@correo.com</dd><dt>Teléfono</dt><dd>55 1234 5678</dd><dt>Ciudad</dt><dd>Iztapalapa, CDMX</dd><dt>Experiencia</dt><dd>3 a 5 años</dd><dt>Recibida</dt><dd id="dDate">20 oct 2026, 18:42</dd></dl></section>
+    <section><h3>CV</h3><div class="file"><span class="fi">PDF</span><div class="grow"><b style="font:600 14px var(--head)">CV-Carlos-Mendez.pdf</b><br><small style="color:var(--muted)">412 KB</small></div><button class="btn sec sm" type="button" data-perm="postulaciones.descargar-cv" data-toast="Descargando CV"><svg class="ico"><use href="#i-dl"/></svg>Descargar</button></div></section>
+    <section><h3>Mensaje del candidato</h3><p style="font-size:15px">Tengo experiencia en mantenimiento de cámaras de refrigeración y mesas frías para cadenas de restaurantes. Disponibilidad inmediata.</p></section>
+    <section><h3>Notas internas</h3><textarea class="inp" rows="3" placeholder="Solo las ve el equipo de Tecnobg"></textarea><button class="btn sec sm" type="button" style="justify-self:start" data-toast="Nota guardada">Agregar nota</button>
+      <ul class="timeline"><li><div><b>Mariana Díaz</b>: buena experiencia, agendar entrevista el jueves.<small>Hoy, 10:15</small></div></li><li><div>Estado cambiado de Nueva a En revisión<small>Ayer, 09:02 · Mariana Díaz</small></div></li><li><div>Postulación recibida desde el sitio<small>20 oct 2026, 18:42</small></div></li></ul>
+    </section>
+  </div>
+</div>
+
+<!-- Nuevo usuario -->
+<div class="modal" id="mUser" hidden>
+  <form class="box" role="dialog" aria-modal="true" aria-labelledby="muT">
+    <h2 id="muT">Nuevo usuario</h2>
+    <div class="fld"><span>Nombre completo</span><input class="inp" required></div>
+    <div class="fld"><span>Correo electrónico</span><input class="inp" type="email" required></div>
+    <div class="fld"><span>Rol</span><div class="radio" id="roleRadios"></div></div>
+    <div class="hint"><svg class="ico"><use href="#i-info"/></svg><span>Le enviaremos un correo para que cree su contraseña. No existe registro público: solo entra quien des de alta aquí.</span></div>
+    <div class="acts"><button class="btn sec" type="button" data-close>Cancelar</button><button class="btn" type="submit">Crear y enviar invitación</button></div>
+  </form>
+</div>
+
+<!-- Nuevo rol -->
+<div class="modal" id="mRole" hidden>
+  <form class="box" role="dialog" aria-modal="true" aria-labelledby="mrT">
+    <h2 id="mrT">Nuevo rol</h2>
+    <div class="fld"><span>Nombre del rol</span><input class="inp" required placeholder="p. ej. Ventas"></div>
+    <div class="fld"><span>Descripción</span><input class="inp" placeholder="Qué hace este rol"></div>
+    <p class="slug">Después de crearlo, marca sus permisos en la tabla.</p>
+    <div class="acts"><button class="btn sec" type="button" data-close>Cancelar</button><button class="btn" type="submit">Crear rol</button></div>
+  </form>
+</div>
+
+<!-- Categorías del blog -->
+<div class="modal" id="mCats" hidden>
+  <form class="box" role="dialog" aria-modal="true" aria-labelledby="mcT">
+    <h2 id="mcT">Categorías del blog</h2>
+    <div class="list"><div><div class="grow"><b>Línea fría</b><small>8 artículos</small></div><button class="ib" type="button"><svg class="ico"><use href="#i-edit"/></svg></button></div><div><div class="grow"><b>Línea caliente</b><small>6 artículos</small></div><button class="ib" type="button"><svg class="ico"><use href="#i-edit"/></svg></button></div><div><div class="grow"><b>Mantenimiento</b><small>5 artículos</small></div><button class="ib" type="button"><svg class="ico"><use href="#i-edit"/></svg></button></div><div><div class="grow"><b>Operación</b><small>3 artículos</small></div><button class="ib" type="button"><svg class="ico"><use href="#i-edit"/></svg></button></div></div>
+    <div class="two"><input class="inp" placeholder="Nueva categoría"><button class="btn sec" type="button" data-toast="Categoría agregada">Agregar</button></div>
+    <div class="acts"><button class="btn" type="button" data-close>Listo</button></div>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" hidden><svg class="ico"><use href="#i-check"/></svg><span></span></div>
+<span class="demo">Propuesta visual · datos de ejemplo</span>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  function ic(n){return '<svg class="ico"><use href="#i-'+n+'"/></svg>'}
+  function ini(n){return n.split(' ').map(function(p){return p[0]}).slice(0,2).join('')}
+
+  // Roles y permisos (en Laravel: spatie/laravel-permission, permisos con nombre "modulo.accion")
+  var MODS=[
+    ['blog','Blog',['ver','crear','editar','publicar','eliminar'],[]],
+    ['ofertas','Ofertas',['ver','crear','editar','publicar','eliminar'],[]],
+    ['vacantes','Vacantes',['ver','crear','editar','publicar','eliminar'],[]],
+    ['postulaciones','Postulaciones',['ver','eliminar'],['cambiar-estado','descargar-cv','exportar']],
+    ['usuarios','Usuarios',['ver','crear','editar','eliminar'],[]],
+    ['roles','Roles y permisos',[],['gestionar']]
+  ];
+  var ALL=[];MODS.forEach(function(m){m[2].concat(m[3]).forEach(function(a){ALL.push(m[0]+'.'+a)})});
+  var ROLES={
+    admin:{name:'Administrador',desc:'Acceso total al panel.',c:'#334f9d',users:1,perms:ALL.slice()},
+    editor:{name:'Editor de contenido',desc:'Escribe y publica en el blog y las ofertas.',c:'#219fda',users:2,perms:['blog.ver','blog.crear','blog.editar','blog.publicar','blog.eliminar','ofertas.ver','ofertas.crear','ofertas.editar','ofertas.publicar']},
+    rh:{name:'Recursos Humanos',desc:'Publica vacantes y da seguimiento a postulaciones.',c:'#1f8f4e',users:2,perms:['vacantes.ver','vacantes.crear','vacantes.editar','vacantes.publicar','vacantes.eliminar','postulaciones.ver','postulaciones.cambiar-estado','postulaciones.descargar-cv','postulaciones.exportar']}
+  };
+  var ME={admin:'Ana Ramírez',editor:'Luis Ortega',rh:'Mariana Díaz'};
+  var role='admin';
+  try{role=localStorage.getItem('tbg-rol')||'admin'}catch(e){}
+  if(!ROLES[role])role='admin';
+  function can(p){return ROLES[role].perms.indexOf(p)>=0}
+
+  // Datos de ejemplo
+  var POSTS=[
+    ['5 señales de que tu cámara de refrigeración necesita mantenimiento','Línea fría','Luis Ortega','Publicado','14 oct 2026','camaras'],
+    ['Cómo alargar la vida útil de tu freidora industrial','Línea caliente','Luis Ortega','Publicado','7 oct 2026','freidora'],
+    ['Horno de pizza: limpieza diaria','Línea caliente','Jorge Peña','Programado','28 oct 2026','horno-pizza'],
+    ['Lavalozas: cómo evitar el sarro','Operación','Jorge Peña','Borrador','Editado hace 2 h','lavaloza'],
+    ['Preventivo vs. correctivo: lo que cuesta no planear','Mantenimiento','Ana Ramírez','Publicado','30 sep 2026','../mantenimiento'],
+    ['Qué revisar en tu máquina de hielo antes de temporada alta','Línea fría','Luis Ortega','Publicado','22 sep 2026','maquina-hielo'],
+    ['Trampas de grasa: cada cuánto limpiarlas','Operación','Luis Ortega','Publicado','15 sep 2026','trampa-de-grasa'],
+    ['Hornos de convección: errores comunes de operación','Línea caliente','Jorge Peña','Publicado','8 sep 2026','horno-conveccion']
+  ];
+  var ST={Publicado:'ok',Programado:'info',Borrador:'warn',Activa:'ok',Programada:'info',Vencida:'off',Pausada:'warn',Abierta:'ok',Cerrada:'off',Activo:'ok',Inactivo:'off'};
+  var OFFERS=[
+    ['Mantenimiento preventivo de línea fría','-15%','Activa','1 oct – 30 nov 2026','refrigeradores',212],
+    ['Revisión de temporada para línea caliente','Paquete','Activa','15 oct – 15 dic 2026','plancha-caliente',96],
+    ['Diagnóstico de máquinas de hielo','2×1','Activa','1 – 31 oct 2026','maquina-hielo',143],
+    ['Primer mes sin costo en pólizas anuales','Póliza','Activa','1 oct – 31 dic 2026','../polizas',78],
+    ['Revisión de campanas y extracción','-10%','Programada','1 – 31 dic 2026','estufon',0],
+    ['Buen Fin: diagnóstico sin costo','Gratis','Vencida','13 – 16 nov 2025','salamandra',301]
+  ];
+  var JOBS=[
+    ['Técnico(a) de refrigeración comercial','Operaciones','Ciudad de México',12,'Abierta','30 nov 2026'],
+    ['Técnico(a) de línea caliente','Operaciones','Ciudad de México',7,'Abierta','30 nov 2026'],
+    ['Auxiliar de mantenimiento','Operaciones','Estado de México',9,'Abierta','15 nov 2026'],
+    ['Ejecutivo(a) de ventas','Comercial','Ciudad de México',5,'Abierta','15 nov 2026'],
+    ['Coordinador(a) de servicio','Administración','Ciudad de México',3,'Abierta','31 oct 2026'],
+    ['Almacenista','Operaciones','Ciudad de México',4,'Pausada','—'],
+    ['Recepcionista','Administración','Ciudad de México',18,'Cerrada','30 sep 2026']
+  ];
+  var STAGES=[['Nueva','#219fda'],['En revisión','#d99a00'],['Entrevista','#7a5af8'],['Contratado','#1f8f4e'],['Descartado','#9aa2bd']];
+  var APPS=[
+    ['Carlos Méndez',0,0,'Hace 2 h'],['Laura Sánchez',3,0,'Hace 5 h'],['Diego Hernández',1,0,'Ayer'],['Paola Ruiz',0,0,'Ayer'],
+    ['Javier Torres',0,1,'Hace 2 días'],['Fernanda López',2,1,'Hace 3 días'],['Ricardo Gómez',0,1,'Hace 4 días'],
+    ['Miguel Ángel Cruz',1,2,'Hace 5 días'],['Andrea Morales',3,2,'Hace 1 semana'],
+    ['Sofía Castillo',4,3,'Hace 2 semanas'],
+    ['Héctor Jiménez',0,4,'Hace 1 semana'],['Rosa Navarro',2,4,'Hace 2 semanas']
+  ];
+  var USERS=[
+    ['Ana Ramírez','admin@tecnobg.com','admin','Activo','Ahora'],
+    ['Luis Ortega','luis.ortega@tecnobg.com','editor','Activo','Hace 1 h'],
+    ['Jorge Peña','jorge.pena@tecnobg.com','editor','Activo','Ayer'],
+    ['Mariana Díaz','rh@tecnobg.com','rh','Activo','Hace 3 h'],
+    ['Patricia Vega','patricia.vega@tecnobg.com','rh','Inactivo','Hace 2 meses']
+  ];
+  function pill(s){return '<span class="pill '+(ST[s]||'off')+'">'+s+'</span>'}
+  function img(n){return 'img/final/equipos/'+n+'.webp'}
+  function acts(edit,perm,del){
+    return '<div class="row-acts">'+(can(perm+'.editar')?'<a class="ib" href="'+edit+'" aria-label="Editar">'+ic('edit')+'</a>':'<a class="ib" href="'+edit+'" aria-label="Ver">'+ic('eye')+'</a>')+(can(perm+'.eliminar')?'<button class="ib del" type="button" aria-label="Eliminar" data-confirm="'+del+'">'+ic('trash')+'</button>':'')+'</div>';
+  }
+
+  function render(){
+    $('#posts').innerHTML=POSTS.map(function(p){return '<tr data-st="'+p[3]+'"><td><div class="cell"><img class="thumb" src="'+img(p[5])+'" alt=""><span class="t">'+p[0]+'</span></div></td><td>'+p[1]+'</td><td>'+p[2]+'</td><td>'+pill(p[3])+'</td><td><small>'+p[4]+'</small></td><td>'+acts('#blog-editar','blog','¿Eliminar este artículo?')+'</td></tr>'}).join('');
+    $('#offers').innerHTML=OFFERS.map(function(o){return '<article class="card ocard" data-st="'+o[2]+'"><figure><img src="'+img(o[4])+'" alt="">'+pill(o[2])+'</figure><div class="b"><span style="font:400 14px var(--tech);color:#e4332e">'+o[1]+'</span><h3>'+o[0]+'</h3><div class="m"><span>'+o[3]+'</span><span>'+o[5]+' clics</span></div>'+acts('#oferta-editar','ofertas','¿Eliminar esta oferta?')+'</div></article>'}).join('');
+    $('#jobs').innerHTML=JOBS.map(function(j){return '<tr data-st="'+j[4]+'"><td><span class="t">'+j[0]+'</span></td><td>'+j[1]+'</td><td>'+j[2]+'</td><td>'+(can('postulaciones.ver')?'<a href="#postulaciones" style="color:var(--navy);font:600 15px var(--head)">'+j[3]+'</a>':j[3])+'</td><td>'+pill(j[4])+'</td><td><small>'+j[5]+'</small></td><td>'+acts('#vacante-editar','vacantes','¿Eliminar esta vacante?')+'</td></tr>'}).join('');
+    var jf=$('#jobFilter');if(jf.options.length<2)JOBS.forEach(function(j,i){if(i<5)jf.insertAdjacentHTML('beforeend','<option value="'+i+'">'+j[0]+'</option>')});
+    var fj=jf.value;
+    $('#kanban').innerHTML=STAGES.map(function(s,si){
+      var items=APPS.filter(function(a){return a[2]===si&&(fj===''||a[1]==+fj)});
+      return '<section class="col" style="--c:'+s[1]+'"><h3>'+s[0]+'<i>'+items.length+'</i></h3>'+items.map(function(a){return '<button class="cand" type="button" data-app="'+APPS.indexOf(a)+'"><span class="who"><span class="av s">'+ini(a[0])+'</span><b>'+a[0]+'</b></span><small>'+JOBS[a[1]][0]+'</small><span class="mt"><span>'+a[3]+'</span><span>CV adjunto</span></span></button>'}).join('')+'</section>';
+    }).join('');
+    $('#recentApps').innerHTML=APPS.slice(0,5).map(function(a,i){return '<tr><td><button class="cell" type="button" data-app="'+i+'" style="border:none;background:none;padding:0;text-align:left"><span class="av s">'+ini(a[0])+'</span><span class="t">'+a[0]+'</span></button></td><td>'+JOBS[a[1]][0]+'</td><td><span class="pill" style="background:#eef1f8;color:'+STAGES[a[2]][1]+'">'+STAGES[a[2]][0]+'</span></td><td><small>'+a[3]+'</small></td></tr>'}).join('');
+    $('#users').innerHTML=USERS.map(function(u){var r=ROLES[u[2]];return '<tr><td><div class="cell"><span class="av s">'+ini(u[0])+'</span><div><span class="t">'+u[0]+'</span><small>'+u[1]+'</small></div></div></td><td><span class="pill" style="background:#eef1f8;color:'+r.c+'">'+r.name+'</span></td><td>'+pill(u[3])+'</td><td><small>'+u[4]+'</small></td><td><div class="row-acts">'+(can('usuarios.editar')?'<button class="ib" type="button" data-modal="mUser" aria-label="Editar">'+ic('edit')+'</button>':'')+(can('usuarios.eliminar')&&u[2]!=='admin'?'<button class="ib del" type="button" aria-label="Desactivar" data-confirm="¿Desactivar a '+u[0]+'? Ya no podrá entrar al panel.">'+ic('trash')+'</button>':'')+'</div></td></tr>'}).join('');
+    $('#roleRadios').innerHTML=Object.keys(ROLES).map(function(k,i){var r=ROLES[k];return '<label><input type="radio" name="rol" '+(i===1?'checked':'')+'><span><b>'+r.name+'</b><small>'+r.desc+'</small></span></label>'}).join('');
+    $('#dStatus').innerHTML=STAGES.map(function(s){return '<option>'+s[0]+'</option>'}).join('');
+    renderRoles();
+  }
+
+  var curRole='editor';
+  function renderRoles(){
+    $('#rlist').innerHTML=Object.keys(ROLES).map(function(k){var r=ROLES[k];return '<button type="button" data-role="'+k+'" class="'+(k===curRole?'on':'')+'"><span class="rdot" style="--c:'+r.c+'"></span><span><b>'+r.name+'</b><small>'+r.users+' usuario'+(r.users>1?'s':'')+' · '+r.perms.length+' permisos</small></span></button>'}).join('');
+    var R=ROLES[curRole],lock=curRole==='admin',cols=['ver','crear','editar','publicar','eliminar'];
+    $('#rName').textContent=R.name;$('#rDesc').textContent=R.desc;$('#rLock').hidden=!lock;$('#rSave').hidden=lock;
+    $('#matrix').innerHTML=MODS.map(function(m){
+      var tds=cols.map(function(c){if(m[2].indexOf(c)<0)return '<td class="na">—</td>';var p=m[0]+'.'+c;return '<td><input type="checkbox" data-p="'+p+'" title="'+p+'" '+(R.perms.indexOf(p)>=0?'checked':'')+(lock?' disabled':'')+'></td>'}).join('');
+      var ex=m[3].map(function(a){var p=m[0]+'.'+a;return '<label style="display:flex;align-items:center;gap:6px;justify-content:center;white-space:nowrap;font-size:13px"><input type="checkbox" data-p="'+p+'" '+(R.perms.indexOf(p)>=0?'checked':'')+(lock?' disabled':'')+'>'+a.replace('-',' ')+'</label>'}).join('');
+      return '<tr><td><b>'+m[1]+'</b><code>'+m[0]+'.*</code></td>'+tds+'<td><div style="display:grid;gap:6px;justify-items:start">'+(ex||'<span class="na">—</span>')+'</div></td></tr>';
+    }).join('');
+  }
+  $('#rlist').addEventListener('click',function(e){var b=e.target.closest('[data-role]');if(b){curRole=b.dataset.role;renderRoles()}});
+  $('#matrix').addEventListener('change',function(e){var p=e.target.dataset.p;if(!p)return;var a=ROLES[curRole].perms,i=a.indexOf(p);if(e.target.checked&&i<0)a.push(p);if(!e.target.checked&&i>=0)a.splice(i,1);renderRoles();applyRole()});
+
+  // Permisos aplicados a la interfaz (en Laravel: @can en Blade y middleware "permission:" en las rutas)
+  function applyRole(){
+    var name=ME[role];
+    $('#meName').textContent=name;$('#meRole').textContent=ROLES[role].name;$('#meAv').textContent=$('#topAv').textContent=ini(name);
+    $$('[data-first]').forEach(function(x){x.textContent=name.split(' ')[0]});
+    $$('[data-me-name]').forEach(function(x){x.value=name});$$('[data-me-role]').forEach(function(x){x.value=ROLES[role].name});
+    $$('[data-perm]').forEach(function(x){if(!x.classList.contains('view'))x.hidden=!can(x.dataset.perm)});
+    $$('[data-perm-any]').forEach(function(x){x.hidden=!x.dataset.permAny.split(' ').some(can)});
+    $$('[data-perm-dis]').forEach(function(x){x.disabled=!can(x.dataset.permDis)});
+  }
+  $('#roleSel').value=role;
+  $('#roleSel').addEventListener('change',function(){role=this.value;try{localStorage.setItem('tbg-rol',role)}catch(e){}render();applyRole();route()});
+
+  // Navegación por #hash
+  var NAVMAP={'blog-editar':'blog','oferta-editar':'ofertas','vacante-editar':'vacantes'};
+  function route(){
+    var id=(location.hash||'#login').slice(1),v=document.getElementById('v-'+id);
+    if(!v){id='login';v=$('#v-login')}
+    var auth=v.hasAttribute('data-auth');
+    $$('[data-auth]').forEach(function(x){x.hidden=x!==v});
+    $('#app').hidden=auth;
+    document.body.style.background=auth?'#191c37':'';
+    if(!auth){
+      if(v.dataset.perm&&!can(v.dataset.perm)){v=$('#v-403')}
+      $$('.view').forEach(function(x){x.hidden=x!==v});
+      $('#crumbs').textContent=v.dataset.crumb;
+      var nav=NAVMAP[id]||id;
+      $$('[data-nav]').forEach(function(a){a.classList.toggle('on',a.dataset.nav===nav)});
+      document.title='Panel Tecnobg · '+v.dataset.crumb.split(' / ').pop();
+      $('#side').classList.remove('open');
+    }else document.title='Panel Tecnobg · Iniciar sesión';
+    window.scrollTo(0,0);
+  }
+  addEventListener('hashchange',route);
+  $('#loginForm').addEventListener('submit',function(e){e.preventDefault();location.hash='#resumen'});
+  $('#resetForm').addEventListener('submit',function(e){e.preventDefault();$('#resetOk').hidden=false});
+  $('#burger').addEventListener('click',function(e){e.stopPropagation();$('#side').classList.toggle('open')});
+  document.addEventListener('click',function(e){var s=$('#side');if(s.classList.contains('open')&&!s.contains(e.target))s.classList.remove('open')});
+
+  // Pestañas y búsqueda de las tablas
+  $$('[data-tabs]').forEach(function(t){
+    t.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;$$('button',t).forEach(function(x){x.classList.toggle('on',x===b)});filter(t.dataset.tabs)});
+  });
+  $$('[data-search]').forEach(function(i){i.addEventListener('input',function(){filter(i.dataset.search)})});
+  function filter(k){
+    var tab=$('[data-tabs="'+k+'"] .on'),f=tab?tab.dataset.f:'',q=(($('[data-search="'+k+'"]')||{}).value||'').toLowerCase();
+    $$('#'+k+'>*').forEach(function(r){r.hidden=(f&&r.dataset.st!==f)||(q&&r.textContent.toLowerCase().indexOf(q)<0)});
+  }
+  $('#jobFilter').addEventListener('change',function(){render();applyRole()});
+
+  // Detalle de postulación, modales, confirmaciones y avisos
+  var drawer=$('#drawer'),lastFocus;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-app]');
+    if(a){var p=APPS[+a.dataset.app];lastFocus=a;$('#dName').textContent=p[0];$('#dAv').textContent=ini(p[0]);$('#dJob').textContent=JOBS[p[1]][0];$('#dStatus').selectedIndex=p[2];$('#dMail').textContent=p[0].toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ /g,'.')+'@correo.com';drawer.hidden=false;$('[data-close]',drawer).focus();return}
+    var m=e.target.closest('[data-modal]');if(m){lastFocus=m;var md=document.getElementById(m.dataset.modal);md.hidden=false;var f=$('input,button',md);if(f)f.focus();return}
+    var c=e.target.closest('[data-close]');if(c||e.target===drawer||e.target.classList.contains('modal')){closeAll();return}
+    var d=e.target.closest('[data-confirm]');if(d){if(confirm(d.dataset.confirm))toast('Eliminado');return}
+    var t=e.target.closest('[data-toast]');if(t){toast(t.dataset.toast)}
+  });
+  $$('.modal form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();closeAll();toast('Guardado')})});
+  function closeAll(){drawer.hidden=true;$$('.modal').forEach(function(m){m.hidden=true});if(lastFocus)lastFocus.focus()}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+  var tt;function toast(s){var t=$('#toast');$('span',t).textContent=s;t.hidden=false;clearTimeout(tt);tt=setTimeout(function(){t.hidden=true},2400)}
+
+  render();applyRole();route();
+})();
+</script>
+</body>
+</html>

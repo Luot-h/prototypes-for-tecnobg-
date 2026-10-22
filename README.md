@@ -11,7 +11,8 @@ Sitio estático de presentación con 3 propuestas. No necesita compilación: se 
 | `tecnico.html` / `tecnico-paginas.html` | Propuesta 03 · Ficha técnica, y sus páginas internas |
 | `cinematico.html` / `cinematico-paginas.html` | Propuesta 05 · Cinemático, y sus páginas internas |
 | `final.html` | Versión final en construcción (base: propuesta 05 + diseño del diseñador) |
-| `final-paginas.html` | Páginas internas de la versión final en diseño preliminar (Nosotros, servicios, Bolsa de trabajo, Blog y legales), por `#hash`. Se genera con `python3 herramientas/generar-paginas.py` |
+| `final-paginas.html` | Páginas internas de la versión final en diseño preliminar (Nosotros, servicios, Blog y artículo, Ofertas, Bolsa de trabajo y vacante, legales), por `#hash`. Se genera con `python3 herramientas/generar-paginas.py` |
+| `admin.html` | Propuesta visual del panel de administración (URL `/admin`): acceso sin registro público, blog, ofertas, vacantes, postulaciones, usuarios y roles/permisos. Sin backend: datos de ejemplo y selector «Ver como» para revisar qué ve cada rol |
 | `api/cotizacion.js` | Función de Vercel que envía el formulario de cotización al correo de ventas |
 | `fonts/` | Tipografías del diseñador en WOFF2 (Recharge Bold y HP Simplified) |
 | `img/` | Logo y fotografías optimizadas (WebP); `img/final/` trae los recursos sacados del PDF del diseñador |
