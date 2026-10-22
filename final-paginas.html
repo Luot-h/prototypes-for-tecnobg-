@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grupo Tecnobg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Michroma&family=Hind:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Generado por herramientas/generar-paginas.py con el menú y el pie de final.html: edita ese script y vuelve a correrlo. */
+
+[hidden]{display:none!important}
+/* Versión final: base de la propuesta 05 (Cinemático) con el diseño del PDF del diseñador.
+   Tipografías del diseño → sustitutos web: Recharge → Michroma, HP Simplified → Hind, Acumin Condensed → Barlow Condensed. */
+:root{
+  --night:#191c37; --night2:#1e2d5f; --navy:#334f9d; --ink-d:#152149; --light:#f5f6fa; --line:#2c3466; --ink:#f2f4fa; --muted:#b9c0dc;
+  --fria:#344f9c; --caliente:#e42528; --wa:#1f8f4e;
+  --g-blue:linear-gradient(90deg,#4cc1f0,#219fda 55%,#148bcc);
+  --g-warm:linear-gradient(90deg,#fdeb34,#fdc804 35%,#e4332e);
+  --g-silver:linear-gradient(180deg,#ffffff 15%,#a6b0bf 85%);
+  --head:"Lexend",system-ui,sans-serif; --body:"Hind",system-ui,sans-serif; --tech:"Michroma","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --hh:72px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:clip}
+body{background:var(--night);color:var(--ink);font:400 17px/1.55 var(--body);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px}
+:focus-visible{outline:2px solid #4cc1f0;outline-offset:3px}
+button{font:inherit;cursor:pointer;color:inherit}
+.mline{display:block;overflow:hidden;padding-bottom:.06em}
+.mline>span{display:block}
+.label{font:700 15px/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 28px;border-radius:10px;border:none;font:400 15px/1 var(--tech);text-decoration:none;color:#fff;white-space:nowrap}
+.btn-blue{background:var(--g-blue)}
+.btn-warm{background:var(--g-warm);color:#fff;text-shadow:0 1px 3px rgba(120,30,0,.7)}
+.btn-silver{background:linear-gradient(90deg,#a6b0bf,#fff);color:var(--night)}
+.btn:hover{filter:brightness(1.08)}
+
+/* Barra de navegación */
+header.top{position:fixed;left:0;right:0;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s}
+header.top.solid{background:rgba(25,28,55,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
+.logo{height:34px;width:auto}
+.top nav{display:none;margin-left:auto;align-items:center;gap:6px;font:400 13px/1.2 var(--head);text-transform:uppercase;letter-spacing:.03em}
+.top nav>a,.top nav .dd>button{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:8px;text-decoration:none;color:#fff;background:transparent;border:none;font:inherit;text-transform:inherit;letter-spacing:inherit;text-align:center}
+.top nav>a:hover,.top nav .dd>button:hover,.top nav .dd>button[aria-expanded="true"]{background:rgba(255,255,255,.17)}
+.dd{position:relative}
+.sub{position:absolute;left:0;top:calc(100% + 6px);min-width:230px;padding:8px;border-radius:12px;background:linear-gradient(180deg,rgba(40,62,125,.84),rgba(25,28,55,.84));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(0,0,0,.35);display:grid;gap:2px;text-transform:none;letter-spacing:0;font-size:14px}
+.sub::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.sub a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;text-decoration:none;color:#fff}
+.sub a:hover,.sub a:focus-visible{background:rgba(255,255,255,.17)}
+.sub .lines{display:grid;gap:2px;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);margin:0 0 4px 12px}
+.sub .lines a{padding:8px 12px;font-size:13px;color:#dfe5f7}
+.top .contact{display:none}
+.round{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(25,28,55,.3);color:#fff;display:flex;align-items:center;justify-content:center;margin-left:auto}
+@media (min-width:1100px){
+  .top nav{display:flex}
+  .top .contact{display:inline-flex;min-height:40px;padding:0 20px;font-size:12px;border-radius:8px}
+  .round{margin-left:0}
+  .logo{height:40px}
+}
+
+.menu{position:fixed;inset:0;z-index:80;background:linear-gradient(180deg,#283e7d,#191c37);display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) 20px 28px;overflow:auto}
+.menu .mh{display:flex;justify-content:space-between;align-items:center;min-height:58px}
+.menu nav{display:grid;margin-top:22px}
+.menu nav a{color:#fff;text-decoration:none;font:600 26px/1.15 var(--head);padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.menu nav .msub{display:grid;padding:4px 0 10px 16px;border-bottom:1px solid rgba(255,255,255,.14)}
+.menu nav .msub a{font:400 17px/1.3 var(--head);border:none;padding:9px 0;color:#dfe5f7}
+.menu .mf{margin-top:auto;padding-top:24px;color:var(--muted);font-size:15px;display:grid;gap:14px}
+
+.pre{position:fixed;inset:0;z-index:100;background:var(--night);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.pre img{width:200px;height:auto}
+.pre .bar{width:140px;height:1px;background:var(--line)}
+.pre .bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
+
+/* Pie de página */
+footer{background:linear-gradient(90deg,#334f9d,#1e2d5f);color:#fff;padding-block:40px calc(110px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:grid;gap:30px;align-items:center}
+@media (min-width:900px){footer .wrap{grid-template-columns:1fr auto 1fr}footer{padding-bottom:40px}}
+footer .fnav{display:grid;gap:4px;font:400 13px/1.4 var(--head);text-transform:uppercase;letter-spacing:.04em}
+footer a{color:#fff;text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .mid{display:grid;justify-items:center;gap:14px;text-align:center}
+footer .mid img{width:200px;height:auto}
+footer .legal{font:400 12px/1.5 var(--head);text-transform:uppercase;letter-spacing:.04em}
+footer .soc{display:flex;gap:12px;justify-content:flex-start}
+@media (min-width:900px){footer .soc{justify-content:flex-end}}
+footer .soc a{width:40px;height:40px;border-radius:50%;background:#fff;color:#1e2d5f;display:flex;align-items:center;justify-content:center}
+footer .copy{font-size:13px;color:#cfd7f2}
+
+.dock{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;transform:translate(-50%,0);display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(25,28,55,.8);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 34px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s}
+.dock.off{transform:translate(-50%,140%);opacity:0}
+.dock a{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;text-decoration:none;font:600 15px var(--head);white-space:nowrap}
+.dock .wa{background:var(--wa);color:#fff}
+.dock .qt{background:#fff;color:var(--ink-d)}
+@media (min-width:1100px){.dock{left:auto;right:24px;transform:none}.dock.off{transform:translateY(140%)}}
+@media (prefers-reduced-motion:reduce){.dock{transition:none}.mtrack{animation:none;flex-wrap:wrap;justify-content:center;width:auto}}
+
+/* Páginas internas: diseño preliminar con la misma navegación y pie de la versión final */
+header.top{background:rgba(25,28,55,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+main{padding-top:calc(var(--hh) + env(safe-area-inset-top,0px))}
+.prelim{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));z-index:40;background:var(--g-warm);color:#2b1600;font:600 14px/1.35 var(--head)}
+.prelim .wrap{display:flex;align-items:center;gap:10px;min-height:44px;padding-block:8px}
+.prelim svg{flex:none}
+.pg-hero{background:var(--night);padding-block:48px 56px}
+.pg-hero{display:grid;gap:30px;max-width:1240px;margin:0 auto;padding-inline:16px;box-shadow:0 0 0 100vmax var(--night);clip-path:inset(0 -100vmax)}
+@media (min-width:1000px){.pg-hero{grid-template-columns:1fr 1fr;align-items:center;gap:56px;padding-block:72px}.pg-hero.solo{grid-template-columns:1fr}}
+.pg-copy{display:grid;gap:16px;justify-items:start}
+.pg-hero h1{font:700 clamp(46px,11vw,76px)/.98 var(--cond)}
+.pg-hero .lead{font-size:19px;color:#e4e8f6;max-width:46ch}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.45)}
+.pg-photo{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/3}
+.pg-photo img{width:100%;height:100%;object-fit:cover}
+.view{background:var(--light);color:var(--ink-d)}
+.view>.pg-hero{color:var(--ink)}
+.view{padding-bottom:80px}
+.pg-body{max-width:1000px;margin:0 auto;padding:48px 16px 0;display:grid;gap:36px}
+.blk{display:grid;gap:12px;justify-items:start;border-top:1px solid #d9deeb;padding-top:26px}
+.blk h2,.lsec h2{font:700 clamp(22px,4vw,30px)/1.2 var(--head);color:var(--ink-d)}
+.blk p{max-width:65ch}
+.ticks{margin:0;padding:0;list-style:none;display:grid;gap:0;width:100%}
+.ticks li{padding:14px 0;border-top:1px solid #e3e7f1}
+.ticks b{display:block;font:700 18px var(--head);color:var(--navy)}
+.links{display:flex;flex-wrap:wrap;gap:8px 24px}
+.more{color:var(--navy);font:600 16px var(--head);text-decoration:none}
+.more:hover{text-decoration:underline}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;width:100%}
+.card{display:grid;gap:6px;padding:18px;border-radius:14px;background:#fff;border:1px solid #e3e7f1;text-decoration:none;color:var(--ink-d);transition:border-color .3s,transform .3s}
+.card:hover{border-color:#219fda;transform:translateY(-2px)}
+.card b{font:700 18px var(--head)}
+.card span{color:var(--navy);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.stats b{display:block;font:800 clamp(40px,9vw,72px)/1 var(--head);color:var(--navy);letter-spacing:-.03em}
+.stats span{font-size:16px}
+.pq{margin:0;font:700 clamp(24px,4.6vw,38px)/1.2 var(--head);color:var(--ink-d);max-width:26ch}
+.pend{display:inline-block;margin:0;background:#fff4cc;color:#5c4100;border-radius:10px;padding:10px 14px;font-weight:500}
+.toc{background:#fff;border:1px solid #e3e7f1;border-radius:16px;padding:18px 20px}
+.toc ol{margin:10px 0 0;padding-left:20px;display:grid;gap:6px}
+.toc a{color:var(--navy)}
+.lbody{display:grid;gap:22px}
+.lsec{display:grid;gap:10px;justify-items:start;border-top:1px solid #d9deeb;padding-top:22px;scroll-margin-top:calc(var(--hh) + 20px)}
+footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+@media (min-width:900px){footer{padding-bottom:40px}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top"><div class="wrap">
+  <a href="final.html" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282"></a>
+  <nav aria-label="Principal">
+    <a href="#nosotros">Nosotros</a>
+    <div class="dd">
+      <button type="button" id="svcBtn" aria-expanded="false" aria-controls="svcSub">Servicios</button>
+      <div class="sub" id="svcSub" hidden>
+        <a href="#mantenimiento-preventivo">Mantenimiento preventivo</a>
+        <a href="#reparacion">Reparación</a>
+        <div class="lines"><a href="final.html#linea-fria">Línea fría</a><a href="final.html#linea-caliente">Línea caliente</a></div>
+        <a href="#polizas">Pólizas</a>
+        <a href="#servicio-de-emergencia">Servicio de emergencia</a>
+      </div>
+    </div>
+    <a href="final.html#preguntas-frecuentes">Preguntas<br>frecuentes</a>
+    <a href="#bolsa-de-trabajo">Bolsa de<br>trabajo</a>
+    <a href="#blog">Blog</a>
+  </nav>
+  <a class="btn btn-blue contact" href="final.html#contacto">Contacto</a>
+  <button class="round" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9h12M6 15h12"/></svg></button>
+</div></header>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mh"><img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" style="height:34px;width:auto"><button class="round" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <nav aria-label="Menú móvil">
+    <a href="#nosotros">Nosotros</a>
+    <a href="final.html#servicios">Servicios</a>
+    <div class="msub">
+      <a href="#mantenimiento-preventivo">Mantenimiento preventivo</a>
+      <a href="#reparacion">Reparación</a>
+      <a href="final.html#linea-fria">· Línea fría</a>
+      <a href="final.html#linea-caliente">· Línea caliente</a>
+      <a href="#polizas">Pólizas</a>
+      <a href="#servicio-de-emergencia">Servicio de emergencia</a>
+    </div>
+    <a href="final.html#preguntas-frecuentes">Preguntas frecuentes</a>
+    <a href="#bolsa-de-trabajo">Bolsa de trabajo</a>
+    <a href="#blog">Blog</a>
+    <a href="final.html#contacto">Contacto</a>
+  </nav>
+  <div class="mf"><span>WhatsApp y llamadas: 56 4603 7573 · ventas@tecnobg.com</span><span>Lunes a sábado · 9:00 a 18:00</span></div>
+</div>
+
+
+<main>
+<div class="prelim" role="note"><div class="wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20zM12 10v5M12 18v.5"/></svg><span>Diseño preliminar: esta página sigue pendiente de su diseño final.</span></div></div>
+
+<section class="view" id="v-nosotros" data-title="Nosotros" hidden>
+  <header class="pg-hero">
+    <div class="pg-copy"><span class="label">Nosotros</span><h1>Grupo Tecnobg</h1><p class="lead">Reparación y mantenimiento preventivo especializado en el sector HORECA en México.</p>
+    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
+    <figure class="pg-photo"><img src="img/equipo-plaza.webp" alt="Técnicos de mantenimiento de Tecnobg recorriendo una tienda" style="object-position:50% 50%"></figure>
+  </header>
+  <div class="pg-body">
+    <div class="stats"><div><b>+25</b><span>Años de experiencia</span></div><div><b>+35</b><span>Marcas</span></div><div><b>+50</b><span>Soluciones</span></div></div>
+    <section class="blk"><h2>Nuestros técnicos están en constante capacitación</h2><p>Nuestros técnicos están capacitándose constantemente en las últimas tecnologías para brindar a tus equipos un servicio de calidad.</p></section>
+    <blockquote class="pq">“Confianza y garantía no son promesas, son el estándar con el que trabajamos”</blockquote>
+    <section class="blk"><h2>Historia, misión y valores</h2><p class="pend">Contenido pendiente: historia, misión, visión, valores y equipo de Tecnobg.</p></section>
+  </div>
+</section>
+<section class="view" id="v-mantenimiento-preventivo" data-title="Mantenimiento preventivo" hidden>
+  <header class="pg-hero">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Mantenimiento preventivo</h1><p class="lead">Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.</p>
+    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
+    <figure class="pg-photo"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador" style="object-position:60% 40%"></figure>
+  </header>
+  <div class="pg-body">
+    <section class="blk"><h2>Áreas que atendemos</h2><ul class="ticks">
+      <li><b>Línea fría</b>Mantenimiento a sistemas de refrigeración enfocado en eficiencia térmica y conservación de su materia prima.</li>
+      <li><b>Aire acondicionado</b>Mantenimiento a instalaciones de aire acondicionado para asegurar confort, eficiencia energética y funcionamiento continuo.</li>
+      <li><b>Línea caliente</b>Mantenimiento preventivo y reparación de equipos de línea caliente.</li></ul>
+      <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
+    <section class="blk"><h2>Qué incluye</h2><p class="pend">Contenido pendiente: periodicidad, actividades por visita y reporte que se entrega.</p></section>
+    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+</section>
+<section class="view" id="v-reparacion" data-title="Reparación" hidden>
+  <header class="pg-hero">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación</h1><p class="lead">Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p>
+    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
+    <figure class="pg-photo"><img src="img/soldadura-compresor.webp" alt="Técnico de Tecnobg suelda la línea de un compresor" style="object-position:50% 60%"></figure>
+  </header>
+  <div class="pg-body">
+    <section class="blk"><h2>Diagnóstico técnico</h2><p>Visita especializada para evaluar el equipo, identificar riesgos operativos y definir acciones preventivas o correctivas con base técnica.</p></section>
+    <section class="blk"><h2>Línea fría y línea caliente</h2><p>Reparamos equipos de refrigeración, aire acondicionado, extracción y ventilación, y equipos de línea caliente, tanto comerciales como industriales.</p>
+      <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
+    <section class="blk"><h2>Garantía</h2><p>Garantía de 30 días en cualquier reparación o mantenimiento.</p></section>
+    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+</section>
+<section class="view" id="v-polizas" data-title="Pólizas" hidden>
+  <header class="pg-hero">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Pólizas</h1><p class="lead">Nuestras pólizas son una solución diseñada para empresas que buscan previsión, estabilidad y control en sus equipos.</p>
+    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
+    <figure class="pg-photo"><img src="img/final/polizas.webp" alt="Chef cocinando con fuego alto en una cocina industrial" style="object-position:60% 50%"></figure>
+  </header>
+  <div class="pg-body">
+    <section class="blk"><h2>Previsión, estabilidad y control</h2><ul class="ticks">
+      <li><b>Previsión</b>Mantenimiento preventivo programado que prolonga la vida útil de tus equipos y optimiza su desempeño.</li>
+      <li><b>Respuesta</b>Respuesta a urgencias en menos de 24 horas.</li>
+      <li><b>Respaldo</b>Garantía de 30 días en cualquier reparación o mantenimiento. Cumplimiento legal y REPSE vigente.</li></ul></section>
+    <section class="blk"><h2>Qué incluye cada póliza</h2><p class="pend">Contenido pendiente: alcance, periodicidad de visitas, equipos cubiertos y planes disponibles.</p></section>
+    <section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+</section>
+<section class="view" id="v-servicio-de-emergencia" data-title="Servicio de emergencia" hidden>
+  <header class="pg-hero">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Servicio de emergencia</h1><p class="lead">Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible.</p>
+    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
+    <figure class="pg-photo"><img src="img/tecnico-sombra.webp" alt="Técnico de Tecnobg atiende una falla en un espacio técnico reducido" style="object-position:40% 40%"></figure>
+  </header>
+  <div class="pg-body">
+    <section class="blk"><h2>Respuesta a urgencias</h2><p>Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="https://wa.me/525646037573">Solicitar servicio de emergencia</a></section>
+    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a></div></section></div>
+</section>
+<section class="view" id="v-bolsa-de-trabajo" data-title="Bolsa de trabajo" hidden>
+  <header class="pg-hero solo"><div class="pg-copy"><span class="label">Bolsa de trabajo</span><h1>Trabaja en Tecnobg</h1><p class="lead">Aquí publicaremos las vacantes de Tecnobg y la forma de postularte.</p></div></header>
+  <div class="pg-body"><section class="blk"><h2>Vacantes disponibles</h2><p class="pend">Contenido pendiente: vacantes vigentes (puesto, zona, requisitos) y formulario para enviar tu solicitud.</p></section></div>
+</section>
+<section class="view" id="v-blog" data-title="Blog" hidden>
+  <header class="pg-hero solo"><div class="pg-copy"><span class="label">Blog</span><h1>Blog</h1><p class="lead">Pronto compartiremos aquí artículos sobre el mantenimiento y cuidado de equipos para el sector HORECA.</p></div></header>
+  <div class="pg-body"><section class="blk"><h2>Artículos</h2><p class="pend">Contenido pendiente: primeros artículos y temas del blog.</p></section></div>
+</section>
+<section class="view" id="v-aviso-de-privacidad" data-title="Aviso de privacidad" hidden>
+  <header class="pg-hero solo"><div class="pg-copy"><span class="label">Legales</span><h1>Aviso de privacidad</h1><p class="lead">Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p></div></header>
+  <div class="pg-body"><nav class="toc" aria-label="Contenido"><span class="label">Contenido</span><ol><li><a href="#" data-jump="ap-1">Identidad y domicilio del responsable</a></li><li><a href="#" data-jump="ap-2">Datos personales que recabamos</a></li><li><a href="#" data-jump="ap-3">Finalidades del tratamiento</a></li><li><a href="#" data-jump="ap-4">Transferencias de datos</a></li><li><a href="#" data-jump="ap-5">Derechos ARCO y cómo ejercerlos</a></li><li><a href="#" data-jump="ap-6">Cookies y tecnologías de rastreo</a></li><li><a href="#" data-jump="ap-7">Cambios a este aviso</a></li></ol></nav><div class="lbody"><article class="lsec" id="ap-1"><h2>Identidad y domicilio del responsable</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-2"><h2>Datos personales que recabamos</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-3"><h2>Finalidades del tratamiento</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-4"><h2>Transferencias de datos</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-5"><h2>Derechos ARCO y cómo ejercerlos</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-6"><h2>Cookies y tecnologías de rastreo</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ap-7"><h2>Cambios a este aviso</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article></div></div>
+</section>
+<section class="view" id="v-terminos-y-condiciones" data-title="Términos y condiciones" hidden>
+  <header class="pg-hero solo"><div class="pg-copy"><span class="label">Legales</span><h1>Términos y condiciones</h1><p class="lead">Condiciones de uso de este sitio y de los servicios de Grupo Tecnobg.</p></div></header>
+  <div class="pg-body"><nav class="toc" aria-label="Contenido"><span class="label">Contenido</span><ol><li><a href="#" data-jump="tc-1">Objeto</a></li><li><a href="#" data-jump="tc-2">Uso del sitio</a></li><li><a href="#" data-jump="tc-3">Cotizaciones y autorización de servicios</a></li><li><a href="#" data-jump="tc-4">Garantía</a></li><li><a href="#" data-jump="tc-5">Propiedad intelectual</a></li><li><a href="#" data-jump="tc-6">Legislación aplicable</a></li></ol></nav><div class="lbody"><article class="lsec" id="tc-1"><h2>Objeto</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-2"><h2>Uso del sitio</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-3"><h2>Cotizaciones y autorización de servicios</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-4"><h2>Garantía</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-5"><h2>Propiedad intelectual</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="tc-6"><h2>Legislación aplicable</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article></div></div>
+</section>
+<section class="view" id="v-uso-de-cookies" data-title="Uso de cookies" hidden>
+  <header class="pg-hero solo"><div class="pg-copy"><span class="label">Legales</span><h1>Uso de cookies</h1><p class="lead">Cómo usa este sitio las cookies y tecnologías similares.</p></div></header>
+  <div class="pg-body"><nav class="toc" aria-label="Contenido"><span class="label">Contenido</span><ol><li><a href="#" data-jump="ck-1">¿Qué son las cookies?</a></li><li><a href="#" data-jump="ck-2">Herramientas que usa el sitio</a></li><li><a href="#" data-jump="ck-3">Cómo desactivarlas</a></li><li><a href="#" data-jump="ck-4">Cambios a esta política</a></li></ol></nav><div class="lbody"><article class="lsec" id="ck-1"><h2>¿Qué son las cookies?</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-2"><h2>Herramientas que usa el sitio</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-3"><h2>Cómo desactivarlas</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-4"><h2>Cambios a esta política</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article></div></div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <nav class="fnav" aria-label="Pie de página"><a href="#nosotros">Nosotros</a><a href="final.html#servicios">Servicios</a><a href="final.html#preguntas-frecuentes">Preguntas frecuentes</a><a href="#blog">Blog</a><a href="final.html#contacto">Contacto</a><a href="#bolsa-de-trabajo">Bolsa de trabajo</a></nav>
+  <div class="mid">
+    <img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" loading="lazy">
+    <p class="legal"><a href="#terminos-y-condiciones">Legales</a> / <a href="#aviso-de-privacidad">Aviso de privacidad</a> / <a href="#uso-de-cookies">Cookies</a></p>
+    <p class="copy">Todos los derechos reservados. Tecnobg 2026.</p>
+  </div>
+  <div class="soc">
+    <a href="https://www.facebook.com/tecnobg" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a>
+    <a href="https://www.instagram.com/tecno.bg" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg></a>
+    <a href="https://www.linkedin.com/company/tecnobg/" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.9 8.6H3.8V20h3.1zM5.3 3.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.4c0-3-1.6-4.9-4.3-4.9-1.4 0-2.4.8-2.8 1.5V8.6H10V20h3.1v-5.8c0-1.5.6-2.6 2-2.6 1.3 0 1.9 1 1.9 2.6V20h3.2z"/></svg></a>
+  </div>
+</div></footer>
+
+<div class="dock" id="dock">
+  <a class="wa" href="https://wa.me/525646037573"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>WhatsApp</a>
+  <a class="qt" href="final.html#contacto">Cotizar</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var menu=document.getElementById('menu'),mb=document.getElementById('menuBtn');
+  function openMenu(o){menu.hidden=!o;mb.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';if(o){document.getElementById('menuClose').focus()}else{mb.focus()}}
+  mb.addEventListener('click',function(){openMenu(true)});
+  document.getElementById('menuClose').addEventListener('click',function(){openMenu(false)});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){openMenu(false)})});
+
+  var sb=document.getElementById('svcBtn'),ss=document.getElementById('svcSub'),dd=sb.parentNode;
+  function sub(o){ss.hidden=!o;sb.setAttribute('aria-expanded',o?'true':'false')}
+  sb.addEventListener('click',function(){sub(ss.hidden)});
+  dd.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover)').matches)sub(true)});
+  dd.addEventListener('mouseleave',function(){if(matchMedia('(hover:hover)').matches)sub(false)});
+  ss.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){sub(false)})});
+  document.addEventListener('click',function(e){if(!dd.contains(e.target))sub(false)});
+  document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(!menu.hidden)openMenu(false);if(!ss.hidden){sub(false);sb.focus()}});
+
+  [].forEach.call(document.querySelectorAll('[data-jump]'),function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.getElementById(a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+  // Cada página interna es una vista del mismo archivo, elegida por el #hash
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(){
+    // Las vistas usan id="v-…" para que el navegador no salte al #hash por su cuenta
+    var id=(location.hash||'#nosotros').slice(1),v=document.getElementById('v-'+id);
+    if(!v||!v.classList.contains('view'))return;
+    views.forEach(function(x){x.hidden=x!==v});
+    document.title='Grupo Tecnobg · '+v.dataset.title;
+    window.scrollTo(0,0);
+    if(window.gsap&&!reduce){
+      gsap.from(v.querySelectorAll('.pg-copy > *'),{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out'});
+      var ph=v.querySelector('.pg-photo');
+      if(ph){gsap.fromTo(ph,{clipPath:'inset(0 0 100% 0 round 22px)'},{clipPath:'inset(0 0 0% 0 round 22px)',duration:1.1,ease:'power3.inOut',delay:.2});gsap.from(ph.querySelector('img'),{scale:1.2,duration:1.5,ease:'power2.out',delay:.2})}
+      gsap.from(v.querySelectorAll('.pg-body > *'),{opacity:0,y:24,duration:.6,stagger:.07,delay:.3,ease:'power3.out'});
+    }
+  }
+  addEventListener('hashchange',show);
+  if(!document.getElementById('v-'+(location.hash||'#nosotros').slice(1))){history.replaceState(null,'','#nosotros')}
+  show();
+})();
+</script>
+</body>
+</html>
