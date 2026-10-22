@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.02 98.62">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        opacity: .3;
+      }
+
+      .cls-2 {
+        fill: #14a1ce;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #334f9d;
+      }
+
+      .cls-5 {
+        font-family: MyriadPro-Bold, 'Myriad Pro';
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-7 {
+        fill: url(#Degradado_sin_nombre_145);
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_145" data-name="Degradado sin nombre 145" x1="3.21" y1="48.72" x2="95.02" y2="48.72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1ba4df"/>
+      <stop offset=".09" stop-color="#1b8dd4"/>
+      <stop offset=".28" stop-color="#1c64c0"/>
+      <stop offset=".44" stop-color="#1d4ab4"/>
+      <stop offset=".53" stop-color="#1e41b0"/>
+      <stop offset=".67" stop-color="#1c3eab"/>
+      <stop offset=".83" stop-color="#17359d"/>
+      <stop offset="1" stop-color="#102787"/>
+      <stop offset="1" stop-color="#102787"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <g>
+      <path class="cls-7" d="M3.21,48.72C3.21,23.52,23.8,3.02,49.12,3.02s45.9,20.5,45.9,45.7-20.59,45.7-45.9,45.7S3.21,73.92,3.21,48.72ZM83.72,48.72c0-19-15.52-34.45-34.61-34.45S14.51,29.72,14.51,48.72s15.52,34.45,34.61,34.45,34.61-15.46,34.61-34.45Z"/>
+      <g>
+        <ellipse class="cls-2" cx="49.12" cy="48.72" rx="28.76" ry="28.63"/>
+        <path class="cls-1" d="M49.12,77.35c11.51,0,21.43-6.73,26.03-16.45L28.9,28.36c-5.27,5.19-8.54,12.4-8.54,20.36,0,15.81,12.87,28.63,28.76,28.63Z"/>
+      </g>
+      <ellipse class="cls-3" cx="49.12" cy="48.72" rx="23.72" ry="23.62"/>
+    </g>
+    <path class="cls-4" d="M48.66,50.48h-15c-.3,0-.53-.19-.53-.68v-2.84c0-.85.21-1.15.9-1.39l10.14-3.46c.55-.19.73-.43.73-.92v-.51c0-.45-.15-.7-.77-.7h-10.14l-1.17-3.05v-.15h12.72c2.41,0,3.26,1.24,3.26,3.11v1.37c0,1.88-.41,2.52-2.18,3.09l-5.31,1.71c-1.84.6-2.54.81-3.39,1.02v.13c1.58-.09,2.52-.11,3.61-.11h7.11v3.39ZM59.49,37.36c.77-.49,1.09-.58,1.98-.58h3.24c.51,0,.73.23.73.85v12.86h-3.71v-2.73h-10.99c-.62,0-.94-.23-.94-.87v-2.65c0-.51.08-.75.51-1.04l9.18-5.83ZM61.6,47.35h.13v-7.51h-.26l-5.83,3.58c-.72.43-1.24.72-1.83,1.02v.13c.75-.06,1.45-.08,2.95-.08h3.35l1.49,2.86ZM36.18,55.77h-.07v4.62h-2.17v-7.68h2.17v2.85h5.13v-2.85h2.18v7.68h-2.18v-2.95h-4.41l-.64-1.67ZM46.57,56.68v3.7h-2.17v-7.36c0-.21.09-.32.29-.32h6c1.91,0,2.6.94,2.6,2.46v.55c0,1.49-.69,2.4-2.51,2.4h-.22c-.21,0-.37,0-.52-.01v.07c.18.17.37.38.54.59l1.22,1.53v.08h-2.45l-2.71-3.7h-.07ZM46.72,54.63c-.08,0-.15.05-.15.18v1.68h3.73c.57,0,.8-.19.8-.81v-.26c0-.59-.23-.78-.8-.78h-3.59ZM60.89,55.36h-.08v-.84c0-.08-.04-.13-.13-.13h-4.05c-.29,0-.39.13-.39.37v.19c0,.3.08.34.36.38l4.77.66c1.22.17,1.66.66,1.66,1.82v.61c0,1.27-.56,1.95-2.26,1.95h-6.84v-1.99h6.13c.36,0,.45-.12.45-.45v-.21c0-.26-.07-.35-.34-.38l-4.6-.58c-1.25-.16-1.74-.65-1.74-1.77v-.54c0-1.11.55-1.75,1.92-1.75h6.82c.22,0,.33.12.33.34v1.58l-2.02.74ZM63.92,60.39v-1.75h1.91v1.75h-1.91Z"/>
+  </g>
+  <text class="cls-5" transform="translate(-8.93 -31.8)"><tspan x="0" y="0">ti</tspan><tspan class="cls-8" x="7.69" y="0">po</tspan><tspan x="21.86" y="0">g</tspan><tspan class="cls-6" x="28.88" y="0">r</tspan><tspan x="33.31" y="0">afia : </tspan><tspan x="-28.72" y="14.4">HP Simplified Regu</tspan><tspan class="cls-6" x="73.23" y="14.4">r</tspan><tspan x="77.66" y="14.4">al</tspan></text>
+</svg>

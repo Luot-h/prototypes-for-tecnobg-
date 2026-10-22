@@ -48,7 +48,7 @@ V.append(('nosotros','Nosotros',hero('Nosotros','Grupo Tecnobg','Reparación y m
     <blockquote class="pq">“Confianza y garantía no son promesas, son el estándar con el que trabajamos”</blockquote>
     <section class="blk"><h2>Historia, misión y valores</h2>'''+pend('Contenido pendiente: historia, misión, visión, valores y equipo de Tecnobg.')+'''</section>
   </div>'''))
-V.append(('mantenimiento-preventivo','Mantenimiento preventivo',hero('Servicios','Mantenimiento preventivo','Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.','img/final/mantenimiento.webp','Técnico de Tecnobg da mantenimiento a un evaporador','60% 40%')+'''
+V.append(('mantenimiento-preventivo','Mantenimiento preventivo',hero('Servicios','Mantenimiento preventivo','Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.','img/final/mantenimiento.webp','Técnico de Tecnobg da mantenimiento a un evaporador','50% 35%')+'''
   <div class="pg-body">
     <section class="blk"><h2>Áreas que atendemos</h2><ul class="ticks">
       <li><b>Línea fría</b>Mantenimiento a sistemas de refrigeración enfocado en eficiencia térmica y conservación de su materia prima.</li>
@@ -57,8 +57,9 @@ V.append(('mantenimiento-preventivo','Mantenimiento preventivo',hero('Servicios'
       <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
     <section class="blk"><h2>Qué incluye</h2>'''+pend('Contenido pendiente: periodicidad, actividades por visita y reporte que se entrega.')+'''</section>
     '''+PROC+others('mantenimiento-preventivo')+'</div>'))
-V.append(('reparacion','Reparación',hero('Servicios','Reparación','Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.','img/soldadura-compresor.webp','Técnico de Tecnobg suelda la línea de un compresor','50% 60%')+'''
+V.append(('reparacion','Reparación',hero('Servicios','Reparación','Reparación rápida y precisa para que tu operación siga marchando.','img/final/reparacion.webp','Técnico de Tecnobg repara la tarjeta electrónica de un equipo','50% 40%')+'''
   <div class="pg-body">
+    <section class="blk"><h2>Corregimos la falla con precisión</h2><p>Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p></section>
     <section class="blk"><h2>Diagnóstico técnico</h2><p>Visita especializada para evaluar el equipo, identificar riesgos operativos y definir acciones preventivas o correctivas con base técnica.</p></section>
     <section class="blk"><h2>Línea fría y línea caliente</h2><p>Reparamos equipos de refrigeración, aire acondicionado, extracción y ventilación, y equipos de línea caliente, tanto comerciales como industriales.</p>
       <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
@@ -72,9 +73,9 @@ V.append(('polizas','Pólizas',hero('Servicios','Pólizas','Nuestras pólizas so
       <li><b>Respaldo</b>Garantía de 30 días en cualquier reparación o mantenimiento. Cumplimiento legal y REPSE vigente.</li></ul></section>
     <section class="blk"><h2>Qué incluye cada póliza</h2>'''+pend('Contenido pendiente: alcance, periodicidad de visitas, equipos cubiertos y planes disponibles.')+'''</section>
     '''+others('polizas')+'</div>'))
-V.append(('servicio-de-emergencia','Servicio de emergencia',hero('Servicios','Servicio de emergencia','Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible.','img/tecnico-sombra.webp','Técnico de Tecnobg atiende una falla en un espacio técnico reducido','40% 40%')+'''
+V.append(('servicio-de-emergencia','Servicio de emergencia',hero('Servicios','Servicios de Emergencia','Cuando la operación exige inmediatez, respondemos con eficiencia.','img/final/emergencia.webp','Camioneta de servicio de Tecnobg circulando de noche por la ciudad','62% 50%')+'''
   <div class="pg-body">
-    <section class="blk"><h2>Respuesta a urgencias</h2><p>Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="'''+WA+'''">Solicitar servicio de emergencia</a></section>
+    <section class="blk"><h2>Respuesta a urgencias</h2><p>Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible. Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="'''+WA+'''">Solicitar servicio de emergencia</a></section>
     '''+PROC+others('servicio-de-emergencia')+'</div>'))
 V.append(('bolsa-de-trabajo','Bolsa de trabajo','''<header class="pg-hero solo"><div class="pg-copy"><span class="label">Bolsa de trabajo</span><h1>Trabaja en Tecnobg</h1><p class="lead">Aquí publicaremos las vacantes de Tecnobg y la forma de postularte.</p></div></header>
   <div class="pg-body"><section class="blk"><h2>Vacantes disponibles</h2>'''+pend('Contenido pendiente: vacantes vigentes (puesto, zona, requisitos) y formulario para enviar tu solicitud.')+'''</section></div>'''))

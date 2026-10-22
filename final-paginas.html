@@ -13,14 +13,16 @@
 
 [hidden]{display:none!important}
 /* Versión final: base de la propuesta 05 (Cinemático) con el diseño del PDF del diseñador.
-   Tipografías del diseño → sustitutos web: Recharge → Michroma, HP Simplified → Hind, Acumin Condensed → Barlow Condensed. */
+   Tipografías: Recharge y HP Simplified vienen del diseñador (fonts/); Acumin Condensed aún no está, se usa Barlow Condensed. */
+@font-face{font-family:"Recharge";src:url("fonts/recharge-bold.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"HP Simplified";src:url("fonts/hp-simplified.woff2") format("woff2");font-weight:400;font-display:swap}
 :root{
   --night:#191c37; --night2:#1e2d5f; --navy:#334f9d; --ink-d:#152149; --light:#f5f6fa; --line:#2c3466; --ink:#f2f4fa; --muted:#b9c0dc;
   --fria:#344f9c; --caliente:#e42528; --wa:#1f8f4e;
   --g-blue:linear-gradient(90deg,#4cc1f0,#219fda 55%,#148bcc);
   --g-warm:linear-gradient(90deg,#fdeb34,#fdc804 35%,#e4332e);
   --g-silver:linear-gradient(180deg,#ffffff 15%,#a6b0bf 85%);
-  --head:"Lexend",system-ui,sans-serif; --body:"Hind",system-ui,sans-serif; --tech:"Michroma","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --head:"Lexend",system-ui,sans-serif; --body:"HP Simplified",system-ui,sans-serif; --tech:"Recharge","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
   --hh:72px;
   color-scheme:dark;
 }
@@ -92,7 +94,8 @@ footer .mid img{width:200px;height:auto}
 footer .legal{font:400 12px/1.5 var(--head);text-transform:uppercase;letter-spacing:.04em}
 footer .soc{display:flex;gap:12px;justify-content:flex-start}
 @media (min-width:900px){footer .soc{justify-content:flex-end}}
-footer .soc a{width:40px;height:40px;border-radius:50%;background:#fff;color:#1e2d5f;display:flex;align-items:center;justify-content:center}
+footer .soc a{width:40px;height:40px;display:block}
+footer .soc img{width:100%;height:100%}
 footer .copy{font-size:13px;color:#cfd7f2}
 
 .dock{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;transform:translate(-50%,0);display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(25,28,55,.8);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 34px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s}
@@ -154,7 +157,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 <body>
 
 <header class="top" id="top"><div class="wrap">
-  <a href="final.html" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282"></a>
+  <a href="final.html" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85"></a>
   <nav aria-label="Principal">
     <a href="#nosotros">Nosotros</a>
     <div class="dd">
@@ -176,7 +179,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 </div></header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menú">
-  <div class="mh"><img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" style="height:34px;width:auto"><button class="round" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="mh"><img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85" style="height:34px;width:auto"><button class="round" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <nav aria-label="Menú móvil">
     <a href="#nosotros">Nosotros</a>
     <a href="final.html#servicios">Servicios</a>
@@ -217,7 +220,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   <header class="pg-hero">
     <div class="pg-copy"><span class="label">Servicios</span><h1>Mantenimiento preventivo</h1><p class="lead">Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.</p>
     <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador" style="object-position:60% 40%"></figure>
+    <figure class="pg-photo"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador" style="object-position:50% 35%"></figure>
   </header>
   <div class="pg-body">
     <section class="blk"><h2>Áreas que atendemos</h2><ul class="ticks">
@@ -230,11 +233,12 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 </section>
 <section class="view" id="v-reparacion" data-title="Reparación" hidden>
   <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación</h1><p class="lead">Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p>
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación</h1><p class="lead">Reparación rápida y precisa para que tu operación siga marchando.</p>
     <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/soldadura-compresor.webp" alt="Técnico de Tecnobg suelda la línea de un compresor" style="object-position:50% 60%"></figure>
+    <figure class="pg-photo"><img src="img/final/reparacion.webp" alt="Técnico de Tecnobg repara la tarjeta electrónica de un equipo" style="object-position:50% 40%"></figure>
   </header>
   <div class="pg-body">
+    <section class="blk"><h2>Corregimos la falla con precisión</h2><p>Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p></section>
     <section class="blk"><h2>Diagnóstico técnico</h2><p>Visita especializada para evaluar el equipo, identificar riesgos operativos y definir acciones preventivas o correctivas con base técnica.</p></section>
     <section class="blk"><h2>Línea fría y línea caliente</h2><p>Reparamos equipos de refrigeración, aire acondicionado, extracción y ventilación, y equipos de línea caliente, tanto comerciales como industriales.</p>
       <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
@@ -257,12 +261,12 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 </section>
 <section class="view" id="v-servicio-de-emergencia" data-title="Servicio de emergencia" hidden>
   <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Servicio de emergencia</h1><p class="lead">Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible.</p>
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Servicios de Emergencia</h1><p class="lead">Cuando la operación exige inmediatez, respondemos con eficiencia.</p>
     <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/tecnico-sombra.webp" alt="Técnico de Tecnobg atiende una falla en un espacio técnico reducido" style="object-position:40% 40%"></figure>
+    <figure class="pg-photo"><img src="img/final/emergencia.webp" alt="Camioneta de servicio de Tecnobg circulando de noche por la ciudad" style="object-position:62% 50%"></figure>
   </header>
   <div class="pg-body">
-    <section class="blk"><h2>Respuesta a urgencias</h2><p>Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="https://wa.me/525646037573">Solicitar servicio de emergencia</a></section>
+    <section class="blk"><h2>Respuesta a urgencias</h2><p>Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible. Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="https://wa.me/525646037573">Solicitar servicio de emergencia</a></section>
     <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a></div></section></div>
 </section>
 <section class="view" id="v-bolsa-de-trabajo" data-title="Bolsa de trabajo" hidden>
@@ -290,14 +294,14 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 <footer><div class="wrap">
   <nav class="fnav" aria-label="Pie de página"><a href="#nosotros">Nosotros</a><a href="final.html#servicios">Servicios</a><a href="final.html#preguntas-frecuentes">Preguntas frecuentes</a><a href="#blog">Blog</a><a href="final.html#contacto">Contacto</a><a href="#bolsa-de-trabajo">Bolsa de trabajo</a></nav>
   <div class="mid">
-    <img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" loading="lazy">
+    <img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85" loading="lazy">
     <p class="legal"><a href="#terminos-y-condiciones">Legales</a> / <a href="#aviso-de-privacidad">Aviso de privacidad</a> / <a href="#uso-de-cookies">Cookies</a></p>
     <p class="copy">Todos los derechos reservados. Tecnobg 2026.</p>
   </div>
   <div class="soc">
-    <a href="https://www.facebook.com/tecnobg" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a>
-    <a href="https://www.instagram.com/tecno.bg" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg></a>
-    <a href="https://www.linkedin.com/company/tecnobg/" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.9 8.6H3.8V20h3.1zM5.3 3.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.4c0-3-1.6-4.9-4.3-4.9-1.4 0-2.4.8-2.8 1.5V8.6H10V20h3.1v-5.8c0-1.5.6-2.6 2-2.6 1.3 0 1.9 1 1.9 2.6V20h3.2z"/></svg></a>
+    <a href="https://www.facebook.com/tecnobg" aria-label="Facebook"><img src="img/final/redes/facebook.svg" alt="" width="40" height="40"></a>
+    <a href="https://www.instagram.com/tecno.bg" aria-label="Instagram"><img src="img/final/redes/instagram.svg" alt="" width="40" height="40"></a>
+    <a href="https://www.linkedin.com/company/tecnobg/" aria-label="LinkedIn"><img src="img/final/redes/linkedin.svg" alt="" width="40" height="40"></a>
   </div>
 </div></footer>
 
