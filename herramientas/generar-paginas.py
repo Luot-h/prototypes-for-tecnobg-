@@ -77,7 +77,7 @@ V.append(('servicio-de-emergencia','Servicio de emergencia',hero('Servicios','Se
   <div class="pg-body">
     <section class="blk"><h2>Respuesta a urgencias</h2><p>Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible. Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="'''+WA+'''">Solicitar servicio de emergencia</a></section>
     '''+PROC+others('servicio-de-emergencia')+'</div>'))
-# Blog, ofertas y bolsa de trabajo: propuesta visual del sistema administrable (contenido de ejemplo, se cargará desde el panel en Laravel)
+# Blog y bolsa de trabajo: propuesta visual del sistema administrable (contenido de ejemplo, se cargará desde el panel en Laravel)
 DEMO='Propuesta visual: el contenido es de ejemplo y se administrará desde el panel de Tecnobg.'
 POSTS=[
   ('Línea fría','5 señales de que tu cámara de refrigeración necesita mantenimiento','Hielo en el evaporador, puertas que no sellan o un compresor que no descansa: qué revisar antes de que falle.','img/final/equipos/camaras.webp','14 oct 2026','4 min'),
@@ -128,21 +128,6 @@ V.append(('blog-articulo','Artículo','''<article>
     <section class="blk"><h2>Artículos relacionados</h2><div class="posts">'''+rel+'''</div></section>
   </div>
 </article>''',DEMO))
-
-OFFERS=[
-  ('-15%','Mantenimiento preventivo de línea fría','Revisión completa de refrigeradores, mesas frías y vitrinas: limpieza de condensador, revisión de gas, empaques y termostato.','img/final/equipos/refrigeradores.webp','30 nov 2026',True),
-  ('Paquete','Revisión de temporada para línea caliente','Freidoras, planchas y hornos revisados en una sola visita antes de la temporada alta.','img/final/equipos/plancha-caliente.webp','15 dic 2026',False),
-  ('2×1','Diagnóstico de máquinas de hielo','Agenda el diagnóstico de dos máquinas en la misma sucursal y paga solo uno.','img/final/equipos/maquina-hielo.webp','31 oct 2026',False),
-  ('Póliza','Primer mes sin costo en pólizas anuales','Contrata una póliza anual de mantenimiento y el primer mes corre por nuestra cuenta.','img/final/polizas.webp','31 dic 2026',False),
-]
-def offer(b,t,x,img,h,star):
-    msg=('Hola, me interesa la oferta: '+t).replace(' ','%20')
-    return f'''<article class="offer{' star' if star else ''}"><figure><img src="{img}" alt="" loading="lazy"><span class="badge">{b}</span>{'<span class="feat">Destacada</span>' if star else ''}</figure><div class="oc"><h3>{t}</h3><p>{x}</p><p class="valid">Válida hasta el {h}</p><div class="acts"><a class="btn btn-blue" href="{WA}?text={msg}">La quiero</a><a class="btn btn-ghost dark" href="final.html#contacto">Cotizar</a></div></div></article>'''
-V.append(('ofertas','Ofertas','''<header class="pg-hero solo"><div class="pg-copy"><span class="label">Ofertas</span><h1>Ofertas y promociones</h1><p class="lead">Promociones vigentes en mantenimiento, reparación y pólizas para tu negocio.</p></div></header>
-  <div class="pg-body wide">
-    <div class="offers">'''+''.join(offer(*o) for o in OFFERS)+'''</div>
-    <p class="fine">Las promociones aplican en la zona de cobertura de Tecnobg, sujetas a disponibilidad y a diagnóstico previo. No son acumulables con otras promociones.</p>
-  </div>''',DEMO))
 
 JOBS=[
   ('Técnico(a) de refrigeración comercial','Operaciones','Ciudad de México','Tiempo completo','Hace 2 días'),
@@ -251,7 +236,7 @@ main{padding-top:calc(var(--hh) + env(safe-area-inset-top,0px))}
 .lsec{display:grid;gap:10px;justify-items:start;border-top:1px solid #d9deeb;padding-top:22px;scroll-margin-top:calc(var(--hh) + 20px)}
 footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 @media (min-width:900px){footer{padding-bottom:40px}}
-/* Blog, ofertas y bolsa de trabajo (propuesta del sistema administrable) */
+/* Blog y bolsa de trabajo (propuesta del sistema administrable) */
 .prelim.demo{background:linear-gradient(90deg,#4cc1f0,#219fda);color:#06243a}
 .pg-body.wide{max-width:1240px}
 .tag{display:inline-block;font:600 12px/1 var(--head);text-transform:uppercase;letter-spacing:.06em;color:var(--navy);background:#e6ecfa;border-radius:999px;padding:6px 10px}
@@ -296,19 +281,6 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .view .cta-box .btn-ghost.dark{color:#fff;border-color:rgba(255,255,255,.45)}
 .share{font-size:15px;color:#6b7493}
 .share a{color:var(--navy)}
-.offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
-.offer{display:grid;grid-template-rows:auto 1fr;background:#fff;border:1px solid #e3e7f1;border-radius:18px;overflow:hidden}
-.offer.star{border:2px solid #219fda}
-@media (min-width:900px){.offer.star{grid-column:span 2;grid-template-rows:none;grid-template-columns:1fr 1fr}.offer.star figure{aspect-ratio:auto}}
-.offer figure{margin:0;position:relative;aspect-ratio:16/10;background:#dfe4f0}
-.offer img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;left:14px;top:14px;background:var(--g-warm);color:#fff;text-shadow:0 1px 3px rgba(120,30,0,.7);font:400 18px/1 var(--tech);padding:10px 14px;border-radius:10px}
-.feat{position:absolute;right:14px;top:14px;background:var(--ink-d);color:#fff;font:600 12px/1 var(--head);text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;border-radius:999px}
-.oc{display:grid;gap:10px;align-content:start;padding:22px}
-.oc h3{font:700 21px/1.25 var(--head);color:var(--ink-d)}
-.oc p{color:#45507a;font-size:16px}
-.oc .valid{color:var(--caliente);font:600 14px var(--head)}
-.oc .btn{min-height:44px;padding:0 20px}
 .fine{font-size:14px;color:#6b7493;max-width:80ch}
 #vacantes{scroll-margin-top:calc(var(--hh) + 60px)}
 .jobs{display:grid;gap:10px;width:100%}

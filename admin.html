@@ -183,16 +183,6 @@ textarea.inp{resize:vertical;min-height:96px}
 @media (min-width:1000px){.savebar{margin:18px -28px -80px;padding:12px 28px}}
 .savebar small{margin-right:auto;color:var(--muted)}
 
-/* Ofertas */
-.ocards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px}
-.ocard{overflow:hidden;display:grid;grid-template-rows:auto 1fr}
-.ocard figure{margin:0;position:relative;aspect-ratio:16/9;background:#dfe4f0}
-.ocard figure img{width:100%;height:100%;object-fit:cover}
-.ocard figure .pill{position:absolute;left:10px;top:10px}
-.ocard .b{padding:16px;display:grid;gap:8px;align-content:start}
-.ocard h3{font:600 17px/1.3 var(--head)}
-.ocard .m{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px}
-
 /* Postulaciones */
 .kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:14px;overflow-x:auto;padding-bottom:10px}
 .col{background:#eceff5;border-radius:14px;padding:10px;display:grid;gap:10px;align-content:start;min-height:300px}
@@ -290,7 +280,7 @@ code{font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--
   <div class="auth-card">
     <img class="logo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85">
     <form class="auth-box" id="loginForm">
-      <div><h1>Panel de administración</h1><p>Inicia sesión para administrar el blog, las ofertas y la bolsa de trabajo.</p></div>
+      <div><h1>Panel de administración</h1><p>Inicia sesión para administrar el blog y la bolsa de trabajo.</p></div>
       <label>Correo electrónico<input type="email" required value="admin@tecnobg.com" autocomplete="username"></label>
       <label>Contraseña<input type="password" required value="demo1234" autocomplete="current-password"></label>
       <div class="row"><label><input type="checkbox" checked> Recordarme</label><a href="#recuperar">¿Olvidaste tu contraseña?</a></div>
@@ -319,9 +309,8 @@ code{font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--
     <div class="brand"><img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85"><span>Panel</span></div>
     <nav aria-label="Panel">
       <a href="#resumen" data-nav="resumen"><svg class="ico"><use href="#i-home"/></svg>Resumen</a>
-      <div class="grp" data-perm-any="blog.ver ofertas.ver">Contenido</div>
+      <div class="grp" data-perm-any="blog.ver">Contenido</div>
       <a href="#blog" data-nav="blog" data-perm="blog.ver"><svg class="ico"><use href="#i-blog"/></svg>Blog</a>
-      <a href="#ofertas" data-nav="ofertas" data-perm="ofertas.ver"><svg class="ico"><use href="#i-tag"/></svg>Ofertas</a>
       <div class="grp" data-perm-any="vacantes.ver postulaciones.ver">Bolsa de trabajo</div>
       <a href="#vacantes" data-nav="vacantes" data-perm="vacantes.ver"><svg class="ico"><use href="#i-brief"/></svg>Vacantes</a>
       <a href="#postulaciones" data-nav="postulaciones" data-perm="postulaciones.ver"><svg class="ico"><use href="#i-inbox"/></svg>Postulaciones<span class="n">4</span></a>
@@ -350,7 +339,6 @@ code{font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--
         <div class="acts"><a class="btn sec" href="#blog-editar" data-perm="blog.crear"><svg class="ico"><use href="#i-plus"/></svg>Nuevo artículo</a><a class="btn" href="#vacante-editar" data-perm="vacantes.crear"><svg class="ico"><use href="#i-plus"/></svg>Nueva vacante</a></div></div>
       <div class="stats">
         <div class="card stat" data-perm="blog.ver"><span>Artículos publicados</span><b>18</b><small>+3 este mes</small></div>
-        <div class="card stat" data-perm="ofertas.ver"><span>Ofertas activas</span><b>4</b><small style="color:var(--warn)">1 vence esta semana</small></div>
         <div class="card stat" data-perm="vacantes.ver"><span>Vacantes abiertas</span><b>5</b><small>2 nuevas</small></div>
         <div class="card stat" data-perm="postulaciones.ver"><span>Postulaciones nuevas</span><b>4</b><small>sin revisar</small></div>
       </div>
@@ -438,33 +426,6 @@ code{font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--
         </div>
       </div>
       <div class="savebar"><small>Guardado automático hace 1 min</small><button class="btn danger" type="button" data-perm="blog.eliminar" data-confirm="¿Eliminar este artículo?"><svg class="ico"><use href="#i-trash"/></svg>Eliminar</button><button class="btn sec" type="button" data-toast="Borrador guardado">Guardar borrador</button><button class="btn" type="button" data-perm="blog.publicar" data-toast="Artículo publicado">Publicar</button></div>
-    </main>
-
-    <!-- Ofertas -->
-    <main class="page view" id="v-ofertas" data-crumb="Contenido / Ofertas" data-perm="ofertas.ver" hidden>
-      <div class="ph"><div><h1>Ofertas</h1><p>Promociones que se muestran en tecnobg.com/ofertas. Se ocultan solas al vencer.</p></div>
-        <div class="acts"><a class="btn" href="#oferta-editar" data-perm="ofertas.crear"><svg class="ico"><use href="#i-plus"/></svg>Nueva oferta</a></div></div>
-      <div class="card" style="margin-bottom:16px"><div class="toolbar"><div class="tabs" data-tabs="offers"><button class="on" data-f="">Todas<i>6</i></button><button data-f="Activa">Activas<i>4</i></button><button data-f="Programada">Programadas<i>1</i></button><button data-f="Vencida">Vencidas<i>1</i></button></div><label class="search"><svg class="ico"><use href="#i-search"/></svg><input placeholder="Buscar oferta" data-search="offers"></label></div></div>
-      <div class="ocards" id="offers"></div>
-    </main>
-
-    <main class="page view" id="v-oferta-editar" data-crumb="Contenido / Ofertas / Editar oferta" data-perm="ofertas.crear" hidden>
-      <div class="ph"><div><h1>Editar oferta</h1><p><a href="#ofertas" style="color:var(--navy)">← Volver a ofertas</a></p></div></div>
-      <div class="form">
-        <div class="card pad fcol">
-          <div class="fld"><label for="ot">Título</label><input id="ot" class="inp big" value="Mantenimiento preventivo de línea fría"></div>
-          <div class="two"><div class="fld"><span>Etiqueta destacada <em>· p. ej. -15%, 2×1, Paquete</em></span><input class="inp" value="-15%"></div><div class="fld"><span>Servicio relacionado</span><select class="inp"><option>Mantenimiento preventivo</option><option>Reparación</option><option>Pólizas</option><option>Servicio de emergencia</option></select></div></div>
-          <div class="fld"><span>Descripción</span><textarea class="inp" rows="3">Revisión completa de refrigeradores, mesas frías y vitrinas: limpieza de condensador, revisión de gas, empaques y termostato.</textarea></div>
-          <div class="two"><div class="fld"><span>Vigente desde</span><input class="inp" type="date" value="2026-10-01"></div><div class="fld"><span>Vigente hasta</span><input class="inp" type="date" value="2026-11-30"></div></div>
-          <div class="two"><div class="fld"><span>Botón principal</span><select class="inp"><option>WhatsApp con mensaje</option><option>Formulario de cotización</option></select></div><div class="fld"><span>Mensaje de WhatsApp</span><input class="inp" value="Hola, me interesa la oferta: Mantenimiento preventivo de línea fría"></div></div>
-          <div class="fld"><span>Condiciones</span><textarea class="inp" rows="2">Aplica en la zona de cobertura. No acumulable con otras promociones.</textarea></div>
-        </div>
-        <div class="fcol">
-          <div class="card pad fcol"><h2>Publicación</h2><div class="fld"><span>Estado</span><select class="inp"><option>Activa</option><option>Pausada</option></select></div><label class="switch">Oferta destacada<input type="checkbox" checked></label><p class="slug">Al llegar a la fecha de fin, la oferta deja de mostrarse en el sitio.</p></div>
-          <div class="card pad fcol"><h2>Imagen</h2><div class="cover"><img src="img/final/equipos/refrigeradores.webp" alt=""><button class="btn sec sm" type="button">Cambiar</button></div></div>
-        </div>
-      </div>
-      <div class="savebar"><button class="btn danger" type="button" data-perm="ofertas.eliminar" data-confirm="¿Eliminar esta oferta?"><svg class="ico"><use href="#i-trash"/></svg>Eliminar</button><button class="btn" type="button" data-toast="Oferta guardada">Guardar oferta</button></div>
     </main>
 
     <!-- Vacantes -->
@@ -611,7 +572,6 @@ Herramienta y uniforme.</textarea></div>
   // Roles y permisos (en Laravel: spatie/laravel-permission, permisos con nombre "modulo.accion")
   var MODS=[
     ['blog','Blog',['ver','crear','editar','publicar','eliminar'],[]],
-    ['ofertas','Ofertas',['ver','crear','editar','publicar','eliminar'],[]],
     ['vacantes','Vacantes',['ver','crear','editar','publicar','eliminar'],[]],
     ['postulaciones','Postulaciones',['ver','eliminar'],['cambiar-estado','descargar-cv','exportar']],
     ['usuarios','Usuarios',['ver','crear','editar','eliminar'],[]],
@@ -620,7 +580,7 @@ Herramienta y uniforme.</textarea></div>
   var ALL=[];MODS.forEach(function(m){m[2].concat(m[3]).forEach(function(a){ALL.push(m[0]+'.'+a)})});
   var ROLES={
     admin:{name:'Administrador',desc:'Acceso total al panel.',c:'#334f9d',users:1,perms:ALL.slice()},
-    editor:{name:'Editor de contenido',desc:'Escribe y publica en el blog y las ofertas.',c:'#219fda',users:2,perms:['blog.ver','blog.crear','blog.editar','blog.publicar','blog.eliminar','ofertas.ver','ofertas.crear','ofertas.editar','ofertas.publicar']},
+    editor:{name:'Editor de contenido',desc:'Escribe y publica artículos del blog.',c:'#219fda',users:2,perms:['blog.ver','blog.crear','blog.editar','blog.publicar','blog.eliminar']},
     rh:{name:'Recursos Humanos',desc:'Publica vacantes y da seguimiento a postulaciones.',c:'#1f8f4e',users:2,perms:['vacantes.ver','vacantes.crear','vacantes.editar','vacantes.publicar','vacantes.eliminar','postulaciones.ver','postulaciones.cambiar-estado','postulaciones.descargar-cv','postulaciones.exportar']}
   };
   var ME={admin:'Ana Ramírez',editor:'Luis Ortega',rh:'Mariana Díaz'};
@@ -641,14 +601,6 @@ Herramienta y uniforme.</textarea></div>
     ['Hornos de convección: errores comunes de operación','Línea caliente','Jorge Peña','Publicado','8 sep 2026','horno-conveccion']
   ];
   var ST={Publicado:'ok',Programado:'info',Borrador:'warn',Activa:'ok',Programada:'info',Vencida:'off',Pausada:'warn',Abierta:'ok',Cerrada:'off',Activo:'ok',Inactivo:'off'};
-  var OFFERS=[
-    ['Mantenimiento preventivo de línea fría','-15%','Activa','1 oct – 30 nov 2026','refrigeradores',212],
-    ['Revisión de temporada para línea caliente','Paquete','Activa','15 oct – 15 dic 2026','plancha-caliente',96],
-    ['Diagnóstico de máquinas de hielo','2×1','Activa','1 – 31 oct 2026','maquina-hielo',143],
-    ['Primer mes sin costo en pólizas anuales','Póliza','Activa','1 oct – 31 dic 2026','../polizas',78],
-    ['Revisión de campanas y extracción','-10%','Programada','1 – 31 dic 2026','estufon',0],
-    ['Buen Fin: diagnóstico sin costo','Gratis','Vencida','13 – 16 nov 2025','salamandra',301]
-  ];
   var JOBS=[
     ['Técnico(a) de refrigeración comercial','Operaciones','Ciudad de México',12,'Abierta','30 nov 2026'],
     ['Técnico(a) de línea caliente','Operaciones','Ciudad de México',7,'Abierta','30 nov 2026'],
@@ -681,7 +633,6 @@ Herramienta y uniforme.</textarea></div>
 
   function render(){
     $('#posts').innerHTML=POSTS.map(function(p){return '<tr data-st="'+p[3]+'"><td><div class="cell"><img class="thumb" src="'+img(p[5])+'" alt=""><span class="t">'+p[0]+'</span></div></td><td>'+p[1]+'</td><td>'+p[2]+'</td><td>'+pill(p[3])+'</td><td><small>'+p[4]+'</small></td><td>'+acts('#blog-editar','blog','¿Eliminar este artículo?')+'</td></tr>'}).join('');
-    $('#offers').innerHTML=OFFERS.map(function(o){return '<article class="card ocard" data-st="'+o[2]+'"><figure><img src="'+img(o[4])+'" alt="">'+pill(o[2])+'</figure><div class="b"><span style="font:400 14px var(--tech);color:#e4332e">'+o[1]+'</span><h3>'+o[0]+'</h3><div class="m"><span>'+o[3]+'</span><span>'+o[5]+' clics</span></div>'+acts('#oferta-editar','ofertas','¿Eliminar esta oferta?')+'</div></article>'}).join('');
     $('#jobs').innerHTML=JOBS.map(function(j){return '<tr data-st="'+j[4]+'"><td><span class="t">'+j[0]+'</span></td><td>'+j[1]+'</td><td>'+j[2]+'</td><td>'+(can('postulaciones.ver')?'<a href="#postulaciones" style="color:var(--navy);font:600 15px var(--head)">'+j[3]+'</a>':j[3])+'</td><td>'+pill(j[4])+'</td><td><small>'+j[5]+'</small></td><td>'+acts('#vacante-editar','vacantes','¿Eliminar esta vacante?')+'</td></tr>'}).join('');
     var jf=$('#jobFilter');if(jf.options.length<2)JOBS.forEach(function(j,i){if(i<5)jf.insertAdjacentHTML('beforeend','<option value="'+i+'">'+j[0]+'</option>')});
     var fj=jf.value;
@@ -724,7 +675,7 @@ Herramienta y uniforme.</textarea></div>
   $('#roleSel').addEventListener('change',function(){role=this.value;try{localStorage.setItem('tbg-rol',role)}catch(e){}render();applyRole();route()});
 
   // Navegación por #hash
-  var NAVMAP={'blog-editar':'blog','oferta-editar':'ofertas','vacante-editar':'vacantes'};
+  var NAVMAP={'blog-editar':'blog','vacante-editar':'vacantes'};
   function route(){
     var id=(location.hash||'#login').slice(1),v=document.getElementById('v-'+id);
     if(!v){id='login';v=$('#v-login')}
