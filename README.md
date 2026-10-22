@@ -13,6 +13,7 @@ Sitio estático de presentación con 3 propuestas. No necesita compilación: se 
 | `final.html` | Versión final en construcción (base: propuesta 05 + diseño del diseñador) |
 | `final-paginas.html` | Páginas internas de la versión final en diseño preliminar (Nosotros, servicios, Bolsa de trabajo, Blog y legales), por `#hash`. Se genera con `python3 herramientas/generar-paginas.py` |
 | `api/cotizacion.js` | Función de Vercel que envía el formulario de cotización al correo de ventas |
+| `fonts/` | Tipografías del diseñador en WOFF2 (Recharge Bold y HP Simplified) |
 | `img/` | Logo y fotografías optimizadas (WebP); `img/final/` trae los recursos sacados del PDF del diseñador |
 | `robots.txt` | Bloquea la indexación en buscadores |
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 204.75 208.12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #344f9c;
+        font-family: Lexend-Bold, Lexend;
+        font-size: 40.51px;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        stroke: #727278;
+        stroke-dasharray: 1 4;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        filter: url(#drop-shadow-5);
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-6 {
+        filter: url(#drop-shadow-11);
+      }
+
+      .cls-7 {
+        fill: #191c37;
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-9 {
+        fill: url(#Degradado_sin_nombre_905);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" x="-1375.98" y="-3792.27" width="1929.41" height="1193.32"/>
+    </clipPath>
+    <filter id="drop-shadow-5" x="29.35" y="22.19" width="1021" height="177" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2"/>
+      <feGaussianBlur result="blur" stdDeviation="3"/>
+      <feFlood flood-color="#000" flood-opacity=".45"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="Degradado_sin_nombre_905" data-name="Degradado sin nombre 905" x1="9.35" y1="108.57" x2="1011.67" y2="108.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0971b7"/>
+      <stop offset=".5" stop-color="#344f9c"/>
+      <stop offset=".83" stop-color="#2c3571"/>
+      <stop offset="1" stop-color="#28285b"/>
+    </linearGradient>
+    <filter id="drop-shadow-11" x="48.35" y="51.19" width="111" height="111" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".35"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-8">
+    <rect class="cls-7" x="-1375.98" y="-3792.27" width="1929.41" height="12139.22"/>
+  </g>
+  <g class="cls-4">
+    <path class="cls-9" d="M605.91,68.02l-66.65-38.48-66.65,38.48v76.96l66.65,38.48,66.65-38.48v-76.96ZM1039.27,72.16l-66.65-38.48-66.65,38.48v76.96l66.65,38.48,66.65-38.48v-76.96ZM170.24,68.02L103.59,29.54l-66.65,38.48v76.96l66.65,38.48,66.65-38.48v-76.96Z"/>
+  </g>
+  <circle class="cls-2" cx="103.59" cy="106.5" r="99.98" transform="translate(-44.97 104.44) rotate(-45)"/>
+  <g class="cls-6">
+    <circle class="cls-5" cx="103.59" cy="106.5" r="40.08" transform="translate(-44.97 104.44) rotate(-45)"/>
+  </g>
+  <text class="cls-1" transform="translate(90.18 118.75)"><tspan x="0" y="0">4</tspan></text>
+  <line class="cls-2" x1="203.57" y1="109.14" x2="439.86" y2="109.14"/>
+</svg>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 203.87 208.12">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_972);
+      }
+
+      .cls-3 {
+        fill: #344f9c;
+        font-family: Lexend-Bold, Lexend;
+        font-size: 40.51px;
+        font-variation-settings: 'wght' 700;
+      }
+
+      .cls-3, .cls-4 {
+        font-weight: 700;
+      }
+
+      .cls-5 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-6 {
+        stroke: #727278;
+        stroke-dasharray: 1 4;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6, .cls-7 {
+        fill: none;
+      }
+
+      .cls-8, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-9 {
+        filter: url(#drop-shadow-8);
+      }
+
+      .cls-10 {
+        filter: url(#drop-shadow-4);
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        font-family: MyriadPro-Bold, 'Myriad Pro';
+        font-size: 12px;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-15 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-16 {
+        fill: #191c37;
+      }
+
+      .cls-17 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-7" x="-98.44" y="-3792.27" width="1929.41" height="1193.32"/>
+    </clipPath>
+    <filter id="drop-shadow-4" x="27.89" y="20.19" width="1026" height="173" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2"/>
+      <feGaussianBlur result="blur" stdDeviation="3"/>
+      <feFlood flood-color="#000" flood-opacity=".45"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="Degradado_sin_nombre_972" data-name="Degradado sin nombre 972" x1="7.78" y1="104.41" x2="1014.58" y2="104.41" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#54c2e8"/>
+      <stop offset=".19" stop-color="#53bde5"/>
+      <stop offset=".38" stop-color="#50b1dd"/>
+      <stop offset=".57" stop-color="#4b9dd0"/>
+      <stop offset=".76" stop-color="#4481bd"/>
+      <stop offset=".95" stop-color="#3c5da6"/>
+      <stop offset="1" stop-color="#3a529f"/>
+    </linearGradient>
+    <filter id="drop-shadow-8" x="46.89" y="49.19" width="111" height="111" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".35"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-17">
+    <rect class="cls-16" x="-98.44" y="-3792.27" width="1929.41" height="12139.22"/>
+  </g>
+  <g class="cls-10">
+    <path class="cls-2" d="M168.8,142.98l-66.65,38.48-66.65-38.48v-76.96L101.89,27.37l66.91,38.65v76.96ZM604.45,66.02l-66.65-38.48-66.65,38.48v76.96l66.65,38.48,66.65-38.48v-76.96ZM1042.29,65.97l-66.65-38.48-66.65,38.48v76.96l66.65,38.48,66.65-38.48v-76.96Z"/>
+  </g>
+  <circle class="cls-6" cx="102.15" cy="104.5" r="99.98"/>
+  <g class="cls-9">
+    <circle class="cls-8" cx="102.15" cy="104.5" r="40.08"/>
+  </g>
+  <text class="cls-3" transform="translate(90.79 117.98)"><tspan x="0" y="0">1</tspan></text>
+  <line class="cls-6" x1="202.13" y1="106.82" x2="438.42" y2="106.82"/>
+  <text class="cls-4" transform="translate(241.59 158.59)"><tspan class="cls-12" x="0" y="0">L</tspan><tspan class="cls-5" x="6.02" y="0">e</tspan><tspan class="cls-15" x="12.22" y="0">x</tspan><tspan x="18.18" y="0">end </tspan><tspan class="cls-13" x="41.12" y="0">B</tspan><tspan x="48.44" y="0">old</tspan><tspan class="cls-14" x="-2.27" y="14.4">c</tspan><tspan x="3.01" y="14.4">olo</tspan><tspan class="cls-11" x="20.15" y="14.4">r</tspan><tspan class="cls-1" x="24.67" y="14.4">: 334f9d</tspan></text>
+</svg>

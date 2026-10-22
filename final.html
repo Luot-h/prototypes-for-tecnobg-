@@ -8,18 +8,20 @@
 <meta name="description" content="Reparación y mantenimiento preventivo especializado en el sector HORECA en México. Línea fría, línea caliente y aire acondicionado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Michroma&family=Hind:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700&display=swap">
 <style>
 [hidden]{display:none!important}
 /* Versión final: base de la propuesta 05 (Cinemático) con el diseño del PDF del diseñador.
-   Tipografías del diseño → sustitutos web: Recharge → Michroma, HP Simplified → Hind, Acumin Condensed → Barlow Condensed. */
+   Tipografías: Recharge y HP Simplified vienen del diseñador (fonts/); Acumin Condensed aún no está, se usa Barlow Condensed. */
+@font-face{font-family:"Recharge";src:url("fonts/recharge-bold.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"HP Simplified";src:url("fonts/hp-simplified.woff2") format("woff2");font-weight:400;font-display:swap}
 :root{
   --night:#191c37; --night2:#1e2d5f; --navy:#334f9d; --ink-d:#152149; --light:#f5f6fa; --line:#2c3466; --ink:#f2f4fa; --muted:#b9c0dc;
   --fria:#344f9c; --caliente:#e42528; --wa:#1f8f4e;
   --g-blue:linear-gradient(90deg,#4cc1f0,#219fda 55%,#148bcc);
   --g-warm:linear-gradient(90deg,#fdeb34,#fdc804 35%,#e4332e);
   --g-silver:linear-gradient(180deg,#ffffff 15%,#a6b0bf 85%);
-  --head:"Lexend",system-ui,sans-serif; --body:"Hind",system-ui,sans-serif; --tech:"Michroma","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --head:"Lexend",system-ui,sans-serif; --body:"HP Simplified",system-ui,sans-serif; --tech:"Recharge","Lexend",sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif;
   --hh:72px;
   color-scheme:dark;
 }
@@ -85,9 +87,7 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,28,55,.55) 0%,rgba(25,28,55,.45) 45%,rgba(25,28,55,.92) 82%,var(--night) 100%)}
 .hero .copy{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px;padding:calc(var(--hh) + 40px) 16px 30px}
 .hero .hlogo{width:min(64vw,320px);height:auto}
-.hero .title{font:400 clamp(26px,6.4vw,46px)/1.12 var(--tech);text-transform:uppercase;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
-.hero .title .mline>span{background:var(--g-silver);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .title .sm{font-size:.62em;text-transform:none}
+.hero .slogan{width:min(66vw,300px);height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
 .hero h1{font:400 clamp(17px,2.2vw,21px)/1.45 var(--body);color:#fff;max-width:40ch}
 .marquee{position:relative;overflow:hidden;padding:18px 0 34px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .mtrack{display:flex;align-items:center;gap:clamp(36px,6vw,80px);width:max-content;animation:marquee 34s linear infinite}
@@ -148,8 +148,7 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .ptrack::before{content:"";position:absolute;left:16px;right:16px;top:62px;border-top:1px dashed #b7bfd6}
 .step{position:relative;flex:0 0 clamp(250px,70vw,300px);display:grid;gap:14px;align-content:start}
 .ring{width:124px;height:124px;border-radius:50%;border:1px dashed #b7bfd6;display:flex;align-items:center;justify-content:center;background:var(--light)}
-.hex{width:92px;height:104px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center}
-.hex span{width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font:700 22px var(--head);color:var(--navy)}
+.hex{width:96px;height:96px;object-fit:contain}
 .step h3{display:flex;align-items:flex-start;gap:10px;font:700 16px/1.25 var(--head);text-transform:uppercase;letter-spacing:.03em;color:var(--navy)}
 .step h3 img{width:28px;height:28px;flex:none;margin-top:-3px}
 .step p{font-size:16px;color:#2a3352;padding-left:38px}
@@ -204,7 +203,7 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .quote .intro{margin-top:12px;font-size:18px}
 .cdata{display:grid;gap:18px;margin-top:36px}
 .cdata a,.cdata span{display:flex;align-items:center;gap:12px;font:700 clamp(17px,2.2vw,21px) var(--head);color:var(--ink-d);text-decoration:none}
-.cdata svg{flex:none}
+.cdata img{flex:none;width:24px;height:24px;object-fit:contain}
 .cdata small{font:400 15px var(--body);color:#56607d;padding-left:34px;margin-top:-8px}
 form{display:grid;gap:14px}
 form label{display:grid;gap:6px;font:400 16px var(--body);color:#8b8f9c}
@@ -233,7 +232,8 @@ footer .mid img{width:200px;height:auto}
 footer .legal{font:400 12px/1.5 var(--head);text-transform:uppercase;letter-spacing:.04em}
 footer .soc{display:flex;gap:12px;justify-content:flex-start}
 @media (min-width:900px){footer .soc{justify-content:flex-end}}
-footer .soc a{width:40px;height:40px;border-radius:50%;background:#fff;color:#1e2d5f;display:flex;align-items:center;justify-content:center}
+footer .soc a{width:40px;height:40px;display:block}
+footer .soc img{width:100%;height:100%}
 footer .copy{font-size:13px;color:#cfd7f2}
 
 .dock{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;transform:translate(-50%,0);display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(25,28,55,.8);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 34px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s}
@@ -248,7 +248,7 @@ footer .copy{font-size:13px;color:#cfd7f2}
 <body>
 
 <header class="top" id="top"><div class="wrap">
-  <a href="#inicio" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282"></a>
+  <a href="#inicio" aria-label="Grupo Tecnobg, inicio"><img class="logo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85"></a>
   <nav aria-label="Principal">
     <a href="final-paginas.html#nosotros">Nosotros</a>
     <div class="dd">
@@ -270,7 +270,7 @@ footer .copy{font-size:13px;color:#cfd7f2}
 </div></header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menú">
-  <div class="mh"><img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" style="height:34px;width:auto"><button class="round" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="mh"><img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85" style="height:34px;width:auto"><button class="round" id="menuClose" type="button" aria-label="Cerrar menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <nav aria-label="Menú móvil">
     <a href="final-paginas.html#nosotros">Nosotros</a>
     <a href="#servicios">Servicios</a>
@@ -292,11 +292,11 @@ footer .copy{font-size:13px;color:#cfd7f2}
 
 <main id="inicio">
 <section class="hero" id="hero">
-  <img id="heroImg" src="img/final/hero.webp" alt="Técnicos de Tecnobg reparan una plancha en la cocina de un restaurante" width="1600" height="900">
+  <img id="heroImg" src="img/final/hero.webp" alt="Técnicos de Tecnobg reparan un equipo en la cocina de un restaurante" width="1600" height="900">
   <div class="shade"></div>
   <div class="copy">
-    <img class="hlogo" id="hlogo" src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg, servicios integrales" width="1000" height="282">
-    <p class="title" aria-label="Solución con tecnología a tu medida"><span class="mline"><span>Solución</span></span><span class="mline"><span class="sm">con</span></span><span class="mline"><span>Tecnología</span></span><span class="mline"><span>a tu medida</span></span></p>
+    <img class="hlogo" id="hlogo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg, servicios integrales" width="272" height="85">
+    <img class="slogan" id="slogan" src="img/final/slogan.webp" alt="Solución con tecnología a tu medida" width="730" height="370">
     <h1>Reparación y mantenimiento preventivo especializado en el sector HORECA en México.</h1>
     <a class="btn btn-warm" id="heroBtn" href="#servicios">Conoce nuestros servicios</a>
   </div>
@@ -311,24 +311,24 @@ footer .copy{font-size:13px;color:#cfd7f2}
     <button type="button">Servicio de<br>emergencia</button>
   </div>
   <div class="chap" id="s-mantenimiento">
-    <figure class="media"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador en una cámara de refrigeración" width="576" height="517" style="object-position:60% 40%"></figure>
+    <figure class="media"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador en una cámara de refrigeración" width="720" height="1280" style="object-position:50% 35%"></figure>
     <div class="shade"></div>
     <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Mantenimiento preventivo</span></span></h2><p>Mantenimiento a sistemas de refrigeración enfocado en eficiencia térmica y conservación de su materia prima.</p><a class="btn btn-blue" href="final-paginas.html#mantenimiento-preventivo">Más información</a></div></div>
   </div>
   <div class="chap" id="s-reparacion">
-    <figure class="media"><img src="img/soldadura-compresor.webp" alt="Técnico de Tecnobg suelda la línea de un compresor" width="576" height="1024" style="object-position:50% 60%"></figure>
+    <figure class="media"><img src="img/final/reparacion.webp" alt="Técnico de Tecnobg repara la tarjeta electrónica de un equipo" width="720" height="1280" style="object-position:50% 40%"></figure>
     <div class="shade"></div>
-    <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Reparación</span></span></h2><p>Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p><a class="btn btn-blue" href="final-paginas.html#reparacion">Más información</a></div></div>
+    <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Reparación</span></span></h2><p>Reparación rápida y precisa para que tu operación siga marchando.</p><a class="btn btn-blue" href="final-paginas.html#reparacion">Más información</a></div></div>
   </div>
   <div class="chap" id="s-polizas">
-    <figure class="media"><img src="img/final/polizas.webp" alt="Chef cocinando con fuego alto en una cocina industrial" width="1400" height="933" style="object-position:60% 50%"></figure>
+    <figure class="media"><img src="img/final/polizas.webp" alt="Chef cocinando con fuego alto en una cocina industrial" width="1369" height="913" style="object-position:60% 50%"></figure>
     <div class="shade"></div>
     <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Pólizas</span></span></h2><p>Nuestras pólizas son una solución diseñada para empresas que buscan previsión, estabilidad y control en sus equipos.</p><a class="btn btn-silver" href="final-paginas.html#polizas">¡Protege tus equipos ahora!</a></div></div>
   </div>
   <div class="chap" id="s-emergencia">
-    <figure class="media"><img src="img/tecnico-sombra.webp" alt="Técnico de Tecnobg atiende una falla en un espacio técnico reducido" width="576" height="1024" style="object-position:40% 40%"></figure>
+    <figure class="media"><img src="img/final/emergencia.webp" alt="Camioneta de servicio de Tecnobg circulando de noche por la ciudad" width="1600" height="761" style="object-position:62% 50%"></figure>
     <div class="shade"></div>
-    <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Servicio de emergencia</span></span></h2><p>Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible.</p><a class="btn btn-blue" href="final-paginas.html#servicio-de-emergencia">Más información</a></div></div>
+    <div class="copy"><div class="wrap"><span class="label">Servicios</span><h2><span class="mline"><span>Servicios de Emergencia</span></span></h2><p>Cuando la operación exige inmediatez, respondemos con eficiencia.</p><a class="btn btn-blue" href="final-paginas.html#servicio-de-emergencia">Más información</a></div></div>
   </div>
   <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
 </section>
@@ -336,23 +336,29 @@ footer .copy{font-size:13px;color:#cfd7f2}
 <section class="spec" aria-labelledby="spec-t">
   <div class="wrap spec-head"><h2 class="label" id="spec-t">Especialistas en:</h2></div>
   <div class="hrow fria" id="linea-fria">
-    <div class="wrap ttl"><h3>Línea Fría</h3><img src="img/final/iconos/hielo.webp" alt="" width="240" height="220"></div>
+    <div class="wrap ttl"><h3>Línea Fría</h3><img src="img/final/iconos/hielo.webp" alt="" width="208" height="203"></div>
     <div class="htrack">
-      <div class="eq"><figure><img src="img/final/equipos/camaras.webp" alt="" loading="lazy" width="640" height="488"></figure><b>Cámaras de congelación y conservación</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/maquina-hielo.webp" alt="" loading="lazy" width="640" height="640"></figure><b>Máquina de hielo</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/vitrinas.webp" alt="" loading="lazy" width="640" height="640"></figure><b>Vitrinas frías</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/refrigeradores.webp" alt="" loading="lazy" width="640" height="640"></figure><b>Refrigeradores</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="640" height="640"></figure><b>Mesas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/camaras.webp" alt="" loading="lazy" width="616" height="440"></figure><b>Cámaras de congelación y conservación</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/maquina-hielo.webp" alt="" loading="lazy" width="399" height="462"></figure><b>Máquina de hielo</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/vitrinas.webp" alt="" loading="lazy" width="484" height="436"></figure><b>Vitrinas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/refrigeradores.webp" alt="" loading="lazy" width="446" height="446"></figure><b>Refrigeradores</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="494" height="367"></figure><b>Mesas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/congeladores.webp" alt="" loading="lazy" width="408" height="551"></figure><b>Congeladores</b></div>
     </div>
   </div>
   <div class="hrow caliente" id="linea-caliente">
-    <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="144" height="240"></div>
+    <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="259" height="327"></div>
     <div class="htrack">
-      <div class="eq"><figure><img src="img/final/equipos/freidora.webp" alt="" loading="lazy" width="450" height="630"></figure><b>Freidora</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/horno-conveccion.webp" alt="" loading="lazy" width="456" height="640"></figure><b>Horno de convección</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/horno-pizza.webp" alt="" loading="lazy" width="614" height="338"></figure><b>Horno de pizza</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/lavaloza.webp" alt="" loading="lazy" width="640" height="640"></figure><b>Lavaloza</b></div>
-      <div class="eq"><figure><img src="img/final/equipos/amasadora.webp" alt="" loading="lazy" width="402" height="640"></figure><b>Amasadora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/freidora.webp" alt="" loading="lazy" width="331" height="464"></figure><b>Freidora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-conveccion.webp" alt="" loading="lazy" width="343" height="481"></figure><b>Horno de convección</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-pizza.webp" alt="" loading="lazy" width="639" height="371"></figure><b>Horno de pizza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/lavaloza.webp" alt="" loading="lazy" width="522" height="522"></figure><b>Lavaloza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/amasadora.webp" alt="" loading="lazy" width="278" height="442"></figure><b>Amasadora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/estufon.webp" alt="" loading="lazy" width="470" height="440"></figure><b>Estufón</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/bano-maria.webp" alt="" loading="lazy" width="503" height="461"></figure><b>Baño María</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/plancha-caliente.webp" alt="" loading="lazy" width="595" height="290"></figure><b>Plancha caliente</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/trampa-de-grasa.webp" alt="" loading="lazy" width="357" height="365"></figure><b>Trampa de grasa</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/salamandra.webp" alt="" loading="lazy" width="437" height="437"></figure><b>Salamandra</b></div>
     </div>
   </div>
 </section>
@@ -360,12 +366,12 @@ footer .copy{font-size:13px;color:#cfd7f2}
 <section class="proc" id="proceso">
   <div class="wrap"><h2 class="label">Nuestro proceso</h2><p class="intro">Así atendemos tu solicitud, del reporte a la entrega.</p></div>
   <div class="ptrack" id="ptrack">
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#6fd0f4,#4cc1f0)"><span>1</span></div></div><h3><img src="img/final/iconos/proc-1.webp" alt="" width="96" height="96">Recepción inmediata de tu solicitud</h3><p>Recibimos tu reporte por WhatsApp, correo o llamada telefónica.</p></div>
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#4cc1f0,#219fda)"><span>2</span></div></div><h3><img src="img/final/iconos/proc-2.webp" alt="" width="96" height="96">Asignación rápida del servicio</h3><p>Nuestro equipo de logística registra la información y asigna de inmediato al personal técnico especializado.</p></div>
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#3d6bc0,#334f9d)"><span>3</span></div></div><h3><img src="img/final/iconos/proc-3.webp" alt="" width="96" height="96">Diagnóstico profesional</h3><p>Nuestros técnicos acuden a tus instalaciones para evaluar el equipo y detectar la causa del problema.</p></div>
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#1e7fd0,#1561ad)"><span>4</span></div></div><h3><img src="img/final/iconos/proc-4.webp" alt="" width="96" height="96">Buscamos la mejor solución</h3><p>Si la reparación puede realizarse en el momento, se presenta la cotización para tu autorización. Si el equipo requiere refacciones, te informamos el diagnóstico y la solución más adecuada.</p></div>
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#3a55a8,#283e7d)"><span>5</span></div></div><h3><img src="img/final/iconos/proc-5.webp" alt="" width="96" height="96">Cotización clara y autorización ágil</h3><p>Enviamos la cotización detallada para su aprobación.</p></div>
-    <div class="step"><div class="ring"><div class="hex" style="background:linear-gradient(160deg,#283e7d,#1e2d5f)"><span>6</span></div></div><h3><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex:none;margin-top:-3px"><defs><linearGradient id="gi" x1="0" x2="1"><stop offset="0" stop-color="#4cc1f0"/><stop offset="1" stop-color="#148bcc"/></linearGradient></defs><circle cx="14" cy="14" r="14" fill="url(#gi)"/><path d="M17.5 7.5a4 4 0 0 0-4.9 5l-5 5 1.9 1.9 5-5a4 4 0 0 0 5-4.9l-2.3 2.3-1.9-.5-.5-1.9z" fill="#fff"/></svg>Ejecución final y entrega operativa</h3><p>Con la autorización y las refacciones listas, programamos la visita final para dejar tu equipo funcionando correctamente.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-1.svg" alt="Paso 1" width="92" height="104"></div><h3><img src="img/final/iconos/proc-1.webp" alt="" width="96" height="96">Recepción inmediata de tu solicitud</h3><p>Recibimos tu reporte por WhatsApp, correo o llamada telefónica.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-2.svg" alt="Paso 2" width="92" height="104"></div><h3><img src="img/final/iconos/proc-2.webp" alt="" width="96" height="96">Asignación rápida del servicio</h3><p>Nuestro equipo de logística registra la información y asigna de inmediato al personal técnico especializado.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-3.svg" alt="Paso 3" width="92" height="104"></div><h3><img src="img/final/iconos/proc-3.webp" alt="" width="96" height="96">Diagnóstico profesional</h3><p>Nuestros técnicos acuden a tus instalaciones para evaluar el equipo y detectar la causa del problema.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-4.svg" alt="Paso 4" width="92" height="104"></div><h3><img src="img/final/iconos/proc-4.webp" alt="" width="96" height="96">Buscamos la mejor solución</h3><p>Si la reparación puede realizarse en el momento, se presenta la cotización para tu autorización. Si el equipo requiere refacciones, te informamos el diagnóstico y la solución más adecuada.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-5.svg" alt="Paso 5" width="92" height="104"></div><h3><img src="img/final/iconos/proc-5.webp" alt="" width="96" height="96">Cotización clara y autorización ágil</h3><p>Enviamos la cotización detallada para su aprobación.</p></div>
+    <div class="step"><div class="ring"><img class="hex" src="img/final/proceso/paso-6.svg" alt="Paso 6" width="92" height="104"></div><h3><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex:none;margin-top:-3px"><defs><linearGradient id="gi" x1="0" x2="1"><stop offset="0" stop-color="#4cc1f0"/><stop offset="1" stop-color="#148bcc"/></linearGradient></defs><circle cx="14" cy="14" r="14" fill="url(#gi)"/><path d="M17.5 7.5a4 4 0 0 0-4.9 5l-5 5 1.9 1.9 5-5a4 4 0 0 0 5-4.9l-2.3 2.3-1.9-.5-.5-1.9z" fill="#fff"/></svg>Ejecución final y entrega operativa</h3><p>Con la autorización y las refacciones listas, programamos la visita final para dejar tu equipo funcionando correctamente.</p></div>
   </div>
 </section>
 
@@ -373,12 +379,12 @@ footer .copy{font-size:13px;color:#cfd7f2}
   <h2 class="label">Beneficios al contratarnos</h2>
   <p class="stmt" id="stmt">Confianza y garantía no son promesas, son el estándar con el que trabajamos</p>
   <ul class="blist">
-    <li><img src="img/final/iconos/garantia.webp" alt="" width="160" height="159" loading="lazy">Garantía de 30 días en cualquier reparación o mantenimiento.</li>
-    <li><img src="img/final/iconos/urgencias.webp" alt="" width="160" height="152" loading="lazy">Respuesta a urgencias en menos de 24 horas.</li>
-    <li><img src="img/final/iconos/repse.webp" alt="" width="160" height="159" loading="lazy">Cumplimiento legal y REPSE vigente.</li>
-    <li><img src="img/final/iconos/cobertura.webp" alt="" width="160" height="159" loading="lazy">Cobertura operativa donde su negocio lo requiera.</li>
-    <li><img src="img/final/iconos/experiencia.webp" alt="" width="160" height="159" loading="lazy">Experiencia que se traduce en resultados confiables.</li>
-    <li><img src="img/final/iconos/continuidad.webp" alt="" width="160" height="159" loading="lazy">Continuidad operativa garantizada.</li>
+    <li><img src="img/final/iconos/garantia.svg" alt="" width="62" height="62" loading="lazy">Garantía de 30 días en cualquier reparación o mantenimiento.</li>
+    <li><img src="img/final/iconos/urgencias.svg" alt="" width="62" height="62" loading="lazy">Respuesta a urgencias en menos de 24 horas.</li>
+    <li><img src="img/final/iconos/repse.svg" alt="" width="62" height="62" loading="lazy">Cumplimiento legal y REPSE vigente.</li>
+    <li><img src="img/final/iconos/cobertura.svg" alt="" width="62" height="62" loading="lazy">Cobertura operativa donde su negocio lo requiera.</li>
+    <li><img src="img/final/iconos/experiencia.svg" alt="" width="62" height="62" loading="lazy">Experiencia que se traduce en resultados confiables.</li>
+    <li><img src="img/final/iconos/continuidad.svg" alt="" width="62" height="62" loading="lazy">Continuidad operativa garantizada.</li>
   </ul>
 </div></section>
 
@@ -415,8 +421,8 @@ footer .copy{font-size:13px;color:#cfd7f2}
     <h2>Solicita una cotización</h2>
     <p class="intro">Cuéntanos qué necesita tu equipo y te enviamos una cotización.</p>
     <div class="cdata">
-      <a href="mailto:ventas@tecnobg.com"><svg width="22" height="22" viewBox="0 0 24 24" fill="#152149" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.4 7H4v.9l8 5.5 8-5.5V7h-.4z"/></svg>ventas@tecnobg.com</a>
-      <a href="https://wa.me/525646037573"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#25d366"/><path d="M8.6 6.9c.3 0 .5 0 .7.5l.8 1.9c.1.2 0 .5-.1.7l-.5.6c-.1.2-.2.4 0 .6.6 1.1 1.5 2 2.7 2.6.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .9-.6 1.8-1.5 2-1.1.3-2.6 0-4.5-1.4-1.6-1.2-2.8-2.9-3.1-4.2-.3-1.4.3-2.5 1-3 .2-.2.4-.3.5-.3z" fill="#fff"/></svg>Whatsapp: 56 4603 7573</a>
+      <a href="mailto:ventas@tecnobg.com"><img src="img/final/redes/correo.svg" alt="" width="24" height="24">ventas@tecnobg.com</a>
+      <a href="https://wa.me/525646037573"><img src="img/final/redes/whatsapp.svg" alt="" width="24" height="24">Whatsapp: 56 4603 7573</a>
       <small>Lunes a sábado · 9:00 a 18:00</small>
     </div>
   </div>
@@ -436,14 +442,14 @@ footer .copy{font-size:13px;color:#cfd7f2}
 <footer><div class="wrap">
   <nav class="fnav" aria-label="Pie de página"><a href="final-paginas.html#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#preguntas-frecuentes">Preguntas frecuentes</a><a href="final-paginas.html#blog">Blog</a><a href="#contacto">Contacto</a><a href="final-paginas.html#bolsa-de-trabajo">Bolsa de trabajo</a></nav>
   <div class="mid">
-    <img src="img/final/logo-tecnobg-blanco.png" alt="Grupo Tecnobg" width="1000" height="282" loading="lazy">
+    <img src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg" width="272" height="85" loading="lazy">
     <p class="legal"><a href="final-paginas.html#terminos-y-condiciones">Legales</a> / <a href="final-paginas.html#aviso-de-privacidad">Aviso de privacidad</a> / <a href="final-paginas.html#uso-de-cookies">Cookies</a></p>
     <p class="copy">Todos los derechos reservados. Tecnobg 2026.</p>
   </div>
   <div class="soc">
-    <a href="https://www.facebook.com/tecnobg" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a>
-    <a href="https://www.instagram.com/tecno.bg" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg></a>
-    <a href="https://www.linkedin.com/company/tecnobg/" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.9 8.6H3.8V20h3.1zM5.3 3.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.4c0-3-1.6-4.9-4.3-4.9-1.4 0-2.4.8-2.8 1.5V8.6H10V20h3.1v-5.8c0-1.5.6-2.6 2-2.6 1.3 0 1.9 1 1.9 2.6V20h3.2z"/></svg></a>
+    <a href="https://www.facebook.com/tecnobg" aria-label="Facebook"><img src="img/final/redes/facebook.svg" alt="" width="40" height="40"></a>
+    <a href="https://www.instagram.com/tecno.bg" aria-label="Instagram"><img src="img/final/redes/instagram.svg" alt="" width="40" height="40"></a>
+    <a href="https://www.linkedin.com/company/tecnobg/" aria-label="LinkedIn"><img src="img/final/redes/linkedin.svg" alt="" width="40" height="40"></a>
   </div>
 </div></footer>
 
@@ -458,7 +464,7 @@ footer .copy{font-size:13px;color:#cfd7f2}
 (function(){
   // Logos de clientes: marquesina de la portada y cuadrícula de "Nuestros clientes"
   var LOGOS=[['fresko','Fresko'],['carls-jr','Carl’s Jr.'],['handshake','Handshake'],['bostons-pizza','Boston’s Pizza'],['el-japonez','El Japonez',1],['faustino','Faustino',1],['city-market','City Market'],['la-comer','La Comer']];
-  function logo(l,lazy){var i=new Image();i.src='img/final/logos/'+l[0]+'.webp';i.alt=l[1];if(l[2])i.className='tall';if(lazy)i.loading='lazy';return i}
+  function logo(l,lazy){var i=new Image();i.src='img/final/logos/'+l[0]+'.svg';i.alt=l[1];if(l[2])i.className='tall';if(lazy)i.loading='lazy';return i}
   var mt=document.getElementById('mtrack'),cl=document.getElementById('clients');
   for(var r=0;r<2;r++)LOGOS.forEach(function(l){var i=logo(l);if(r){i.alt='';i.setAttribute('aria-hidden','true')}mt.appendChild(i)});
   LOGOS.forEach(function(l){cl.appendChild(logo(l,true))});
@@ -530,7 +536,7 @@ footer .copy{font-size:13px;color:#cfd7f2}
 
   // Pantalla de carga
   var pre=document.createElement('div');pre.className='pre';pre.setAttribute('aria-hidden','true');
-  pre.innerHTML='<img src="img/final/logo-tecnobg-blanco.png" alt=""><span class="bar"><i></i></span>';
+  pre.innerHTML='<img src="img/final/logo-tecnobg.svg" alt=""><span class="bar"><i></i></span>';
   document.body.appendChild(pre);
   gsap.set(dock,{autoAlpha:0,y:30});
   gsap.timeline()
@@ -540,7 +546,7 @@ footer .copy{font-size:13px;color:#cfd7f2}
     .add(function(){pre.remove()})
     .from('#heroImg',{scale:Z,duration:2.2,ease:'power3.out'},'-=.9')
     .from('#hlogo',{opacity:0,y:20,duration:.8,ease:'power3.out'},'-=2')
-    .from('.hero .title .mline>span',{yPercent:110,duration:1,stagger:.1,ease:'power4.out'},'-=1.7')
+    .fromTo('#slogan',{clipPath:'inset(0 0 100% 0)',y:20},{clipPath:'inset(0 0 0% 0)',y:0,duration:1.1,ease:'power4.out'},'-=1.7')
     .from(['.hero h1','#heroBtn','.marquee'],{opacity:0,y:16,duration:.7,stagger:.12},'-=1')
     .to(dock,{autoAlpha:1,y:0,duration:.6,ease:'power3.out',clearProps:'transform,opacity,visibility'},'-=.4');
   gsap.to('#heroImg',{scale:desk?1.05:1.14,yPercent:desk?4:8,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
