@@ -63,12 +63,13 @@ def incluye(title,lead,left,right,cards):
     <ul class="icards">{cs}</ul>
   </div></section>'''
 def campo(items):
-    cs=''.join(f'<li><img src="{SV}{img}" alt="{alt}" width="506" height="900" loading="lazy"><div><b>{lab}</b>'+(f'<span>{cap}</span>' if cap else '')+'</div></li>' for img,alt,lab,cap in items)
+    cs=''.join(f'<figure class="slide"><img src="{SV}{img}" alt="{alt}" width="506" height="900" loading="lazy"><figcaption><b>{lab}</b>'+(f'<span>{cap}</span>' if cap else '')+'</figcaption></figure>' for img,alt,lab,cap in items)
     return f'''
   <section class="sv-campo"><div class="wrap">
     <div class="head"><div><span class="label">Nuestro trabajo</span><h2>Así se ve un día en campo</h2></div>
     <div class="arrows"><button type="button" data-dir="-1" aria-label="Fotos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Fotos siguientes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
-    <ul class="track" tabindex="0" aria-label="Fotos de trabajos en campo">{cs}</ul>
+    <div class="car-track" tabindex="0" aria-label="Fotos de trabajos en campo">{cs}</div>
+    <div class="timer"><i></i></div><div class="dots" aria-label="Fotos"></div>
   </div></section>'''
 COB=f'''
   <section class="sv-cob"><div class="wrap">
@@ -202,13 +203,16 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 /* Páginas de servicios (diseño del diseñador, servicios.pdf) */
 .view.svc{background:#fff;color:var(--ink-d);padding-bottom:0}
 .btn-red{background:linear-gradient(90deg,#d8161b,#ef5a1f)}
-.sv-tabs{padding-top:24px}
-.sv-tabs .wrap{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+/* Pestañas de servicios como separadores de carpeta: la línea de abajo cierra las pestañas y la activa se abre hacia la página */
+.sv-tabs{padding-top:24px;box-shadow:inset 0 -2px 0 #e3e6ee}
+.sv-tabs .wrap{display:flex;align-items:flex-end;gap:6px;overflow-x:auto;scrollbar-width:none}
 .sv-tabs .wrap::-webkit-scrollbar{display:none}
-.sv-tabs a{flex:1 0 auto;display:flex;align-items:center;gap:10px;min-height:64px;padding:8px 18px;border:2px solid #eceef2;border-bottom:0;border-radius:16px 16px 0 0;font:600 15px/1.2 var(--head);color:var(--navy);text-decoration:none;background:#fff;transition:background .3s}
-.sv-tabs a:hover{background:#f6f7f9}
-.sv-tabs a[aria-current="page"]{background:#f0f0f0;border-color:#f0f0f0}
-.sv-tabs img{width:auto;height:34px;flex:none}
+.sv-tabs a{position:relative;flex:1 0 auto;display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 18px;border:2px solid #e3e6ee;border-radius:16px 16px 0 0;background:#f3f4f7;font:600 15px/1.2 var(--head);color:#5a6a9c;text-decoration:none;transition:min-height .35s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.sv-tabs a:hover{background:#e9ecf3;color:var(--navy)}
+.sv-tabs a[aria-current="page"]{min-height:68px;background:#fff;color:var(--navy);border-bottom-color:#fff;z-index:1}
+.sv-tabs a[aria-current="page"]::after{content:"";position:absolute;left:14px;right:14px;top:-2px;height:3px;border-radius:0 0 3px 3px;background:var(--g-blue)}
+.sv-tabs img{width:auto;height:34px;flex:none;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.sv-tabs a:hover img{transform:scale(1.08)}
 .sv-tabs a[href="#polizas"] img{height:30px}
 .sv-hero .wrap{display:grid;gap:30px;padding-block:40px 56px}
 @media (min-width:1000px){.sv-hero .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:56px;padding-block:44px 64px}}
@@ -242,13 +246,39 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .arrows{display:flex;gap:8px}
 .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid #cfd6e8;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center}
 .arrows button:hover{background:#f0f3fa}
-.track{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,330px);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(50% - 50vw)}
-.track::-webkit-scrollbar{display:none}
-.track li{scroll-snap-align:start;position:relative;aspect-ratio:330/450;border-radius:20px;overflow:hidden;background:#dfe4ef}
-.track img{width:100%;height:100%;object-fit:cover}
-.track li>div{position:absolute;inset:auto 0 0;padding:60px 12px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6));color:#fff;display:grid;gap:2px}
-.track b{font:700 15px/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase}
-.track span{font:600 18px/1.2 var(--cond)}
+/* Carrusel "Así se ve un día en campo": como el de la propuesta 02 (foto activa, autoplay con barra, puntos) */
+.car-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;padding:6px 16px 10px;margin-inline:-16px;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.slide{position:relative;margin:0;flex:0 0 78%;max-width:360px;scroll-snap-align:center;aspect-ratio:330/450;border-radius:20px;overflow:hidden;background:#dfe4ef;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
+@media (min-width:900px){.slide{flex-basis:30%}}
+.slide:not(.active){transform:scale(.92);opacity:.55}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 4s ease-out}
+.slide.active img{transform:scale(1.12)}
+.slide figcaption{position:absolute;inset:auto 0 0;padding:60px 14px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));color:#fff;display:grid;gap:2px}
+.slide b{font:700 15px/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase}
+.slide span{font:600 18px/1.2 var(--cond)}
+.timer{height:3px;background:#e3e6ee;border-radius:3px;overflow:hidden;margin-top:14px}
+.timer i{display:block;height:100%;background:var(--g-blue);transform-origin:left;transform:scaleX(0)}
+.dots{display:flex;gap:6px;margin-top:12px}
+.dots button{width:8px;height:8px;border-radius:999px;border:none;background:#c4cce0;padding:0;transition:width .35s,background .35s}
+.dots button[aria-current="true"]{width:26px;background:var(--navy)}
+/* Interacciones */
+.icards li{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+.icards li:hover{transform:translateY(-6px);background:rgba(21,33,73,.97);box-shadow:0 14px 28px rgba(10,16,40,.35)}
+.icards li img{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.icards li:hover img{transform:scale(1.1)}
+.pcards li{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pcards li:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(0,0,0,.35)}
+.pcards .disc{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pcards li:hover .disc{transform:translateX(-50%) rotate(25deg)}
+.pcards .disc img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pcards li:hover .disc img{transform:rotate(-25deg)}
+.btn{transition:transform .25s,filter .25s,box-shadow .25s}
+.view.svc .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(20,30,70,.22)}
+.view.svc .btn:active{transform:scale(.97)}
+.em-cdmx li img{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.em-cdmx li:hover img{transform:translateY(-3px) scale(1.08)}
+@media (prefers-reduced-motion:reduce){.slide,.slide img,.sv-tabs a,.icards li,.pcards li,.pcards .disc{transition:none}}
 .sv-cob{background:#0e1638;color:#fff}
 .sv-cob .wrap{display:grid;gap:36px;padding-block:72px;align-items:center}
 @media (min-width:900px){.sv-cob .wrap{grid-template-columns:.8fr 1.2fr;padding-block:96px}}
@@ -310,6 +340,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 '''
 
 script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   var menu=document.getElementById('menu'),mb=document.getElementById('menuBtn');
@@ -329,13 +360,70 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
 
   [].forEach.call(document.querySelectorAll('[data-jump]'),function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.getElementById(a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 
-  // Carruseles de fotos de las páginas de servicios
-  [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){var t=c.querySelector('.track');[].forEach.call(c.querySelectorAll('.arrows button'),function(b){b.addEventListener('click',function(){var li=t.querySelector('li');t.scrollBy({left:(li?li.offsetWidth+24:300)*+b.dataset.dir,behavior:'smooth'})})})});
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var anim=!!window.gsap&&!reduce;
+  if(anim&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+
+  // Carruseles "Así se ve un día en campo" (como la propuesta 02): una foto activa, autoplay con barra de progreso, puntos, flechas y deslizar
+  [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){
+    var track=c.querySelector('.car-track'),slides=[].slice.call(track.children),dots=c.querySelector('.dots'),timer=c.querySelector('.timer i');
+    var cur=0,auto=null,DUR=4200,paused=false,visible=false;
+    slides.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Foto '+(i+1));b.addEventListener('click',function(){go(i,true)});dots.appendChild(b)});
+    function mark(i){cur=i;slides.forEach(function(s,j){s.classList.toggle('active',j===i)});[].forEach.call(dots.children,function(d,j){d.setAttribute('aria-current',j===i?'true':'false')})}
+    function go(i,user){i=(i+slides.length)%slides.length;var s=slides[i];track.scrollTo({left:s.offsetLeft-(track.clientWidth-s.clientWidth)/2,behavior:reduce?'auto':'smooth'});mark(i);if(user)restart()}
+    function stop(){clearTimeout(auto);if(anim)gsap.killTweensOf(timer)}
+    function restart(){stop();if(reduce||!visible)return;if(anim)gsap.fromTo(timer,{scaleX:0},{scaleX:1,duration:DUR/1000,ease:'none'});auto=setTimeout(function(){if(!paused)go(cur+1);restart()},DUR)}
+    [].forEach.call(c.querySelectorAll('.arrows button'),function(b){b.addEventListener('click',function(){go(cur+ +b.dataset.dir,true)})});
+    var st;track.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var m=track.scrollLeft+track.clientWidth/2,best=0,bd=1e9;slides.forEach(function(s,j){var d=Math.abs(s.offsetLeft+s.clientWidth/2-m);if(d<bd){bd=d;best=j}});if(best!==cur)mark(best)},80)},{passive:true});
+    track.addEventListener('pointerdown',function(){paused=true});track.addEventListener('pointerup',function(){paused=false;restart()});
+    mark(0);
+    if('IntersectionObserver' in window){new IntersectionObserver(function(en){visible=en[0].isIntersecting;if(visible)restart();else stop()},{threshold:.4}).observe(track)}
+  });
+
+  // Títulos de portada de servicios: palabra por palabra
+  [].forEach.call(document.querySelectorAll('.sv-hero h1'),function(h){var f=document.createDocumentFragment();h.textContent.split(/(\\s+)/).forEach(function(w){if(!w)return;if(/^\\s+$/.test(w)){f.appendChild(document.createTextNode(w))}else{var sp=document.createElement('span');sp.className='w';sp.style.display='inline-block';sp.textContent=w;f.appendChild(sp)}});h.textContent='';h.appendChild(f)});
+
+  // Animaciones de las páginas de servicios, al estilo de la propuesta 02 (Operación primero)
+  function svcAnim(v){
+    var h=v.querySelector('.sv-hero');
+    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from(v.querySelectorAll('.sv-tabs a'),{opacity:0,y:14,duration:.45,stagger:.05})
+      .from(h.querySelectorAll('.hicon, .label'),{opacity:0,x:-14,duration:.5,stagger:.06},'-=.2')
+      .from(h.querySelectorAll('h1 .w'),{opacity:0,y:'0.5em',duration:.6,stagger:.035},'-=.25')
+      .from(h.querySelectorAll('.lead, .acts'),{opacity:0,y:12,duration:.5,stagger:.08},'-=.3');
+    var ph=h.querySelector('.pg-photo');
+    if(ph){
+      tl.fromTo(ph,{clipPath:'inset(14% 14% 14% 14% round 40px)',scale:.96},{clipPath:'inset(0% 0% 0% 0% round 40px)',scale:1,duration:1.1,ease:'power3.inOut'},'-=1')
+        .from(ph.querySelector('img'),{scale:1.2,duration:1.5,ease:'power2.out'},'<');
+      gsap.to(ph.querySelector('img'),{yPercent:8,ease:'none',scrollTrigger:{trigger:h,start:'top top',end:'bottom top',scrub:true}});
+    }
+    var sh=h.querySelector('.pg-shield');
+    if(sh){tl.from(sh,{opacity:0,scale:.85,y:24,duration:1,ease:'back.out(1.4)'},'-=1');gsap.to(sh.querySelector('img'),{y:-10,duration:2.8,ease:'sine.inOut',repeat:-1,yoyo:true,delay:1.8})}
+    function once(el,from,trig){gsap.from(el,Object.assign({duration:.7,ease:'power3.out',scrollTrigger:{trigger:trig||el,start:'top 88%',once:true}},from))}
+    gsap.utils.toArray(v.querySelectorAll('.sv-inc .wrap > :not(.icards), .sv-campo .head, .sv-cob .wrap > div, .po-inc .wrap > :not(.pcards), .po-ben h2, .po-por .txt > *, .em-dia .txt > *, .em-cdmx .txt > h2, .em-cdmx .txt > .btn')).forEach(function(el){once(el,{opacity:0,y:26})});
+    gsap.utils.toArray(v.querySelectorAll('.icards, .pcards, .em-cdmx ul')).forEach(function(g){once(g.children,{opacity:0,y:28,stagger:.09},g)});
+    gsap.utils.toArray(v.querySelectorAll('.pcards .disc')).forEach(function(d){once(d,{rotate:-120,duration:1.1,ease:'power3.out'},d.parentNode)});
+    gsap.utils.toArray(v.querySelectorAll('.po-ben figure, .po-por figure, .em-dia figure')).forEach(function(f){
+      gsap.fromTo(f,{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.1,ease:'power3.inOut',scrollTrigger:{trigger:f,start:'top 85%',once:true}});
+      once(f.querySelector('img'),{scale:1.2,duration:1.6,ease:'power2.out'},f);
+    });
+    gsap.utils.toArray(v.querySelectorAll('.sv-cob img, .em-cdmx .map')).forEach(function(m){once(m,{opacity:0,scale:.9,duration:1})});
+    // Beneficios de pólizas: la línea se dibuja con el scroll y cada beneficio aparece a su paso
+    var sn=v.querySelector('.snake');
+    if(sn){gsap.fromTo(sn,{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',ease:'none',scrollTrigger:{trigger:sn,start:'top 80%',end:'bottom 70%',scrub:.4}});
+      gsap.utils.toArray(sn.children).forEach(function(li){gsap.from(li,{opacity:0,x:20,duration:.6,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 82%',once:true}})})}
+    var city=v.querySelector('.em-cdmx .city');
+    if(city)once(city,{opacity:0,yPercent:30,duration:1.2},v.querySelector('.em-cdmx'));
+    gsap.utils.toArray(v.querySelectorAll('.sv-campo')).forEach(function(c){
+      gsap.fromTo(c.querySelector('.car-track'),{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.1,ease:'power3.inOut',clearProps:'clipPath',scrollTrigger:{trigger:c,start:'top 85%',once:true}});
+      once(c.querySelectorAll('.slide figcaption > *'),{opacity:0,y:12,duration:.5,stagger:.04,delay:.5},c);
+    });
+  }
 
 '''+form_js+'''
   // Cada página interna es una vista del mismo archivo, elegida por el #hash
   var views=[].slice.call(document.querySelectorAll('.view'));
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ctx=null;
   function show(){
     // Las vistas usan id="v-…" para que el navegador no salte al #hash por su cuenta
     var id=(location.hash||'#nosotros').slice(1),v=document.getElementById('v-'+id);
@@ -347,7 +435,11 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     document.getElementById('cotizar').hidden=!svc;
     document.title='Grupo Tecnobg · '+v.dataset.title;
     window.scrollTo(0,0);
-    if(window.gsap&&!reduce){
+    // Deja visible la pestaña activa en móvil
+    var tab=v.querySelector('.sv-tabs a[aria-current]');if(tab)tab.parentNode.scrollLeft=tab.offsetLeft-16;
+    if(ctx){ctx.revert();ctx=null}
+    if(anim&&svc&&window.ScrollTrigger){ctx=gsap.context(function(){svcAnim(v)},v);ScrollTrigger.refresh();return}
+    if(anim){
       gsap.from(v.querySelectorAll('.pg-copy > *'),{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out'});
       var ph=v.querySelector('.pg-photo');
       if(ph){gsap.fromTo(ph,{clipPath:'inset(0 0 100% 0 round 22px)'},{clipPath:'inset(0 0 0% 0 round 22px)',duration:1.1,ease:'power3.inOut',delay:.2});gsap.from(ph.querySelector('img'),{scale:1.2,duration:1.5,ease:'power2.out',delay:.2})}
