@@ -82,6 +82,31 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .pre .bar{width:140px;height:1px;background:var(--line)}
 .pre .bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
 
+/* Cotización */
+.quote{background:var(--light);color:var(--ink-d);padding-block:80px 100px}
+.quote .grid{display:grid;gap:40px}
+@media (min-width:1000px){.quote .grid{grid-template-columns:.9fr 1.1fr;gap:64px}}
+.quote h2{font:700 clamp(28px,5vw,42px)/1.1 var(--head);text-transform:uppercase;letter-spacing:.02em;color:var(--ink-d)}
+.quote .intro{margin-top:12px;font-size:18px}
+.cdata{display:grid;gap:18px;margin-top:36px}
+.cdata a,.cdata span{display:flex;align-items:center;gap:12px;font:700 clamp(17px,2.2vw,21px) var(--head);color:var(--ink-d);text-decoration:none}
+.cdata img{flex:none;width:24px;height:24px;object-fit:contain}
+.cdata small{font:400 15px var(--body);color:#56607d;padding-left:34px;margin-top:-8px}
+form{display:grid;gap:14px}
+form label{display:grid;gap:6px;font:400 16px var(--body);color:#8b8f9c}
+form input,form textarea{width:100%;min-height:48px;border:1px solid transparent;border-radius:10px;background:#fff;padding:0 14px;font:500 16px var(--body);color:var(--ink-d);box-shadow:0 1px 2px rgba(21,33,73,.06)}
+form textarea{min-height:150px;padding:12px 14px;resize:vertical}
+form input:focus,form textarea:focus{outline:none;border-color:#219fda}
+form input[aria-invalid="true"],form textarea[aria-invalid="true"]{border-color:#c0392b}
+form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.factions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.factions .btn{min-width:200px;font-size:16px}
+.factions small{font-size:14px;color:#56607d}
+.factions small a{color:var(--navy)}
+.msg{margin:0;padding:12px 14px;border-radius:10px;font-weight:500}
+.msg.ok{background:#e7f6ee;color:#14532d}
+.msg.err{background:#fdecea;color:#7f1d1d}
+
 /* Pie de página */
 footer{background:linear-gradient(90deg,#334f9d,#1e2d5f);color:#fff;padding-block:40px calc(110px + env(safe-area-inset-bottom,0px))}
 footer .wrap{display:grid;gap:30px;align-items:center}
@@ -152,6 +177,114 @@ main{padding-top:calc(var(--hh) + env(safe-area-inset-top,0px))}
 .lsec{display:grid;gap:10px;justify-items:start;border-top:1px solid #d9deeb;padding-top:22px;scroll-margin-top:calc(var(--hh) + 20px)}
 footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 @media (min-width:900px){footer{padding-bottom:40px}}
+/* Páginas de servicios (diseño del diseñador, servicios.pdf) */
+.view.svc{background:#fff;color:var(--ink-d);padding-bottom:0}
+.btn-red{background:linear-gradient(90deg,#d8161b,#ef5a1f)}
+.sv-tabs{padding-top:24px}
+.sv-tabs .wrap{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.sv-tabs .wrap::-webkit-scrollbar{display:none}
+.sv-tabs a{flex:1 0 auto;display:flex;align-items:center;gap:10px;min-height:64px;padding:8px 18px;border:2px solid #eceef2;border-bottom:0;border-radius:16px 16px 0 0;font:600 15px/1.2 var(--head);color:var(--navy);text-decoration:none;background:#fff;transition:background .3s}
+.sv-tabs a:hover{background:#f6f7f9}
+.sv-tabs a[aria-current="page"]{background:#f0f0f0;border-color:#f0f0f0}
+.sv-tabs img{width:auto;height:34px;flex:none}
+.sv-tabs a[href="#polizas"] img{height:30px}
+.sv-hero .wrap{display:grid;gap:30px;padding-block:40px 56px}
+@media (min-width:1000px){.sv-hero .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:56px;padding-block:44px 64px}}
+.sv-hero .pg-copy{display:grid;gap:12px;justify-items:start}
+.sv-hero .label,.sv-inc .label,.sv-campo .label,.sv-cob .label,.po-inc .label{color:var(--navy);letter-spacing:.04em}
+.sv-hero h1{font:700 clamp(38px,5.4vw,64px)/1.08 var(--cond);color:var(--navy)}
+.sv-hero .lead{font-size:clamp(17px,1.7vw,21px);color:var(--navy);max-width:44ch}
+.sv-hero .hicon{height:48px;width:auto;margin-bottom:-4px}
+.sv-hero .acts{margin-top:14px}
+.sv-hero .acts .btn{min-height:42px;min-width:170px}
+.sv-hero .pg-photo{border-radius:40px;aspect-ratio:383/364}
+.sv-hero.pol .pg-copy{gap:18px}
+.pg-shield{margin:0}
+.pg-shield img{width:100%;height:auto;mix-blend-mode:multiply}
+.sv-inc{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.sv-inc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;mix-blend-mode:luminosity}
+.sv-inc::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(51,79,157,.55),rgba(51,79,157,.35))}
+.sv-inc .wrap{position:relative;padding-block:56px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sv-inc .label,.po-inc .label{color:#fff}
+.sv-inc h2,.po-inc h2{font:700 clamp(32px,4.4vw,52px)/1.08 var(--cond)}
+.sv-inc .lead,.po-inc .lead{max-width:62ch;font-size:18px}
+.sv-inc .cols{display:grid;gap:4px 60px;margin:22px 0 26px;font:600 clamp(17px,1.6vw,20px)/1.3 var(--cond);letter-spacing:.01em}
+@media (min-width:800px){.sv-inc .cols{grid-template-columns:auto auto;justify-content:center}}
+.sv-inc .cols ul{margin:0;padding-left:16px;display:grid;gap:4px;list-style:square}
+.icards{list-style:none;margin:0;padding:0 0 6px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory}
+.icards li{scroll-snap-align:start;display:grid;justify-items:center;align-content:start;gap:14px;padding:18px 12px 20px;border-radius:24px;background:rgba(21,33,73,.86);text-align:center;font:600 clamp(16px,1.5vw,19px)/1.2 var(--cond)}
+.icards img{height:62px;width:auto}
+.sv-campo .wrap{padding-block:56px 72px}
+.sv-campo .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.sv-campo h2{font:700 clamp(30px,3.8vw,44px)/1.1 var(--cond);color:var(--navy)}
+.arrows{display:flex;gap:8px}
+.arrows button{width:44px;height:44px;border-radius:50%;border:1px solid #cfd6e8;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center}
+.arrows button:hover{background:#f0f3fa}
+.track{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,330px);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(50% - 50vw)}
+.track::-webkit-scrollbar{display:none}
+.track li{scroll-snap-align:start;position:relative;aspect-ratio:330/450;border-radius:20px;overflow:hidden;background:#dfe4ef}
+.track img{width:100%;height:100%;object-fit:cover}
+.track li>div{position:absolute;inset:auto 0 0;padding:60px 12px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6));color:#fff;display:grid;gap:2px}
+.track b{font:700 15px/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase}
+.track span{font:600 18px/1.2 var(--cond)}
+.sv-cob{background:#0e1638;color:#fff}
+.sv-cob .wrap{display:grid;gap:36px;padding-block:72px;align-items:center}
+@media (min-width:900px){.sv-cob .wrap{grid-template-columns:.8fr 1.2fr;padding-block:96px}}
+.sv-cob .label{color:#fff}
+.sv-cob h2{font:700 clamp(34px,4.4vw,52px)/1.1 var(--cond);margin:14px 0 10px;max-width:14ch}
+.sv-cob p{max-width:42ch;text-align:justify}
+.sv-cob img{width:100%;height:auto}
+/* Pólizas */
+.po-inc{background:#1b1d3a;color:#fff}
+.po-inc .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;padding-block:56px 64px}
+.pcards{list-style:none;margin:30px auto 10px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:4px 16px;width:100%;max-width:860px}
+.pcards li{position:relative;display:grid;justify-items:center;align-content:start;gap:8px;margin-top:70px;padding:90px 14px 22px;border-radius:12px;background:linear-gradient(90deg,#a6b0bf,#fff);color:#1b1d3a;text-align:center;font-size:15px;line-height:1.3}
+.pcards .disc{position:absolute;left:50%;top:-74px;width:150px;height:150px;transform:translateX(-50%);border-radius:50%;display:flex;align-items:center;justify-content:center;background:conic-gradient(from 200deg,transparent 0 10%,#c8923d 10%,#f5d77a 30%,#c8923d 45%,transparent 45% 58%,#f0d67a 58% 60%,transparent 60%);-webkit-mask:radial-gradient(circle,#000 58px,transparent 59px 69px,#000 70px 72px,transparent 73px);mask:radial-gradient(circle,#000 58px,transparent 59px 69px,#000 70px 72px,transparent 73px)}
+.pcards .disc img{position:absolute;width:118px;height:118px;border-radius:50%}
+.pcards b{font:700 15px/1.25 var(--head);text-transform:uppercase;letter-spacing:.03em}
+.po-inc .btn{justify-self:center;margin-top:24px;min-height:48px;padding:0 34px;font-size:16px;color:#1b1d3a;background:linear-gradient(90deg,#a6b0bf,#fff);white-space:normal;text-align:center;line-height:1.3}
+.po-ben{display:grid;background:#1b1d3a;color:#fff}
+@media (min-width:900px){.po-ben{grid-template-columns:1fr 1fr;align-items:center}}
+.po-ben figure,.po-por figure,.em-dia figure{margin:0;min-height:320px}
+.po-ben figure img,.po-por figure img,.em-dia figure img{width:100%;height:100%;object-fit:cover}
+@media (min-width:900px){.po-ben figure{clip-path:polygon(0 0,92% 0,100% 100%,0 100%)}}
+.po-ben .txt{padding:48px 16px 56px;display:grid;gap:28px;justify-items:center}
+.po-ben h2{font:700 clamp(30px,3.4vw,42px)/1.1 var(--cond);text-align:center}
+.snake{position:relative;list-style:none;margin:0;padding:0;width:min(100%,440px);aspect-ratio:2214/2160;background:no-repeat 0 0/100% 100%}
+.snake li{position:absolute;transform:translateY(-50%);font:600 clamp(14px,1.5vw,18px)/1.2 var(--cond);max-width:42%}
+.snake li:nth-child(1){left:17%;top:11.4%}
+.snake li:nth-child(2){left:60%;top:31.1%}
+.snake li:nth-child(3){left:18%;top:48.6%}
+.snake li:nth-child(4){left:60%;top:68.9%}
+.snake li:nth-child(5){left:20%;top:92.1%}
+.po-por{display:grid;background:#f5f6fa}
+@media (min-width:900px){.po-por{grid-template-columns:1.6fr 1fr}}
+.po-por .txt{display:grid;gap:16px;align-content:center;padding:48px 28px;background:linear-gradient(180deg,#2db8ee,#148bcc);color:#fff;font-size:18px}
+.po-por h2{font:700 clamp(30px,3.4vw,42px)/1.15 var(--cond);text-align:center}
+.po-por p{text-align:justify}
+.po-por ul{margin:10px 0 0;padding:0;list-style:none;text-align:center;display:grid;gap:2px}
+.po-por li::before{content:"• "}
+/* Emergencia */
+.em-dia{display:grid;background:#1b1d3a;color:#fff}
+@media (min-width:900px){.em-dia{grid-template-columns:1fr 1fr}}
+.em-dia .txt{display:grid;gap:14px;align-content:center;justify-items:start;padding:48px 24px 56px;font-size:18px}
+@media (min-width:900px){.em-dia .txt{padding:56px 8% 56px 8%}}
+.em-dia h2{display:flex;gap:10px;align-items:flex-start;font:700 clamp(32px,3.6vw,46px)/1.1 var(--cond);margin-bottom:14px}
+.em-dia h2 img{width:22px;height:auto;margin-top:6px}
+.em-dia .btn,.em-cdmx .btn{margin-top:26px;min-height:46px}
+.em-cdmx{background:#fff;color:#1b1d3a;padding-top:56px;scroll-margin-top:var(--hh)}
+.em-dia{scroll-margin-top:var(--hh)}
+.em-cdmx .wrap{position:relative;z-index:1;display:grid;gap:30px;align-items:center}
+.em-cdmx .txt{padding-bottom:24px}
+@media (min-width:900px){.em-cdmx .wrap{grid-template-columns:1fr 1fr}}
+.em-cdmx .map{width:min(100%,330px);height:auto;justify-self:center}
+.em-cdmx .txt{display:grid;justify-items:center;gap:18px;text-align:center}
+.em-cdmx h2{font:700 clamp(32px,3.6vw,46px)/1.1 var(--cond)}
+.em-cdmx ul{list-style:none;margin:0;padding:0;display:grid;gap:22px;justify-items:start;color:var(--ink-d);font-size:18px}
+.em-cdmx li{display:flex;align-items:center;gap:12px;max-width:22ch;text-align:left}
+.em-cdmx li img{width:auto;height:46px}
+.em-cdmx .city{width:100%;height:auto;margin-top:-12px}
+.quote{scroll-margin-top:var(--hh)}
 </style>
 </head>
 <body>
@@ -201,7 +334,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 
 
 <main>
-<div class="prelim" role="note"><div class="wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20zM12 10v5M12 18v.5"/></svg><span>Diseño preliminar: esta página sigue pendiente de su diseño final.</span></div></div>
+<div class="prelim" id="prelim" role="note"><div class="wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20zM12 10v5M12 18v.5"/></svg><span>Diseño preliminar: esta página sigue pendiente de su diseño final.</span></div></div>
 
 <section class="view" id="v-nosotros" data-title="Nosotros" hidden>
   <header class="pg-hero">
@@ -216,58 +349,90 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
     <section class="blk"><h2>Historia, misión y valores</h2><p class="pend">Contenido pendiente: historia, misión, visión, valores y equipo de Tecnobg.</p></section>
   </div>
 </section>
-<section class="view" id="v-mantenimiento-preventivo" data-title="Mantenimiento preventivo" hidden>
-  <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Mantenimiento preventivo</h1><p class="lead">Un programa estructurado que prolonga la vida útil de tus equipos y optimiza su desempeño.</p>
-    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/final/mantenimiento.webp" alt="Técnico de Tecnobg da mantenimiento a un evaporador" style="object-position:50% 35%"></figure>
-  </header>
-  <div class="pg-body">
-    <section class="blk"><h2>Áreas que atendemos</h2><ul class="ticks">
-      <li><b>Línea fría</b>Mantenimiento a sistemas de refrigeración enfocado en eficiencia térmica y conservación de su materia prima.</li>
-      <li><b>Aire acondicionado</b>Mantenimiento a instalaciones de aire acondicionado para asegurar confort, eficiencia energética y funcionamiento continuo.</li>
-      <li><b>Línea caliente</b>Mantenimiento preventivo y reparación de equipos de línea caliente.</li></ul>
-      <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
-    <section class="blk"><h2>Qué incluye</h2><p class="pend">Contenido pendiente: periodicidad, actividades por visita y reporte que se entrega.</p></section>
-    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+<section class="view svc" id="v-mantenimiento-preventivo" data-title="Mantenimiento preventivo" hidden>
+  <nav class="sv-tabs" aria-label="Servicios"><div class="wrap"><a href="#reparacion"><img src="img/final/servicios/t-reparacion.webp" alt="" width="40" height="40">Reparación</a><a href="#mantenimiento-preventivo" aria-current="page"><img src="img/final/servicios/t-mantenimiento.webp" alt="" width="40" height="40">Mantenimiento<br>preventivo</a><a href="#polizas"><img src="img/final/servicios/t-polizas.webp" alt="" width="40" height="40">Pólizas</a><a href="#servicio-de-emergencia"><img src="img/final/servicios/t-emergencia.webp" alt="" width="40" height="40">Emergencia</a></div></nav>
+  <header class="sv-hero"><div class="wrap">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Mantenimiento preventivo especializado en el sector HORECA en México</h1><p class="lead">Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.</p></div>
+    <figure class="pg-photo"><img src="img/final/servicios/mantenimiento-hero.webp" alt="Técnico de Tecnobg da mantenimiento a una vitrina refrigerada" width="619" height="1100" style="object-position:50% 45%"></figure>
+  </div></header>
+  <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1280" height="720" loading="lazy"><div class="wrap">
+    <span class="label">¿Qué incluye?</span><h2>El servicio de mantenimiento preventivo incluye</h2><p class="lead">El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.</p>
+    <div class="cols"><ul><li>Inspección técnica integral</li><li>Limpieza especializada y profunda</li><li>Ajustes y calibraciones necesarias</li></ul><ul><li>Revisión de parámetros</li><li>Reporte técnico detallado con recomendaciones</li></ul></div>
+    <ul class="icards"><li><img src="img/final/servicios/i-diagnostico.webp" alt="" width="80" height="70" loading="lazy"><span>Diagnóstico<br>del equipo</span></li><li><img src="img/final/servicios/i-refacciones.webp" alt="" width="80" height="70" loading="lazy"><span>Cambio de<br>refacciones</span></li><li><img src="img/final/servicios/i-limpieza.webp" alt="" width="80" height="70" loading="lazy"><span>Limpieza interna<br>y externa</span></li><li><img src="img/final/servicios/i-electrico.webp" alt="" width="80" height="70" loading="lazy"><span>Verificación de<br>sistema eléctrico</span></li><li><img src="img/final/servicios/i-mecanica.webp" alt="" width="80" height="70" loading="lazy"><span>Verificación<br>mecánica</span></li><li><img src="img/final/servicios/i-funcionamiento.webp" alt="" width="80" height="70" loading="lazy"><span>Puesta en<br>funcionamiento</span></li></ul>
+  </div></section>
+  <section class="sv-campo"><div class="wrap">
+    <div class="head"><div><span class="label">Nuestro trabajo</span><h2>Así se ve un día en campo</h2></div>
+    <div class="arrows"><button type="button" data-dir="-1" aria-label="Fotos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Fotos siguientes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+    <ul class="track" tabindex="0" aria-label="Fotos de trabajos en campo"><li><img src="img/final/servicios/campo-3.webp" alt="Técnico de Tecnobg repara un equipo de cocina industrial" width="506" height="900" loading="lazy"><div><b>Línea caliente</b></div></li><li><img src="img/final/servicios/campo-4.webp" alt="Técnico de Tecnobg ajusta la puerta de un refrigerador" width="506" height="900" loading="lazy"><div><b>Preventivo</b><span>Reparación de puerta de refrigerador</span></div></li><li><img src="img/final/servicios/campo-5.webp" alt="Técnico de Tecnobg da servicio a una batidora industrial" width="506" height="900" loading="lazy"><div><b>Línea caliente</b><span>Reparación de horno de pizzas</span></div></li><li><img src="img/final/servicios/campo-6.webp" alt="Técnico de Tecnobg revisa el motor de un horno de banda" width="506" height="900" loading="lazy"><div><b>Línea caliente</b><span>Reparación de horno de pizzas</span></div></li></ul>
+  </div></section>
+  <section class="sv-cob"><div class="wrap">
+    <div><span class="label">Cobertura</span><h2>Operamos en CDMX y Edo Mex</h2><p>Con capacidad de atención regional, adaptándonos a las necesidades específicas de cada proyecto y cliente.</p></div>
+    <img src="img/final/servicios/cobertura-mapa.webp" alt="Mapa de México con los tipos de negocio que atendemos: restaurantes, bares, cafeterías, tiendas y oficinas" width="1200" height="745" loading="lazy">
+  </div></section>
 </section>
-<section class="view" id="v-reparacion" data-title="Reparación" hidden>
-  <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación</h1><p class="lead">Reparación rápida y precisa para que tu operación siga marchando.</p>
-    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/final/reparacion.webp" alt="Técnico de Tecnobg repara la tarjeta electrónica de un equipo" style="object-position:50% 40%"></figure>
-  </header>
-  <div class="pg-body">
-    <section class="blk"><h2>Corregimos la falla con precisión</h2><p>Corregimos la falla con precisión para que tu operación no se detenga y tus equipos recuperen su rendimiento óptimo.</p></section>
-    <section class="blk"><h2>Diagnóstico técnico</h2><p>Visita especializada para evaluar el equipo, identificar riesgos operativos y definir acciones preventivas o correctivas con base técnica.</p></section>
-    <section class="blk"><h2>Línea fría y línea caliente</h2><p>Reparamos equipos de refrigeración, aire acondicionado, extracción y ventilación, y equipos de línea caliente, tanto comerciales como industriales.</p>
-      <p class="links"><a class="more" href="final.html#linea-fria">Equipos de línea fría →</a><a class="more" href="final.html#linea-caliente">Equipos de línea caliente →</a></p></section>
-    <section class="blk"><h2>Garantía</h2><p>Garantía de 30 días en cualquier reparación o mantenimiento.</p></section>
-    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+<section class="view svc" id="v-reparacion" data-title="Reparación" hidden>
+  <nav class="sv-tabs" aria-label="Servicios"><div class="wrap"><a href="#reparacion" aria-current="page"><img src="img/final/servicios/t-reparacion.webp" alt="" width="40" height="40">Reparación</a><a href="#mantenimiento-preventivo"><img src="img/final/servicios/t-mantenimiento.webp" alt="" width="40" height="40">Mantenimiento<br>preventivo</a><a href="#polizas"><img src="img/final/servicios/t-polizas.webp" alt="" width="40" height="40">Pólizas</a><a href="#servicio-de-emergencia"><img src="img/final/servicios/t-emergencia.webp" alt="" width="40" height="40">Emergencia</a></div></nav>
+  <header class="sv-hero"><div class="wrap">
+    <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación de equipos especializado en el sector HORECA en México</h1><p class="lead">Atención especializada para resolver fallas con precisión y responsabilidad técnica.</p></div>
+    <figure class="pg-photo"><img src="img/final/servicios/reparacion-hero.webp" alt="Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra" width="825" height="1100" style="object-position:50% 40%"></figure>
+  </div></header>
+  <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1280" height="720" loading="lazy"><div class="wrap">
+    <span class="label">¿Qué incluye?</span><h2>El servicio de reparación incluye</h2><p class="lead">El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.</p>
+    <div class="cols"><ul><li>Diagnóstico ágil</li><li>Reparación especializada</li><li>Sustitución y colocación de refacciones originales y compatibles con tus equipos</li></ul><ul><li>Pruebas de funcionamiento</li><li>Garantía de 30 días</li></ul></div>
+    <ul class="icards"><li><img src="img/final/servicios/i-diagnostico.webp" alt="" width="80" height="70" loading="lazy"><span>Diagnóstico<br>del equipo</span></li><li><img src="img/final/servicios/i-refacciones.webp" alt="" width="80" height="70" loading="lazy"><span>Cambio de<br>refacciones</span></li><li><img src="img/final/servicios/i-electrico.webp" alt="" width="80" height="70" loading="lazy"><span>Verificación de<br>sistema eléctrico</span></li><li><img src="img/final/servicios/i-mecanica.webp" alt="" width="80" height="70" loading="lazy"><span>Verificación<br>mecánica</span></li><li><img src="img/final/servicios/i-funcionamiento.webp" alt="" width="80" height="70" loading="lazy"><span>Puesta en<br>funcionamiento</span></li></ul>
+  </div></section>
+  <section class="sv-campo"><div class="wrap">
+    <div class="head"><div><span class="label">Nuestro trabajo</span><h2>Así se ve un día en campo</h2></div>
+    <div class="arrows"><button type="button" data-dir="-1" aria-label="Fotos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Fotos siguientes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+    <ul class="track" tabindex="0" aria-label="Fotos de trabajos en campo"><li><img src="img/final/servicios/campo-1.webp" alt="Técnico de Tecnobg trabaja dentro de un equipo de cocina" width="506" height="900" loading="lazy"><div><b>Línea caliente</b><span>Reparación de horno de pizzas</span></div></li><li><img src="img/final/servicios/campo-2.webp" alt="Dos técnicos de Tecnobg revisan el cableado de un equipo" width="506" height="900" loading="lazy"><div><b>Línea fría</b><span>Reparación de horno de pizzas</span></div></li><li><img src="img/final/servicios/campo-3.webp" alt="Técnico de Tecnobg repara un equipo de cocina industrial" width="506" height="900" loading="lazy"><div><b>Línea caliente</b></div></li></ul>
+  </div></section>
+  <section class="sv-cob"><div class="wrap">
+    <div><span class="label">Cobertura</span><h2>Operamos en CDMX y Edo Mex</h2><p>Con capacidad de atención regional, adaptándonos a las necesidades específicas de cada proyecto y cliente.</p></div>
+    <img src="img/final/servicios/cobertura-mapa.webp" alt="Mapa de México con los tipos de negocio que atendemos: restaurantes, bares, cafeterías, tiendas y oficinas" width="1200" height="745" loading="lazy">
+  </div></section>
 </section>
-<section class="view" id="v-polizas" data-title="Pólizas" hidden>
-  <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Pólizas</h1><p class="lead">Nuestras pólizas son una solución diseñada para empresas que buscan previsión, estabilidad y control en sus equipos.</p>
-    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/final/polizas.webp" alt="Chef cocinando con fuego alto en una cocina industrial" style="object-position:60% 50%"></figure>
-  </header>
-  <div class="pg-body">
-    <section class="blk"><h2>Previsión, estabilidad y control</h2><ul class="ticks">
-      <li><b>Previsión</b>Mantenimiento preventivo programado que prolonga la vida útil de tus equipos y optimiza su desempeño.</li>
-      <li><b>Respuesta</b>Respuesta a urgencias en menos de 24 horas.</li>
-      <li><b>Respaldo</b>Garantía de 30 días en cualquier reparación o mantenimiento. Cumplimiento legal y REPSE vigente.</li></ul></section>
-    <section class="blk"><h2>Qué incluye cada póliza</h2><p class="pend">Contenido pendiente: alcance, periodicidad de visitas, equipos cubiertos y planes disponibles.</p></section>
-    <section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#servicio-de-emergencia"><b>Servicio de emergencia</b><span>Ver servicio →</span></a></div></section></div>
+<section class="view svc" id="v-polizas" data-title="Pólizas" hidden>
+  <nav class="sv-tabs" aria-label="Servicios"><div class="wrap"><a href="#reparacion"><img src="img/final/servicios/t-reparacion.webp" alt="" width="40" height="40">Reparación</a><a href="#mantenimiento-preventivo"><img src="img/final/servicios/t-mantenimiento.webp" alt="" width="40" height="40">Mantenimiento<br>preventivo</a><a href="#polizas" aria-current="page"><img src="img/final/servicios/t-polizas.webp" alt="" width="40" height="40">Pólizas</a><a href="#servicio-de-emergencia"><img src="img/final/servicios/t-emergencia.webp" alt="" width="40" height="40">Emergencia</a></div></nav>
+  <header class="sv-hero pol"><div class="wrap">
+    <div class="pg-copy"><span class="label">Pólizas</span><h1>Con nuestras pólizas proteges tu operación y ahorras dinero.</h1><p class="lead">Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.</p></div>
+    <figure class="pg-shield"><img src="img/final/servicios/polizas-escudos.webp" alt="Escudos de Tecnobg con las palabras confianza y seguridad" width="900" height="507"></figure>
+  </div></header>
+  <section class="po-inc"><div class="wrap">
+    <span class="label">¿Qué incluye?</span><h2>Nuestras pólizas incluyen</h2><p class="lead">El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.</p>
+    <ul class="pcards"><li><span class="disc"><img src="img/final/servicios/poliza-1.webp" alt="" width="240" height="240" loading="lazy"></span><b>Mantenimiento preventivo programado</b><span>Servicios programados para evitar fallas y asegurar el buen funcionamiento.</span></li><li><span class="disc"><img src="img/final/servicios/poliza-2.webp" alt="" width="240" height="240" loading="lazy"></span><b>Atención correctiva prioritaria</b><span>Servicio preferente para resolver incidencias en menos de 24hrs hábiles.</span></li><li><span class="disc"><img src="img/final/servicios/poliza-3.webp" alt="" width="240" height="240" loading="lazy"></span><b>Tarifas preferenciales</b><span>Precios especiales en mano de obra y refacciones.</span></li><li><span class="disc"><img src="img/final/servicios/poliza-4.webp" alt="" width="240" height="240" loading="lazy"></span><b>Monitoreo continuo</b><span>Seguimiento constante del estado de tus equipos para anticipar problemas.</span></li></ul>
+    <a class="btn btn-silver" href="#" data-jump="cotizar">¡Protege tus equipos ahora!</a>
+  </div></section>
+  <section class="po-ben">
+    <figure><img src="img/final/servicios/polizas-beneficios.webp" alt="Técnico de Tecnobg trabaja en una plancha de una cocina industrial" width="1113" height="901" loading="lazy"></figure>
+    <div class="txt"><h2>Beneficios de nuestras Pólizas</h2>
+      <ul class="snake" style="background-image:url(img/final/servicios/polizas-beneficios-linea.webp)"><li>Ahorro en reparaciones de hasta 30% - 40%</li><li>Operación continua y sin interrupciones</li><li>Diminuye gastos inesperados</li><li>Reducción de tiempos muertos</li><li>Mayor vida útil de tus equipos</li></ul></div>
+  </section>
+  <section class="po-por">
+    <figure><img src="img/final/servicios/polizas-porque.webp" alt="Refrigerador comercial con puertas de vidrio en el pasillo de un supermercado" width="1400" height="913" loading="lazy"></figure>
+    <div class="txt"><h2>¿Por qué elegir una póliza con Tecnobg?</h2>
+      <p>Porque entendemos que tu negocio depende de equipos funcionando al 100%.</p>
+      <p>Nuestra póliza no es un gasto, es una inversión estratégica que te brinda:</p>
+      <ul><li>Tranquilidad operativa</li><li>Respuesta inmediata</li><li>Ahorro real</li><li>Mayor eficiencia</li></ul></div>
+  </section>
 </section>
-<section class="view" id="v-servicio-de-emergencia" data-title="Servicio de emergencia" hidden>
-  <header class="pg-hero">
-    <div class="pg-copy"><span class="label">Servicios</span><h1>Servicios de Emergencia</h1><p class="lead">Cuando la operación exige inmediatez, respondemos con eficiencia.</p>
-    <div class="acts"><a class="btn btn-blue" href="final.html#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="https://wa.me/525646037573">WhatsApp</a></div></div>
-    <figure class="pg-photo"><img src="img/final/emergencia.webp" alt="Camioneta de servicio de Tecnobg circulando de noche por la ciudad" style="object-position:62% 50%"></figure>
-  </header>
-  <div class="pg-body">
-    <section class="blk"><h2>Respuesta a urgencias</h2><p>Mantenimiento correctivo rápido y preciso para restablecer la operación en el menor tiempo posible. Respuesta a urgencias en menos de 24 horas. Escríbenos por WhatsApp al 56 4603 7573, de lunes a sábado de 9:00 a 18:00.</p><a class="btn btn-blue" href="https://wa.me/525646037573">Solicitar servicio de emergencia</a></section>
-    <section class="blk"><h2>Así atendemos tu solicitud</h2><p>Recepción inmediata, asignación rápida del servicio, diagnóstico profesional, cotización clara y ejecución final con entrega operativa.</p><a class="more" href="final.html#proceso">Ver el proceso completo →</a></section><section class="blk"><h2>Otros servicios</h2><div class="cards"><a class="card" href="#mantenimiento-preventivo"><b>Mantenimiento preventivo</b><span>Ver servicio →</span></a><a class="card" href="#reparacion"><b>Reparación</b><span>Ver servicio →</span></a><a class="card" href="#polizas"><b>Pólizas</b><span>Ver servicio →</span></a></div></section></div>
+<section class="view svc" id="v-servicio-de-emergencia" data-title="Servicio de emergencia" hidden>
+  <nav class="sv-tabs" aria-label="Servicios"><div class="wrap"><a href="#reparacion"><img src="img/final/servicios/t-reparacion.webp" alt="" width="40" height="40">Reparación</a><a href="#mantenimiento-preventivo"><img src="img/final/servicios/t-mantenimiento.webp" alt="" width="40" height="40">Mantenimiento<br>preventivo</a><a href="#polizas"><img src="img/final/servicios/t-polizas.webp" alt="" width="40" height="40">Pólizas</a><a href="#servicio-de-emergencia" aria-current="page"><img src="img/final/servicios/t-emergencia.webp" alt="" width="40" height="40">Emergencia</a></div></nav>
+  <header class="sv-hero"><div class="wrap">
+    <div class="pg-copy"><img class="hicon" src="img/final/servicios/i-emergencia.webp" alt="" width="44" height="52"><span class="label">Emergencia</span><h1>Servicio de Emergencia</h1><p class="lead">Cuando la operación exige inmediatez, respondemos con eficiencia.</p><div class="acts"><a class="btn btn-warm" href="#" data-jump="em-dia">Saber más</a></div></div>
+    <figure class="pg-photo"><img src="img/final/servicios/emergencia-hero.webp" alt="Camioneta de servicio de Tecnobg circulando por la ciudad al anochecer" width="1000" height="953"></figure>
+  </div></header>
+  <section class="em-dia" id="em-dia">
+    <figure><img src="img/final/servicios/emergencia-tecnico.webp" alt="Técnico de Tecnobg camina por la calle con su caja de herramientas" width="1200" height="1156" loading="lazy"></figure>
+    <div class="txt"><h2><img src="img/final/servicios/i-pin-blanco.webp" alt="" width="24" height="36">Diagnóstico y reparación el mismo día</h2>
+      <p>Enviamos a nuestro técnico más cercano a su ubicación</p><p>Exclusivo zona CDMX</p>
+      <a class="btn btn-red" href="#" data-jump="em-cdmx">Ver Áreas de Servicio</a></div>
+  </section>
+  <section class="em-cdmx" id="em-cdmx"><div class="wrap">
+    <img class="map" src="img/final/servicios/emergencia-cdmx.webp" alt="Mapa de la Ciudad de México con puntos de atención de emergencias" width="800" height="883" loading="lazy">
+    <div class="txt"><h2>¿Tienes una emergencia con tus equipos?</h2>
+      <ul><li><img src="img/final/servicios/i-escudo.webp" alt="" width="46" height="54">Servicio disponible los 365 días del año</li><li><img src="img/final/servicios/i-pin.webp" alt="" width="28" height="42">Exclusivo zona CDMX</li></ul>
+      <a class="btn btn-red" href="https://wa.me/525646037573">Solicitar Servicio de Emergencia</a></div>
+  </div><img class="city" src="img/final/servicios/emergencia-ciudad.webp" alt="" width="2400" height="358" loading="lazy"></section>
 </section>
 <section class="view" id="v-bolsa-de-trabajo" data-title="Bolsa de trabajo" hidden>
   <header class="pg-hero solo"><div class="pg-copy"><span class="label">Bolsa de trabajo</span><h1>Trabaja en Tecnobg</h1><p class="lead">Aquí publicaremos las vacantes de Tecnobg y la forma de postularte.</p></div></header>
@@ -289,6 +454,27 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   <header class="pg-hero solo"><div class="pg-copy"><span class="label">Legales</span><h1>Uso de cookies</h1><p class="lead">Cómo usa este sitio las cookies y tecnologías similares.</p></div></header>
   <div class="pg-body"><nav class="toc" aria-label="Contenido"><span class="label">Contenido</span><ol><li><a href="#" data-jump="ck-1">¿Qué son las cookies?</a></li><li><a href="#" data-jump="ck-2">Herramientas que usa el sitio</a></li><li><a href="#" data-jump="ck-3">Cómo desactivarlas</a></li><li><a href="#" data-jump="ck-4">Cambios a esta política</a></li></ol></nav><div class="lbody"><article class="lsec" id="ck-1"><h2>¿Qué son las cookies?</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-2"><h2>Herramientas que usa el sitio</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-3"><h2>Cómo desactivarlas</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article><article class="lsec" id="ck-4"><h2>Cambios a esta política</h2><p class="pend">Texto pendiente: lo redacta y valida Tecnobg o su asesor legal.</p></article></div></div>
 </section>
+<section class="quote" id="cotizar" hidden><div class="wrap grid">
+  <div>
+    <h2>Solicita una cotización</h2>
+    <p class="intro">Cuéntanos qué necesita tu equipo y te enviamos una cotización.</p>
+    <div class="cdata">
+      <a href="mailto:ventas@tecnobg.com"><img src="img/final/redes/correo.svg" alt="" width="24" height="24">ventas@tecnobg.com</a>
+      <a href="https://wa.me/525646037573"><img src="img/final/redes/whatsapp.svg" alt="" width="24" height="24">Whatsapp: 56 4603 7573</a>
+      <small>Lunes a sábado · 9:00 a 18:00</small>
+    </div>
+  </div>
+  <form id="form" novalidate>
+    <label for="c-nombre">Nombre<input id="c-nombre" name="nombre" type="text" autocomplete="name" required maxlength="120"></label>
+    <label for="c-empresa">Empresa<input id="c-empresa" name="empresa" type="text" autocomplete="organization" required maxlength="120"></label>
+    <label for="c-tel">Whatsapp<input id="c-tel" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +()\-]{10,20}" maxlength="20"></label>
+    <label for="c-mail">Email<input id="c-mail" name="email" type="email" autocomplete="email" required maxlength="160"></label>
+    <label for="c-msg">Su mensaje<textarea id="c-msg" name="mensaje" required maxlength="3000"></textarea></label>
+    <label class="hp" aria-hidden="true">No llenar<input name="sitio" type="text" tabindex="-1" autocomplete="off"></label>
+    <p class="msg" id="fmsg" role="status" hidden></p>
+    <div class="factions"><small>Todos los campos son obligatorios. Al enviar aceptas el <a href="#aviso-de-privacidad">aviso de privacidad</a>.</small><button class="btn btn-blue" type="submit" id="fbtn">Enviar</button></div>
+  </form>
+</div></section>
 </main>
 
 <footer><div class="wrap">
@@ -330,6 +516,30 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 
   [].forEach.call(document.querySelectorAll('[data-jump]'),function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.getElementById(a.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 
+  // Carruseles de fotos de las páginas de servicios
+  [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){var t=c.querySelector('.track');[].forEach.call(c.querySelectorAll('.arrows button'),function(b){b.addEventListener('click',function(){var li=t.querySelector('li');t.scrollBy({left:(li?li.offsetWidth+24:300)*+b.dataset.dir,behavior:'smooth'})})})});
+
+  // Formulario de cotización → /api/cotizacion (envía el correo a ventas)
+  var form=document.getElementById('form'),fmsg=document.getElementById('fmsg'),fbtn=document.getElementById('fbtn');
+  function say(t,ok){fmsg.textContent=t;fmsg.className='msg '+(ok?'ok':'err');fmsg.hidden=false}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=null;
+    [].forEach.call(form.querySelectorAll('[required]'),function(f){var v=f.value.trim()&&f.checkValidity();f.setAttribute('aria-invalid',v?'false':'true');if(!v&&!bad)bad=f});
+    if(bad){say('Revisa los campos marcados: todos son obligatorios.',false);bad.focus();return}
+    var data={};new FormData(form).forEach(function(v,k){data[k]=String(v).trim()});
+    fbtn.disabled=true;fbtn.textContent='Enviando…';
+    fetch('/api/cotizacion',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
+      .then(function(res){
+        if(res.ok){form.reset();say('¡Gracias! Recibimos tu solicitud y te contactaremos pronto.',true)}
+        else say(res.j.error||'No pudimos enviar tu solicitud. Escríbenos por WhatsApp al 56 4603 7573.',false);
+      })
+      .catch(function(){say('No pudimos enviar tu solicitud. Escríbenos por WhatsApp al 56 4603 7573.',false)})
+      .finally(function(){fbtn.disabled=false;fbtn.textContent='Enviar'});
+  });
+
+
   // Cada página interna es una vista del mismo archivo, elegida por el #hash
   var views=[].slice.call(document.querySelectorAll('.view'));
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -338,6 +548,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
     var id=(location.hash||'#nosotros').slice(1),v=document.getElementById('v-'+id);
     if(!v||!v.classList.contains('view'))return;
     views.forEach(function(x){x.hidden=x!==v});
+    // Las páginas de servicios ya tienen su diseño final: sin aviso de preliminar y con el formulario de cotización
+    var svc=v.classList.contains('svc');
+    document.getElementById('prelim').hidden=svc;
+    document.getElementById('cotizar').hidden=!svc;
     document.title='Grupo Tecnobg · '+v.dataset.title;
     window.scrollTo(0,0);
     if(window.gsap&&!reduce){
