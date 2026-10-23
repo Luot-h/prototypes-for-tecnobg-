@@ -214,7 +214,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .sv-inc .cols{display:grid;gap:4px 60px;margin:22px 0 26px;font:600 clamp(17px,1.6vw,20px)/1.3 var(--cond);letter-spacing:.01em}
 @media (min-width:800px){.sv-inc .cols{grid-template-columns:auto auto;justify-content:center}}
 .sv-inc .cols ul{margin:0;padding-left:16px;display:grid;gap:4px;list-style:square}
-.icards{list-style:none;margin:0;padding:0 0 6px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory}
+.icards{list-style:none;margin:0 -16px;padding:10px 16px 6px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;scrollbar-width:none}
+.icards::-webkit-scrollbar{display:none}
+/* En escritorio caben todas las tarjetas: sin scroll (el hover las levanta sin cortarse) */
+@media (min-width:900px){.icards{margin:0;padding:10px 0 6px;grid-auto-flow:row;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));overflow:visible}}
 .icards li{scroll-snap-align:start;display:grid;justify-items:center;align-content:start;gap:14px;padding:18px 12px 20px;border-radius:24px;background:rgba(21,33,73,.86);text-align:center;font:600 clamp(16px,1.5vw,19px)/1.2 var(--cond)}
 .icards img{height:62px;width:auto}
 .sv-campo .wrap{padding-block:56px 72px}
