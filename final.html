@@ -141,8 +141,9 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 @media (min-width:1000px){.hrow .ttl{width:100%}}
 .htrack{display:flex;gap:16px;width:max-content;padding-inline:16px;margin-top:22px}
 .eq{flex:0 0 clamp(250px,72vw,330px);display:grid;gap:14px;justify-items:center;text-align:center;padding:18px 16px 22px;border-radius:18px;border:1px solid #e6e9f2;background:#fff}
-.eq figure{margin:0;width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
-.eq img{max-height:100%;width:auto;object-fit:contain}
+/* La foto llena un cuadro fijo con object-fit: así no se sale de la tarjeta aunque el navegador (Safari en iPhone) no resuelva el % de alto */
+.eq figure{position:relative;margin:0;width:100%;aspect-ratio:1/1;overflow:hidden}
+.eq img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .eq b{font:400 15px/1.35 var(--tech)}
 .fria .eq b{color:var(--fria)}
 .caliente .eq b{color:var(--caliente)}
