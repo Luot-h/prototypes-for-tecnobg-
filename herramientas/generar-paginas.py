@@ -57,7 +57,7 @@ def incluye(title,lead,left,right,cards):
     ul=lambda xs:'<ul>'+''.join(f'<li>{x}</li>' for x in xs)+'</ul>'
     cs=''.join(f'<li><img src="{SV}{ic}.webp" alt="" width="80" height="70" loading="lazy"><span>{t}</span></li>' for ic,t in cards)
     return f'''
-  <section class="sv-inc"><img class="bg" src="{SV}incluye-fondo.webp" alt="" width="1280" height="720" loading="lazy"><div class="wrap">
+  <section class="sv-inc"><img class="bg" src="{SV}incluye-fondo.webp" alt="" width="1920" height="900" loading="lazy"><div class="wrap">
     <span class="label">¿Qué incluye?</span><h2>{title}</h2><p class="lead">{lead}</p>
     <div class="cols">{ul(left)}{ul(right)}</div>
     <ul class="icards">{cs}</ul>
@@ -131,13 +131,48 @@ SV_EME=svhero('servicio-de-emergencia',f'<img class="hicon" src="{SV}i-emergenci
   </div><img class="city" src="{SV}emergencia-ciudad.webp" alt="" width="2400" height="358" loading="lazy"></section>'''
 
 V=[]
-V.append(('nosotros','Nosotros',hero('Nosotros','Grupo Tecnobg','Reparación y mantenimiento preventivo especializado en el sector HORECA en México.','img/equipo-plaza.webp','Técnicos de mantenimiento de Tecnobg recorriendo una tienda')+'''
-  <div class="pg-body">
-    <div class="stats"><div><b>+25</b><span>Años de experiencia</span></div><div><b>+35</b><span>Marcas</span></div><div><b>+50</b><span>Soluciones</span></div></div>
-    <section class="blk"><h2>Nuestros técnicos están en constante capacitación</h2><p>Nuestros técnicos están capacitándose constantemente en las últimas tecnologías para brindar a tus equipos un servicio de calidad.</p></section>
-    <blockquote class="pq">“Confianza y garantía no son promesas, son el estándar con el que trabajamos”</blockquote>
-    <section class="blk"><h2>Historia, misión y valores</h2>'''+pend('Contenido pendiente: historia, misión, visión, valores y equipo de Tecnobg.')+'''</section>
-  </div>'''))
+# Nosotros: diseño del diseñador (seccion nosotros.pdf, 26 oct 2026). Recursos en img/final/nosotros/
+NS='img/final/nosotros/'
+YT='nG2DHYtOx2g'
+CONS=['Interrupciones en el servicio','Pérdida de insumos','Riesgos sanitarios','Sanciones regulatorias','Pérdida de dinero']
+FEAT=[('experiencia','Experiencia en el sector'),('procesos','Procesos estandarizados<br>y profesionales'),('personal','Personal técnico capacitado'),('reportes','Reportes claros<br>y seguimiento continuo'),('preventivo','Enfoque preventivo<br>y estratégico'),('excelencia','Compromiso con la<br>excelencia operativa')]
+NOS=f'''<header class="ns-hero">
+    <div class="ns-video" id="nsVideo"><img src="{NS}hero-video.webp" alt="" width="1919" height="840"><div id="nsPlayer"></div></div>
+    <div class="ns-shade"></div>
+    <div class="ns-brand"><img class="hlogo" src="img/final/logo-tecnobg.svg" alt="Grupo Tecnobg, servicios integrales" width="272" height="85"><img class="slogan" src="img/final/slogan.webp" alt="Solución con tecnología a tu medida" width="730" height="370"></div>
+    <div class="ns-intro ns-w"><h1>Nosotros</h1><p>Grupo Tecnobg es una empresa mexicana con más de 25 años de experiencia en servicios de mantenimiento técnico, especializada en la atención de restaurantes, cafeterías, corporativos, cadenas y franquicias comerciales, bares y hoteles.</p></div>
+  </header>
+  <section class="ns-hist" aria-label="Nuestra historia"><div class="ns-w"><div class="ns-tl">
+    <img class="blob" src="{NS}linea-historia.svg" alt="" width="1438" height="1778">
+    <figure class="c c1"><img src="{NS}historia-1.webp" alt="Técnico de Tecnobg revisa una tarjeta electrónica con una lámpara" width="640" height="640" loading="lazy"></figure>
+    <p class="t t1">Iniciamos brindando servicios en tarjetas electrónicas, maquinaria industrial tipo CNC y robots, destacando por la efectividad de nuestras soluciones. Esto permitió posicionarnos como aliado estratégico de La Comer en la atención de fallas de alta complejidad.</p>
+    <figure class="c c2"><img src="{NS}historia-2.webp" alt="Dos técnicos de mantenimiento de Tecnobg recorren un supermercado con su equipo" width="840" height="840" loading="lazy"></figure>
+    <p class="t t2">A partir de estos resultados, La Comer expandió la colaboración al área de cocina, donde se identificó una oportunidad de crecimiento. Gracias a su enfoque técnico y calidad de servicio, Grupo Tecnobg comenzó a consolidarse en el sector.</p>
+    <figure class="c c3"><img src="{NS}historia-3.webp" alt="Técnico de Tecnobg trabaja con guantes en un equipo de cocina" width="640" height="640" loading="lazy"></figure>
+    <p class="t t3">Con el paso del tiempo nos especializamos en el mantenimiento de equipos de cocina industrial, refrigeración y sistemas de aire acondicionado, consolidando una propuesta integral orientada a la continuidad operativa de nuestros clientes.</p>
+    <figure class="c c4"><img src="{NS}historia-4.webp" alt="Técnico de Tecnobg repara una vitrina refrigerada de carnes" width="520" height="520" loading="lazy"></figure>
+  </div></div></section>
+  <section class="ns-vis"><div class="ns-w">
+    <h2>Visión Operativa</h2>
+    <p>Nos anticipamos a los problemas antes de que se conviertan en costos, asegurando una operación siempre activa y rentable. Las consecuencias de no tener un plan de mantenimiento son:</p>
+    <ul class="ns-cons">{''.join(f'<li>{c}</li>' for c in CONS)}</ul>
+    <h2 class="prem">En Grupo Tecnobg brindamos un servicio premium y personalizado</h2>
+    <p>Trabajamos bajo un enfoque estratégico que minimiza riesgos y maximiza el rendimiento de tus equipos.</p>
+    <ul class="ns-feat">{''.join(f'<li><img src="{NS}i-{i}.webp" alt="" width="160" height="160" loading="lazy"><span>{t}</span></li>' for i,t in FEAT)}</ul>
+  </div></section>
+  <section class="ns-filo"><div class="ns-w">
+    <figure class="arrow from-left"><img src="{NS}filosofia.webp" alt="Técnico de Tecnobg da servicio a una freidora industrial" width="900" height="884" loading="lazy"></figure>
+    <div class="txt"><h2>Filosofía de trabajo</h2>
+      <p>Creemos en un servicio donde la honestidad operativa es la prioridad. Respetamos tus instalaciones y normativas como si fueran propias.</p>
+      <ul><li>La <b>prevención reduce riesgos</b></li><li>La <b>planificación reduce costos</b></li><li>La <b>constancia genera estabilidad</b></li></ul></div>
+  </div></section>
+  <section class="ns-anti"><div class="ns-w">
+    <div class="txt"><h2>Anticipación</h2><p>No esperamos a que algo falle, actuamos para proteger tu inversión.</p>
+      <button type="button" class="btn btn-blue" id="nsVideoBtn">Ver nuestro video<br>corporativo</button></div>
+    <figure class="arrow from-right"><img src="{NS}anticipacion.webp" alt="Técnicos de Tecnobg caminan por un centro comercial" width="700" height="1341" loading="lazy"></figure>
+  </div></section>
+  <dialog class="ns-dlg" id="nsDlg" aria-label="Video corporativo de Grupo Tecnobg"><button type="button" class="x" id="nsDlgClose" aria-label="Cerrar video"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="frame"></div></dialog>'''
+V.append(('nosotros','Nosotros',NOS))
 V.append(('mantenimiento-preventivo','Mantenimiento preventivo',SV_MANT))
 V.append(('reparacion','Reparación',SV_REP))
 V.append(('polizas','Pólizas',SV_POL))
@@ -151,7 +186,7 @@ V.append(('terminos-y-condiciones','Términos y condiciones',legal('tc','Términ
 V.append(('uso-de-cookies','Uso de cookies',legal('ck','Uso de cookies','Cómo usa este sitio las cookies y tecnologías similares.',['¿Qué son las cookies?','Herramientas que usa el sitio','Cómo desactivarlas','Cambios a esta política'])))
 
 SVC_IDS=[i for i,_,_ in SVCS]
-views=''.join(f'\n<section class="view'+(' svc' if i in SVC_IDS else '')+f'" id="v-{i}" data-title="{t}" hidden>\n  {body}\n</section>' for i,t,body in V)
+views=''.join(f'\n<section class="view'+(' svc' if i in SVC_IDS else ' fin' if i=='nosotros' else '')+f'" id="v-{i}" data-title="{t}" hidden>\n  {body}\n</section>' for i,t,body in V)
 
 page_css='''
 /* Páginas internas: diseño preliminar con la misma navegación y pie de la versión final */
@@ -228,8 +263,8 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .pg-shield{margin:0}
 .pg-shield img{width:100%;height:auto;mix-blend-mode:multiply}
 .sv-inc{position:relative;overflow:hidden;background:var(--navy);color:#fff}
-.sv-inc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;mix-blend-mode:luminosity}
-.sv-inc::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(51,79,157,.55),rgba(51,79,157,.35))}
+/* Fondo del diseñador (fondo servicios-51), ya viene en azul: va sin capa encima */
+.sv-inc .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .sv-inc .wrap{position:relative;padding-block:56px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .sv-inc .label,.po-inc .label{color:#fff}
 .sv-inc h2,.po-inc h2{font:700 clamp(32px,4.4vw,52px)/1.08 var(--cond)}
@@ -340,6 +375,81 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .em-cdmx li img{width:auto;height:46px}
 .em-cdmx .city{width:100%;height:auto;margin-top:-12px}
 .quote{scroll-margin-top:var(--hh)}
+/* Nosotros (diseño del diseñador, seccion nosotros.pdf, 26 oct 2026). Recursos en img/final/nosotros/ */
+.view.fin{background:#fff;color:var(--ink-d);padding-bottom:0}
+.ns-w{max-width:1000px;margin:0 auto;padding-inline:16px}
+.ns-hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:max(560px,min(56.25vw,calc(100svh - var(--hh))));overflow:hidden;background:var(--night);color:#fff}
+.ns-video{position:absolute;inset:0;overflow:hidden;container-type:size}
+.ns-video>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* El video de YouTube cubre todo el hero como un object-fit:cover; un poco más grande para esconder la interfaz de YouTube en los bordes */
+.ns-video iframe{position:absolute;top:50%;left:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.2);border:0;pointer-events:none;opacity:0;transition:opacity 1s}
+.ns-video.playing iframe{opacity:1}
+.ns-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,28,55,.35) 0%,rgba(25,28,55,.3) 45%,rgba(25,28,55,.85) 84%,var(--night) 100%)}
+.ns-brand{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:14px;width:100%}
+.ns-brand .hlogo{width:min(56vw,320px);height:auto}
+.ns-brand .slogan{width:min(56vw,260px);height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.ns-intro{position:relative;width:100%;display:grid;gap:10px;padding-bottom:28px}
+@media (min-width:800px){.ns-intro{grid-template-columns:29% 1fr;align-items:start;padding-bottom:36px}}
+.ns-intro h1{font:700 clamp(40px,4.6vw,56px)/1 var(--cond)}
+.ns-intro p{font-size:clamp(17px,1.5vw,19px);line-height:1.4;color:#eef1fa}
+/* Historia: los círculos van sobre la línea con degradado del diseñador */
+.ns-hist{display:flow-root;position:relative;z-index:1;background:var(--night);color:#fff;padding-top:64px;--cap:clamp(80px,18vw,240px)}
+.ns-hist::after{content:"";position:absolute;left:0;right:0;top:100%;height:var(--cap);background:radial-gradient(ellipse 60% 100% at 50% 0,var(--night) 99.4%,transparent 100%);z-index:-1}
+.ns-tl{position:relative;display:grid;gap:22px;justify-items:center;padding-bottom:20px}
+.ns-tl .blob{display:none}
+.ns-tl .c{margin:0;width:min(74vw,340px);aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 10px #38a9e0}
+.ns-tl .c3{box-shadow:0 0 0 10px #e84e1b}.ns-tl .c4{box-shadow:0 0 0 10px #f9b400}.ns-tl .c2{box-shadow:0 0 0 10px #2d2e82}
+.ns-tl .c img{display:block;width:100%;height:100%}
+.ns-tl .t{margin:0 0 18px;font-size:17px;line-height:1.45;max-width:46ch}
+@media (min-width:800px){
+  .ns-tl{display:block;aspect-ratio:1437.51/1778.03;margin-bottom:-41%;padding:0}
+  .ns-tl .blob{display:block;position:absolute;inset:0;width:100%;height:100%}
+  .ns-tl .c{position:absolute;width:auto;box-shadow:none}
+  .ns-tl .c1{left:6.44%;top:3.71%;width:30.05%}
+  .ns-tl .c2{left:50.33%;top:22.89%;width:41.18%}
+  .ns-tl .c3{left:6.27%;top:51.38%;width:30.26%}
+  .ns-tl .c4{left:58.9%;top:78.6%;width:24.35%}
+  .ns-tl .t{position:absolute;margin:0;font-size:clamp(15px,1.45vw,18px);line-height:1.38;max-width:none}
+  .ns-tl .t1{left:41%;width:55%;top:6%;text-align:justify}
+  .ns-tl .t2{left:0;width:41.5%;top:33.8%;text-align:justify}
+  .ns-tl .t3{left:52.7%;width:41.3%;top:64.4%}
+}
+.ns-vis{background:#fff;color:var(--ink-d);padding:calc(var(--cap,clamp(80px,18vw,240px)) + 40px) 0 72px}
+.ns-vis{--cap:clamp(80px,18vw,240px)}
+.ns-vis h2,.ns-filo h2{font:700 clamp(30px,3.4vw,44px)/1.15 var(--head);color:#111;letter-spacing:.01em}
+.ns-vis>.ns-w>p{max-width:58ch;margin-top:26px;font-size:clamp(17px,1.4vw,19px);line-height:1.4}
+.ns-vis .prem{max-width:30ch;margin-top:56px}
+.ns-vis .prem+p{max-width:none;margin-top:10px}
+.ns-cons{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));column-gap:8%}
+.ns-cons li{border-top:1px solid #8a8d99;padding:14px 4px 28px;font:700 clamp(19px,1.8vw,23px)/1.2 var(--cond);color:var(--ink-d)}
+.ns-feat{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:18px 40px}
+@media (min-width:700px){.ns-feat{grid-template-columns:1fr 1fr;padding-inline:7%}}
+.ns-feat li{display:flex;align-items:center;gap:14px;font:700 clamp(18px,1.7vw,22px)/1.25 var(--cond);color:var(--navy)}
+.ns-feat img{width:clamp(62px,6vw,76px);height:auto;flex:none;filter:drop-shadow(0 4px 6px rgba(20,30,70,.18))}
+.ns-filo{position:relative;z-index:1;background:#16224b;color:#fff;padding:64px 0 40px;overflow-x:clip}
+.ns-filo::after{content:"";position:absolute;left:0;right:0;top:100%;height:clamp(50px,11vw,150px);background:radial-gradient(ellipse 62% 100% at 50% 0,#16224b 99.4%,transparent 100%)}
+.ns-filo .ns-w,.ns-anti .ns-w{display:grid;gap:36px;align-items:center}
+@media (min-width:800px){.ns-filo .ns-w{grid-template-columns:1fr 1fr;gap:4%}.ns-anti .ns-w{grid-template-columns:1.15fr .85fr}}
+.ns-filo h2{color:#fff}
+.ns-filo .txt{display:grid;gap:22px}
+.ns-filo p{text-align:justify;font-size:clamp(17px,1.4vw,19px);line-height:1.4}
+.ns-filo ul{margin:6px 0 0;padding:0;list-style:none;font-size:clamp(17px,1.4vw,19px);line-height:1.4}
+.ns-filo li::before{content:"• "}
+.arrow{margin:0}
+.arrow img{display:block;width:100%;height:auto}
+.ns-filo .arrow{max-width:520px;width:100%;justify-self:center}
+.ns-anti{background:var(--night);color:#fff;padding:clamp(70px,13vw,170px) 0 80px;overflow-x:clip}
+.ns-anti .txt{display:grid;justify-items:center;gap:22px;text-align:center;font-family:var(--tech)}
+.ns-anti h2{font:400 clamp(20px,2vw,26px)/1.2 var(--tech)}
+.ns-anti p{font:400 clamp(21px,2.3vw,30px)/1.25 var(--tech);max-width:24ch}
+.ns-anti .btn{margin-top:10px;min-height:46px;padding:8px 30px;line-height:1.2;text-align:center;cursor:pointer}
+.ns-anti .arrow{position:relative;z-index:2;max-width:300px;width:62%;justify-self:center}
+@media (min-width:800px){.ns-anti .arrow{width:100%;margin-top:clamp(-150px,-11vw,-60px)}}
+.ns-dlg{width:min(94vw,1100px);padding:0;border:0;border-radius:16px;background:#000;overflow:visible}
+.ns-dlg::backdrop{background:rgba(10,12,30,.85)}
+.ns-dlg .frame{aspect-ratio:16/9}
+.ns-dlg iframe{display:block;width:100%;height:100%;border:0;border-radius:16px}
+.ns-dlg .x{position:absolute;right:0;top:-52px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
 '''
 
 script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -423,6 +533,61 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     });
   }
 
+  // Nosotros: video de YouTube de fondo en bucle (silenciado); con movimiento reducido se queda la imagen fija
+  var YT_ID='nG2DHYtOx2g',ytPlayer=null,ytWant=false;
+  function nosVideo(on){
+    ytWant=on;
+    if(reduce)return;
+    if(ytPlayer&&ytPlayer.playVideo){on?ytPlayer.playVideo():ytPlayer.pauseVideo();return}
+    if(!on||window.YT&&window.YT.Player||document.getElementById('ytApi'))return;
+    window.onYouTubeIframeAPIReady=function(){
+      var box=document.getElementById('nsVideo');
+      ytPlayer=new YT.Player('nsPlayer',{videoId:YT_ID,host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,loop:1,playlist:YT_ID,playsinline:1,rel:0,disablekb:1,fs:0,iv_load_policy:3,modestbranding:1},
+        events:{onReady:function(e){e.target.mute();if(ytWant)e.target.playVideo()},
+          onStateChange:function(e){if(e.data===1)box.classList.add('playing');if(e.data===0)e.target.playVideo()}}});
+      var f=document.getElementById('nsPlayer');if(f)f.setAttribute('tabindex','-1'),f.setAttribute('aria-hidden','true');
+    };
+    var s=document.createElement('script');s.id='ytApi';s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s);
+  }
+  // "Ver nuestro video corporativo": el mismo video con sonido y controles
+  var dlg=document.getElementById('nsDlg');
+  if(dlg){
+    var fr=dlg.querySelector('.frame');
+    document.getElementById('nsVideoBtn').addEventListener('click',function(){
+      fr.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+YT_ID+'?autoplay=1&rel=0&playsinline=1" title="Video corporativo de Grupo Tecnobg" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      if(ytPlayer&&ytPlayer.pauseVideo)ytPlayer.pauseVideo();
+      dlg.showModal();
+    });
+    document.getElementById('nsDlgClose').addEventListener('click',function(){dlg.close()});
+    dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+    dlg.addEventListener('close',function(){fr.innerHTML='';if(ytWant&&ytPlayer&&ytPlayer.playVideo)ytPlayer.playVideo()});
+  }
+
+  function nosAnim(v){
+    var h=v.querySelector('.ns-hero');
+    gsap.timeline({defaults:{ease:'power3.out'}})
+      .from(h.querySelector('.hlogo'),{opacity:0,y:20,duration:.8})
+      .fromTo(h.querySelector('.slogan'),{clipPath:'inset(0 0 100% 0)',y:20},{clipPath:'inset(0 0 0% 0)',y:0,duration:1.1,ease:'power4.out'},'-=.5')
+      .from(h.querySelectorAll('.ns-intro > *'),{opacity:0,y:18,duration:.7,stagger:.1},'-=.7');
+    function once(el,from,trig){gsap.from(el,Object.assign({duration:.7,ease:'power3.out',scrollTrigger:{trigger:trig||el,start:'top 88%',once:true}},from))}
+    // Línea de la historia: se dibuja de arriba abajo con el scroll
+    var blob=v.querySelector('.ns-tl .blob');
+    if(blob&&getComputedStyle(blob).display!=='none')gsap.fromTo(blob,{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',ease:'none',scrollTrigger:{trigger:blob,start:'top 75%',end:'bottom 85%',scrub:.5}});
+    // Círculos: escala 0% → 110% → 100% (pequeño rebote), como pidió el diseñador
+    gsap.utils.toArray(v.querySelectorAll('.ns-tl .c')).forEach(function(c){
+      gsap.timeline({scrollTrigger:{trigger:c,start:'top 82%',once:true}})
+        .fromTo(c,{scale:0},{scale:1.1,duration:.4,ease:'power2.out'})
+        .to(c,{scale:1,duration:.25,ease:'power1.inOut'});
+    });
+    gsap.utils.toArray(v.querySelectorAll('.ns-tl .t, .ns-vis h2, .ns-vis .ns-w > p, .ns-filo .txt > *, .ns-anti .txt > *')).forEach(function(el){once(el,{opacity:0,y:24})});
+    gsap.utils.toArray(v.querySelectorAll('.ns-cons, .ns-feat')).forEach(function(g){once(g.children,{opacity:0,y:22,stagger:.08},g)});
+    // Flechas: llegan desde el lado que marcan (Filosofía desde la izquierda, Anticipación desde la derecha)
+    gsap.utils.toArray(v.querySelectorAll('.arrow')).forEach(function(a){
+      var d=a.classList.contains('from-left')?-1:1;
+      gsap.from(a,{x:d*Math.min(innerWidth*.45,420),opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:a,start:'top 80%',once:true}});
+    });
+  }
+
 '''+form_js+'''
   // Cada página interna es una vista del mismo archivo, elegida por el #hash
   var views=[].slice.call(document.querySelectorAll('.view'));
@@ -434,14 +599,16 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     views.forEach(function(x){x.hidden=x!==v});
     // Las páginas de servicios ya tienen su diseño final: sin aviso de preliminar y con el formulario de cotización
     var svc=v.classList.contains('svc');
-    document.getElementById('prelim').hidden=svc;
+    document.getElementById('prelim').hidden=svc||v.classList.contains('fin');
     document.getElementById('cotizar').hidden=!svc;
     document.title='Grupo Tecnobg · '+v.dataset.title;
     window.scrollTo(0,0);
     // Deja visible la pestaña activa en móvil
     var tab=v.querySelector('.sv-tabs a[aria-current]');if(tab)tab.parentNode.scrollLeft=tab.offsetLeft-16;
     if(ctx){ctx.revert();ctx=null}
+    nosVideo(id==='nosotros');
     if(anim&&svc&&window.ScrollTrigger){ctx=gsap.context(function(){svcAnim(v)},v);ScrollTrigger.refresh();return}
+    if(anim&&id==='nosotros'&&window.ScrollTrigger){ctx=gsap.context(function(){nosAnim(v)},v);ScrollTrigger.refresh();return}
     if(anim){
       gsap.from(v.querySelectorAll('.pg-copy > *'),{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out'});
       var ph=v.querySelector('.pg-photo');
