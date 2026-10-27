@@ -72,8 +72,7 @@ def campo(items):
     cs=''.join(f'<figure class="slide"><img src="{SV}{img}" alt="{alt}" width="506" height="900" loading="lazy"><figcaption><b>{lab}</b>'+(f'<span>{cap}</span>' if cap else '')+'</figcaption></figure>' for img,alt,lab,cap in items)
     return f'''
   <section class="sv-campo"><div class="wrap">
-    <div class="head"><div><span class="label">Nuestro trabajo</span><h2>Así se ve un día en campo</h2></div>
-    <div class="arrows"><button type="button" data-dir="-1" aria-label="Fotos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Fotos siguientes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+    <div class="head"><div><span class="label">Nuestro trabajo</span><h2>Así se ve un día en campo</h2></div></div>
     <div class="car-track" tabindex="0" aria-label="Fotos de trabajos en campo">{cs}</div>
     <div class="timer"><i></i></div><div class="dots" aria-label="Fotos"></div>
   </div></section>'''
@@ -87,14 +86,14 @@ LEAD_INC='El principal objetivo es corregir los errores o fallas que presenten l
 SV_REP=svhero('reparacion','<span class="label">Servicios</span>','Reparación de equipos de cocina industrial y refrigeración comercial en México (HORECA).','Atención especializada para resolver fallas con precisión y responsabilidad técnica.',
   photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+especialistas('reparacion')+incluye('El servicio de reparación incluye',LEAD_INC,
   ['Diagnóstico ágil','Reparación especializada','Sustitución y colocación de refacciones originales y compatibles con tus equipos'],['Pruebas de funcionamiento','Garantía de 30 días'],REP_CARDS)+campo([
-  ('campo-1.webp','Técnico de Tecnobg trabaja dentro de un equipo de cocina','Línea caliente','Reparación de horno de pizzas'),
-  ('campo-2.webp','Dos técnicos de Tecnobg revisan el cableado de un equipo','Línea fría','Reparación de horno de pizzas'),
-  ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','')])+COB
+  ('campo-1.webp','Técnico de Tecnobg trabaja dentro de un equipo de cocina','Línea caliente','Máquina tortilladora de harina Torcal'),
+  ('campo-2.webp','Dos técnicos de Tecnobg revisan el cableado de un equipo','Línea fría','Mesa fría'),
+  ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','Freidora')])+COB
 SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>','Mantenimiento preventivo para equipos de cocina industrial y refrigeración comercial en México (HORECA).','Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.',
   photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mantenimiento-preventivo')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
   ['Inspección técnica integral','Limpieza especializada y profunda','Ajustes y calibraciones necesarias'],['Revisión de parámetros','Reporte técnico detallado con recomendaciones'],
   REP_CARDS[:2]+[('i-limpieza','Limpieza interna<br>y externa')]+REP_CARDS[2:])+campo([
-  ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente',''),
+  ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','Freidora'),
   ('campo-4.webp','Técnico de Tecnobg ajusta la puerta de un refrigerador','Preventivo','Reparación de puerta de refrigerador'),
   ('campo-5.webp','Técnico de Tecnobg da servicio a una batidora industrial','Línea caliente','Reparación de horno de pizzas'),
   ('campo-6.webp','Técnico de Tecnobg revisa el motor de un horno de banda','Línea caliente','Reparación de horno de pizzas')])+COB
@@ -287,9 +286,6 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .sv-campo .wrap{padding-block:56px 72px}
 .sv-campo .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
 .sv-campo h2{font:700 clamp(30px,3.8vw,44px)/1.1 var(--cond);color:var(--navy)}
-.arrows{display:flex;gap:8px}
-.arrows button{width:44px;height:44px;border-radius:50%;border:1px solid #cfd6e8;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center}
-.arrows button:hover{background:#f0f3fa}
 /* Carrusel "Así se ve un día en campo": como el de la propuesta 02 (foto activa, autoplay con barra, puntos) */
 .car-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;padding:6px 16px 10px;margin-inline:-16px;scrollbar-width:none}
 .car-track::-webkit-scrollbar{display:none}
@@ -484,7 +480,7 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
   // Sin animaciones, los carruseles de equipos se desplazan de forma nativa
   else [].forEach.call(document.querySelectorAll('.htrack'),function(t){t.style.width='auto';t.style.overflowX='auto'});
 
-  // Carruseles "Así se ve un día en campo" (como la propuesta 02): una foto activa, autoplay con barra de progreso, puntos, flechas y deslizar
+  // Carruseles "Así se ve un día en campo" (como la propuesta 02): una foto activa, autoplay con barra de progreso, puntos, click en la tarjeta y deslizar
   [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){
     var track=c.querySelector('.car-track'),slides=[].slice.call(track.children),dots=c.querySelector('.dots'),timer=c.querySelector('.timer i');
     var cur=0,auto=null,DUR=4200,paused=false,visible=false;
@@ -493,7 +489,6 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     function go(i,user){i=(i+slides.length)%slides.length;var s=slides[i];track.scrollTo({left:s.offsetLeft-(track.clientWidth-s.clientWidth)/2,behavior:reduce?'auto':'smooth'});mark(i);if(user)restart()}
     function stop(){clearTimeout(auto);if(anim)gsap.killTweensOf(timer)}
     function restart(){stop();if(reduce||!visible)return;if(anim)gsap.fromTo(timer,{scaleX:0},{scaleX:1,duration:DUR/1000,ease:'none'});auto=setTimeout(function(){if(!paused)go(cur+1);restart()},DUR)}
-    [].forEach.call(c.querySelectorAll('.arrows button'),function(b){b.addEventListener('click',function(){go(cur+ +b.dataset.dir,true)})});
     slides.forEach(function(s,i){s.addEventListener('click',function(){if(i!==cur)go(i,true)})});
     var st;track.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var m=track.scrollLeft+track.clientWidth/2,best=0,bd=1e9;slides.forEach(function(s,j){var d=Math.abs(s.offsetLeft+s.clientWidth/2-m);if(d<bd){bd=d;best=j}});if(best!==cur)mark(best)},80)},{passive:true});
     track.addEventListener('pointerdown',function(){paused=true});track.addEventListener('pointerup',function(){paused=false;restart()});
