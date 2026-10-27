@@ -15,8 +15,8 @@ form_js=f[f.index('  // Formulario de cotización'):f.index('  var tabs=')]
 spec_css=style[style.index('/* Especialistas: carruseles horizontales */'):style.index('/* Proceso:')]
 spec=f[f.index('<section class="spec"'):f.index('<section class="proc"')].rstrip()
 def especialistas(pid):
-    # Sin los id de la portada: cada vista lleva los suyos para no repetirlos en el archivo
-    return '\n  '+spec.replace(' id="linea-fria"','').replace(' id="linea-caliente"','').replace('spec-t',pid+'-spec')
+    # Cada vista lleva sus propios id (el submenú de Servicios enlaza a #<página>-linea-fria y #<página>-linea-caliente)
+    return '\n  '+spec.replace('id="linea-','id="'+pid+'-linea-').replace('spec-t',pid+'-spec')
 
 def ctx(html):
     # En las páginas internas: anclas de la portada → final.html, páginas internas → mismo archivo, servicios → su página
@@ -24,7 +24,7 @@ def ctx(html):
     svc={'#s-mantenimiento':'#mantenimiento-preventivo','#s-reparacion':'#reparacion','#s-polizas':'#polizas','#s-emergencia':'#servicio-de-emergencia'}
     for k,v in svc.items(): html=html.replace('href="'+k+'"','href="'+v+'"')
     html=re.sub(r' data-chap="\d"','',html)
-    for a in ['inicio','servicios','linea-fria','linea-caliente','preguntas-frecuentes','contacto']:
+    for a in ['inicio','servicios','proceso','preguntas-frecuentes','contacto']:
         html=html.replace('href="#'+a+'"','href="final.html#'+a+'"')
     return html
 header=ctx(header).replace('href="final.html#inicio"','href="final.html"')
@@ -85,13 +85,13 @@ COB=f'''
 REP_CARDS=[('i-diagnostico','Diagnóstico<br>del equipo'),('i-refacciones','Cambio de<br>refacciones'),('i-electrico','Verificación de<br>sistema eléctrico'),('i-mecanica','Verificación<br>mecánica'),('i-funcionamiento','Puesta en<br>funcionamiento')]
 LEAD_INC='El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.'
 SV_REP=svhero('reparacion','<span class="label">Servicios</span>','Reparación de equipos especializado en el sector HORECA en México','Atención especializada para resolver fallas con precisión y responsabilidad técnica.',
-  photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+especialistas('rep')+incluye('El servicio de reparación incluye',LEAD_INC,
+  photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+especialistas('reparacion')+incluye('El servicio de reparación incluye',LEAD_INC,
   ['Diagnóstico ágil','Reparación especializada','Sustitución y colocación de refacciones originales y compatibles con tus equipos'],['Pruebas de funcionamiento','Garantía de 30 días'],REP_CARDS)+campo([
   ('campo-1.webp','Técnico de Tecnobg trabaja dentro de un equipo de cocina','Línea caliente','Reparación de horno de pizzas'),
   ('campo-2.webp','Dos técnicos de Tecnobg revisan el cableado de un equipo','Línea fría','Reparación de horno de pizzas'),
   ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','')])+COB
 SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>','Mantenimiento preventivo especializado en el sector HORECA en México','Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.',
-  photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mant')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
+  photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mantenimiento-preventivo')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
   ['Inspección técnica integral','Limpieza especializada y profunda','Ajustes y calibraciones necesarias'],['Revisión de parámetros','Reporte técnico detallado con recomendaciones'],
   REP_CARDS[:2]+[('i-limpieza','Limpieza interna<br>y externa')]+REP_CARDS[2:])+campo([
   ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente',''),
@@ -610,7 +610,9 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
   var ctx=null;
   function show(){
     // Las vistas usan id="v-…" para que el navegador no salte al #hash por su cuenta
-    var id=(location.hash||'#nosotros').slice(1),v=document.getElementById('v-'+id);
+    var id=(location.hash||'#nosotros').slice(1),v=document.getElementById('v-'+id),goTo=null;
+    // #<página>-linea-fria, #<página>-linea-caliente: abre la página y baja a ese carrusel
+    if(!v){goTo=document.getElementById(id);v=goTo&&goTo.closest('.view');if(v)id=v.id.slice(2)}
     if(!v||!v.classList.contains('view'))return;
     views.forEach(function(x){x.hidden=x!==v});
     // Las páginas de servicios ya tienen su diseño final: sin aviso de preliminar y con el formulario de cotización
@@ -623,7 +625,8 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     var tab=v.querySelector('.sv-tabs a[aria-current]');if(tab)tab.parentNode.scrollLeft=tab.offsetLeft-16;
     if(ctx){ctx.revert();ctx=null}
     nosVideo(id==='nosotros');
-    if(anim&&svc&&window.ScrollTrigger){ctx=gsap.context(function(){svcAnim(v)},v);ScrollTrigger.refresh();return}
+    if(anim&&svc&&window.ScrollTrigger){ctx=gsap.context(function(){svcAnim(v)},v);ScrollTrigger.refresh();if(goTo)jump(goTo);return}
+    if(goTo)jump(goTo);
     if(anim&&id==='nosotros'&&window.ScrollTrigger){ctx=gsap.context(function(){nosAnim(v)},v);ScrollTrigger.refresh();return}
     if(anim){
       gsap.from(v.querySelectorAll('.pg-copy > *'),{opacity:0,y:22,duration:.7,stagger:.08,ease:'power3.out'});
@@ -632,8 +635,16 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
       gsap.from(v.querySelectorAll('.pg-body > *'),{opacity:0,y:24,duration:.6,stagger:.07,delay:.3,ease:'power3.out'});
     }
   }
+  // Baja al carrusel: si está fijado, al inicio de su pin (ahí empieza a avanzar en horizontal)
+  function jump(el){
+    requestAnimationFrame(function(){
+      var st=window.ScrollTrigger&&ScrollTrigger.getAll().filter(function(t){return t.trigger===el&&t.pin})[0];
+      window.scrollTo(0,st?st.start+1:el.getBoundingClientRect().top+scrollY-document.getElementById('top').offsetHeight);
+    });
+  }
   addEventListener('hashchange',show);
-  if(!document.getElementById('v-'+(location.hash||'#nosotros').slice(1))){history.replaceState(null,'','#nosotros')}
+  var h0=(location.hash||'#nosotros').slice(1),e0=document.getElementById(h0);
+  if(!document.getElementById('v-'+h0)&&!(e0&&e0.closest('.view'))){history.replaceState(null,'','#nosotros')}
   show();
 })();
 </script>'''
