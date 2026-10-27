@@ -86,6 +86,25 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .pre .bar{width:140px;height:1px;background:var(--line)}
 .pre .bar i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
 
+/* Especialistas: carruseles horizontales */
+.spec{background:#fff;color:var(--night)}
+.spec-head{padding-top:72px}
+.hrow{position:relative;overflow:hidden;background:#fff;padding-block:28px 40px;min-height:calc(100svh - var(--hh));display:flex;flex-direction:column;justify-content:center}
+.hrow .ttl{display:flex;align-items:center;gap:14px}
+.hrow h3{font:700 clamp(38px,8vw,56px)/1 var(--cond);color:var(--night)}
+.hrow .ttl img{height:clamp(44px,7vw,62px);width:auto}
+.caliente .ttl img{height:clamp(64px,10vw,90px);margin-block:-10px}
+@media (min-width:1000px){.hrow .ttl{width:100%}}
+.htrack{display:flex;gap:16px;width:max-content;padding-inline:16px;margin-top:22px}
+.eq{flex:0 0 clamp(250px,72vw,330px);display:grid;gap:14px;justify-items:center;text-align:center;padding:18px 16px 22px;border-radius:18px;border:1px solid #e6e9f2;background:#fff}
+/* La foto llena un cuadro fijo con object-fit: así no se sale de la tarjeta aunque el navegador (Safari en iPhone) no resuelva el % de alto */
+.eq figure{position:relative;margin:0;width:100%;aspect-ratio:1/1;overflow:hidden}
+.eq img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.eq b{font:400 15px/1.35 var(--tech)}
+.fria .eq b{color:var(--fria)}
+.caliente .eq b{color:var(--caliente)}
+@media (min-width:1000px){.htrack{padding-left:calc(max(16px,(100vw - 1240px)/2 + 16px))}.eq{flex-basis:340px}}
+
 /* Cotización */
 .quote{background:var(--light);color:var(--ink-d);padding-block:80px 100px}
 .quote .grid{display:grid;gap:40px}
@@ -489,6 +508,35 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
     <div class="pg-copy"><span class="label">Servicios</span><h1>Mantenimiento preventivo especializado en el sector HORECA en México</h1><p class="lead">Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.</p></div>
     <figure class="pg-photo"><img src="img/final/servicios/mantenimiento-hero.webp" alt="Técnico de Tecnobg da mantenimiento a una vitrina refrigerada" width="619" height="1100" style="object-position:50% 45%"></figure>
   </div></header>
+  <section class="spec" aria-labelledby="mant-spec">
+  <div class="wrap spec-head"><h2 class="label" id="mant-spec">Especialistas en:</h2></div>
+  <div class="hrow fria">
+    <div class="wrap ttl"><h3>Línea Fría</h3><img src="img/final/iconos/hielo.webp" alt="" width="208" height="203"></div>
+    <div class="htrack">
+      <div class="eq"><figure><img src="img/final/equipos/camaras.webp" alt="" loading="lazy" width="616" height="440"></figure><b>Cámaras de congelación y conservación</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/maquina-hielo.webp" alt="" loading="lazy" width="399" height="462"></figure><b>Máquina de hielo</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/vitrinas.webp" alt="" loading="lazy" width="484" height="436"></figure><b>Vitrinas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/refrigeradores.webp" alt="" loading="lazy" width="446" height="446"></figure><b>Refrigeradores</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="494" height="367"></figure><b>Mesas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/congeladores.webp" alt="" loading="lazy" width="408" height="551"></figure><b>Congeladores</b></div>
+    </div>
+  </div>
+  <div class="hrow caliente">
+    <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="259" height="327"></div>
+    <div class="htrack">
+      <div class="eq"><figure><img src="img/final/equipos/freidora.webp" alt="" loading="lazy" width="331" height="464"></figure><b>Freidora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-conveccion.webp" alt="" loading="lazy" width="343" height="481"></figure><b>Horno de convección</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-pizza.webp" alt="" loading="lazy" width="639" height="371"></figure><b>Horno de pizza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/lavaloza.webp" alt="" loading="lazy" width="522" height="522"></figure><b>Lavaloza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/amasadora.webp" alt="" loading="lazy" width="278" height="442"></figure><b>Amasadora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/estufon.webp" alt="" loading="lazy" width="470" height="440"></figure><b>Estufón</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/bano-maria.webp" alt="" loading="lazy" width="503" height="461"></figure><b>Baño María</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/plancha-caliente.webp" alt="" loading="lazy" width="595" height="290"></figure><b>Plancha caliente</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/trampa-de-grasa.webp" alt="" loading="lazy" width="357" height="365"></figure><b>Trampa de grasa</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/salamandra.webp" alt="" loading="lazy" width="437" height="437"></figure><b>Salamandra</b></div>
+    </div>
+  </div>
+</section>
   <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1920" height="900" loading="lazy"><div class="wrap">
     <span class="label">¿Qué incluye?</span><h2>El servicio de mantenimiento preventivo incluye</h2><p class="lead">El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.</p>
     <div class="cols"><ul><li>Inspección técnica integral</li><li>Limpieza especializada y profunda</li><li>Ajustes y calibraciones necesarias</li></ul><ul><li>Revisión de parámetros</li><li>Reporte técnico detallado con recomendaciones</li></ul></div>
@@ -511,6 +559,35 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
     <div class="pg-copy"><span class="label">Servicios</span><h1>Reparación de equipos especializado en el sector HORECA en México</h1><p class="lead">Atención especializada para resolver fallas con precisión y responsabilidad técnica.</p></div>
     <figure class="pg-photo"><img src="img/final/servicios/reparacion-hero.webp" alt="Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra" width="825" height="1100" style="object-position:50% 40%"></figure>
   </div></header>
+  <section class="spec" aria-labelledby="rep-spec">
+  <div class="wrap spec-head"><h2 class="label" id="rep-spec">Especialistas en:</h2></div>
+  <div class="hrow fria">
+    <div class="wrap ttl"><h3>Línea Fría</h3><img src="img/final/iconos/hielo.webp" alt="" width="208" height="203"></div>
+    <div class="htrack">
+      <div class="eq"><figure><img src="img/final/equipos/camaras.webp" alt="" loading="lazy" width="616" height="440"></figure><b>Cámaras de congelación y conservación</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/maquina-hielo.webp" alt="" loading="lazy" width="399" height="462"></figure><b>Máquina de hielo</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/vitrinas.webp" alt="" loading="lazy" width="484" height="436"></figure><b>Vitrinas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/refrigeradores.webp" alt="" loading="lazy" width="446" height="446"></figure><b>Refrigeradores</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="494" height="367"></figure><b>Mesas frías</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/congeladores.webp" alt="" loading="lazy" width="408" height="551"></figure><b>Congeladores</b></div>
+    </div>
+  </div>
+  <div class="hrow caliente">
+    <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="259" height="327"></div>
+    <div class="htrack">
+      <div class="eq"><figure><img src="img/final/equipos/freidora.webp" alt="" loading="lazy" width="331" height="464"></figure><b>Freidora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-conveccion.webp" alt="" loading="lazy" width="343" height="481"></figure><b>Horno de convección</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/horno-pizza.webp" alt="" loading="lazy" width="639" height="371"></figure><b>Horno de pizza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/lavaloza.webp" alt="" loading="lazy" width="522" height="522"></figure><b>Lavaloza</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/amasadora.webp" alt="" loading="lazy" width="278" height="442"></figure><b>Amasadora</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/estufon.webp" alt="" loading="lazy" width="470" height="440"></figure><b>Estufón</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/bano-maria.webp" alt="" loading="lazy" width="503" height="461"></figure><b>Baño María</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/plancha-caliente.webp" alt="" loading="lazy" width="595" height="290"></figure><b>Plancha caliente</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/trampa-de-grasa.webp" alt="" loading="lazy" width="357" height="365"></figure><b>Trampa de grasa</b></div>
+      <div class="eq"><figure><img src="img/final/equipos/salamandra.webp" alt="" loading="lazy" width="437" height="437"></figure><b>Salamandra</b></div>
+    </div>
+  </div>
+</section>
   <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1920" height="900" loading="lazy"><div class="wrap">
     <span class="label">¿Qué incluye?</span><h2>El servicio de reparación incluye</h2><p class="lead">El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.</p>
     <div class="cols"><ul><li>Diagnóstico ágil</li><li>Reparación especializada</li><li>Sustitución y colocación de refacciones originales y compatibles con tus equipos</li></ul><ul><li>Pruebas de funcionamiento</li><li>Garantía de 30 días</li></ul></div>
@@ -655,6 +732,8 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var anim=!!window.gsap&&!reduce;
   if(anim&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+  // Sin animaciones, los carruseles de equipos se desplazan de forma nativa
+  else [].forEach.call(document.querySelectorAll('.htrack'),function(t){t.style.width='auto';t.style.overflowX='auto'});
 
   // Carruseles "Así se ve un día en campo" (como la propuesta 02): una foto activa, autoplay con barra de progreso, puntos, flechas y deslizar
   [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){
@@ -706,6 +785,14 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       gsap.utils.toArray(sn.children).forEach(function(li){gsap.from(li,{opacity:0,x:20,duration:.6,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 82%',once:true}})})}
     var city=v.querySelector('.em-cdmx .city');
     if(city)once(city,{opacity:0,yPercent:30,duration:1.2},v.querySelector('.em-cdmx'));
+    // Línea fría y línea caliente: igual que en la portada, la fila se fija y avanza en horizontal con el scroll
+    var hd=document.getElementById('top');
+    gsap.utils.toArray(v.querySelectorAll('.hrow')).forEach(function(s){
+      var track=s.querySelector('.htrack');
+      function d(){return Math.max(0,track.scrollWidth-window.innerWidth)}
+      gsap.to(track,{x:function(){return -d()},ease:'none',scrollTrigger:{trigger:s,start:function(){return 'top '+hd.offsetHeight},end:function(){return '+='+d()},pin:true,scrub:.6,invalidateOnRefresh:true}});
+      gsap.from(s.querySelectorAll('.ttl > *'),{opacity:0,x:-30,duration:.7,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 80%',once:true}});
+    });
     gsap.utils.toArray(v.querySelectorAll('.sv-campo')).forEach(function(c){
       gsap.fromTo(c.querySelector('.car-track'),{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.1,ease:'power3.inOut',clearProps:'clipPath',scrollTrigger:{trigger:c,start:'top 85%',once:true}});
       once(c.querySelectorAll('.slide figcaption > *'),{opacity:0,y:12,duration:.5,stagger:.04,delay:.5},c);

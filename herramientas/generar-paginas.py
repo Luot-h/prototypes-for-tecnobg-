@@ -11,6 +11,12 @@ footer=f[f.index('<footer>'):f.index('<script src=')]
 quote_css=style[style.index('/* Cotización */'):style.index('/* Pie de página */')]
 quote=f[f.index('<section class="quote" id="contacto">'):f.index('</main>')].replace('id="contacto"','id="cotizar" hidden')
 form_js=f[f.index('  // Formulario de cotización'):f.index('  var tabs=')]
+# Carruseles de equipos (línea fría y caliente) de la portada, repetidos en Mantenimiento preventivo y Reparación
+spec_css=style[style.index('/* Especialistas: carruseles horizontales */'):style.index('/* Proceso:')]
+spec=f[f.index('<section class="spec"'):f.index('<section class="proc"')].rstrip()
+def especialistas(pid):
+    # Sin los id de la portada: cada vista lleva los suyos para no repetirlos en el archivo
+    return '\n  '+spec.replace(' id="linea-fria"','').replace(' id="linea-caliente"','').replace('spec-t',pid+'-spec')
 
 def ctx(html):
     # En las páginas internas: anclas de la portada → final.html, páginas internas → mismo archivo, servicios → su página
@@ -79,13 +85,13 @@ COB=f'''
 REP_CARDS=[('i-diagnostico','Diagnóstico<br>del equipo'),('i-refacciones','Cambio de<br>refacciones'),('i-electrico','Verificación de<br>sistema eléctrico'),('i-mecanica','Verificación<br>mecánica'),('i-funcionamiento','Puesta en<br>funcionamiento')]
 LEAD_INC='El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.'
 SV_REP=svhero('reparacion','<span class="label">Servicios</span>','Reparación de equipos especializado en el sector HORECA en México','Atención especializada para resolver fallas con precisión y responsabilidad técnica.',
-  photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+incluye('El servicio de reparación incluye',LEAD_INC,
+  photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+especialistas('rep')+incluye('El servicio de reparación incluye',LEAD_INC,
   ['Diagnóstico ágil','Reparación especializada','Sustitución y colocación de refacciones originales y compatibles con tus equipos'],['Pruebas de funcionamiento','Garantía de 30 días'],REP_CARDS)+campo([
   ('campo-1.webp','Técnico de Tecnobg trabaja dentro de un equipo de cocina','Línea caliente','Reparación de horno de pizzas'),
   ('campo-2.webp','Dos técnicos de Tecnobg revisan el cableado de un equipo','Línea fría','Reparación de horno de pizzas'),
   ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','')])+COB
 SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>','Mantenimiento preventivo especializado en el sector HORECA en México','Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.',
-  photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
+  photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mant')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
   ['Inspección técnica integral','Limpieza especializada y profunda','Ajustes y calibraciones necesarias'],['Revisión de parámetros','Reporte técnico detallado con recomendaciones'],
   REP_CARDS[:2]+[('i-limpieza','Limpieza interna<br>y externa')]+REP_CARDS[2:])+campo([
   ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente',''),
@@ -476,6 +482,8 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var anim=!!window.gsap&&!reduce;
   if(anim&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+  // Sin animaciones, los carruseles de equipos se desplazan de forma nativa
+  else [].forEach.call(document.querySelectorAll('.htrack'),function(t){t.style.width='auto';t.style.overflowX='auto'});
 
   // Carruseles "Así se ve un día en campo" (como la propuesta 02): una foto activa, autoplay con barra de progreso, puntos, flechas y deslizar
   [].forEach.call(document.querySelectorAll('.sv-campo'),function(c){
@@ -527,6 +535,14 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
       gsap.utils.toArray(sn.children).forEach(function(li){gsap.from(li,{opacity:0,x:20,duration:.6,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 82%',once:true}})})}
     var city=v.querySelector('.em-cdmx .city');
     if(city)once(city,{opacity:0,yPercent:30,duration:1.2},v.querySelector('.em-cdmx'));
+    // Línea fría y línea caliente: igual que en la portada, la fila se fija y avanza en horizontal con el scroll
+    var hd=document.getElementById('top');
+    gsap.utils.toArray(v.querySelectorAll('.hrow')).forEach(function(s){
+      var track=s.querySelector('.htrack');
+      function d(){return Math.max(0,track.scrollWidth-window.innerWidth)}
+      gsap.to(track,{x:function(){return -d()},ease:'none',scrollTrigger:{trigger:s,start:function(){return 'top '+hd.offsetHeight},end:function(){return '+='+d()},pin:true,scrub:.6,invalidateOnRefresh:true}});
+      gsap.from(s.querySelectorAll('.ttl > *'),{opacity:0,x:-30,duration:.7,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 80%',once:true}});
+    });
     gsap.utils.toArray(v.querySelectorAll('.sv-campo')).forEach(function(c){
       gsap.fromTo(c.querySelector('.car-track'),{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.1,ease:'power3.inOut',clearProps:'clipPath',scrollTrigger:{trigger:c,start:'top 85%',once:true}});
       once(c.querySelectorAll('.slide figcaption > *'),{opacity:0,y:12,duration:.5,stagger:.04,delay:.5},c);
@@ -634,7 +650,7 @@ html=f'''<!doctype html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Michroma&family=Hind:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
 <style>
 /* Generado por herramientas/generar-paginas.py con el menú y el pie de final.html: edita ese script y vuelve a correrlo. */
-{base_css}{quote_css}{tail_css}{page_css}</style>
+{base_css}{spec_css}{quote_css}{tail_css}{page_css}</style>
 </head>
 <body>
 
