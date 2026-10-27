@@ -93,10 +93,10 @@ SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>'
   photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mantenimiento-preventivo')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
   ['Inspección técnica integral','Limpieza especializada y profunda','Ajustes y calibraciones necesarias'],['Revisión de parámetros','Reporte técnico detallado con recomendaciones'],
   REP_CARDS[:2]+[('i-limpieza','Limpieza interna<br>y externa')]+REP_CARDS[2:])+campo([
-  ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','Freidora'),
-  ('campo-4.webp','Técnico de Tecnobg ajusta la puerta de un refrigerador','Preventivo','Reparación de puerta de refrigerador'),
-  ('campo-5.webp','Técnico de Tecnobg da servicio a una batidora industrial','Línea caliente','Reparación de horno de pizzas'),
-  ('campo-6.webp','Técnico de Tecnobg revisa el motor de un horno de banda','Línea caliente','Reparación de horno de pizzas')])+COB
+  ('campo-3.webp','Técnico de Tecnobg da mantenimiento a una freidora','Línea caliente','Mantenimiento preventivo a freidora'),
+  ('campo-4.webp','Técnico de Tecnobg carga gas refrigerante en un equipo de refrigeración','Línea fría','Carga de gas refrigerante'),
+  ('campo-5.webp','Técnico de Tecnobg engrasa el cabezal del motor de una amasadora','Línea caliente','Engrase de cabezal de motor de amasadora'),
+  ('campo-6.webp','Técnico de Tecnobg da mantenimiento al motorreductor de un horno de pizza','Línea caliente','Mantenimiento a motorreductor en horno de pizza')])+COB
 PO_CARDS=[('Mantenimiento preventivo programado','Servicios programados para evitar fallas y asegurar el buen funcionamiento.'),('Atención correctiva prioritaria','Servicio preferente para resolver incidencias en menos de 24hrs hábiles.'),('Tarifas preferenciales','Precios especiales en mano de obra y refacciones.'),('Monitoreo continuo','Seguimiento constante del estado de tus equipos para anticipar problemas.')]
 PO_BEN=['Ahorro en reparaciones de hasta 30% - 40%','Operación continua y sin interrupciones','Diminuye gastos inesperados','Reducción de tiempos muertos','Mayor vida útil de tus equipos']
 pcards=''.join(f'<li><span class="disc"><img src="{SV}poliza-{i+1}.webp" alt="" width="240" height="240" loading="lazy"></span><b>{t}</b><span>{d}</span></li>' for i,(t,d) in enumerate(PO_CARDS))
