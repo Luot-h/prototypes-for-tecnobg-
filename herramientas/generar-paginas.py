@@ -84,13 +84,13 @@ COB=f'''
   </div></section>'''
 REP_CARDS=[('i-diagnostico','Diagnóstico<br>del equipo'),('i-refacciones','Cambio de<br>refacciones'),('i-electrico','Verificación de<br>sistema eléctrico'),('i-mecanica','Verificación<br>mecánica'),('i-funcionamiento','Puesta en<br>funcionamiento')]
 LEAD_INC='El principal objetivo es corregir los errores o fallas que presenten los equipos con el propósito de que vuelvan a funcionar de la forma deseada.'
-SV_REP=svhero('reparacion','<span class="label">Servicios</span>','Reparación de equipos especializado en el sector HORECA en México','Atención especializada para resolver fallas con precisión y responsabilidad técnica.',
+SV_REP=svhero('reparacion','<span class="label">Servicios</span>','Reparación de equipos de cocina industrial y refrigeración comercial en México (HORECA).','Atención especializada para resolver fallas con precisión y responsabilidad técnica.',
   photo('reparacion-hero.webp','Técnico de Tecnobg revisa la parte eléctrica de un refrigerador bajo barra',825,1100,'50% 40%'))+especialistas('reparacion')+incluye('El servicio de reparación incluye',LEAD_INC,
   ['Diagnóstico ágil','Reparación especializada','Sustitución y colocación de refacciones originales y compatibles con tus equipos'],['Pruebas de funcionamiento','Garantía de 30 días'],REP_CARDS)+campo([
   ('campo-1.webp','Técnico de Tecnobg trabaja dentro de un equipo de cocina','Línea caliente','Reparación de horno de pizzas'),
   ('campo-2.webp','Dos técnicos de Tecnobg revisan el cableado de un equipo','Línea fría','Reparación de horno de pizzas'),
   ('campo-3.webp','Técnico de Tecnobg repara un equipo de cocina industrial','Línea caliente','')])+COB
-SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>','Mantenimiento preventivo especializado en el sector HORECA en México','Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.',
+SV_MANT=svhero('mantenimiento-preventivo','<span class="label">Servicios</span>','Mantenimiento preventivo para equipos de cocina industrial y refrigeración comercial en México (HORECA).','Evita y disminuye las consecuencias de las fallas del equipo, logrando prevenir los incidentes antes de que estos ocurran.',
   photo('mantenimiento-hero.webp','Técnico de Tecnobg da mantenimiento a una vitrina refrigerada',619,1100,'50% 45%'))+especialistas('mantenimiento-preventivo')+incluye('El servicio de mantenimiento preventivo incluye',LEAD_INC,
   ['Inspección técnica integral','Limpieza especializada y profunda','Ajustes y calibraciones necesarias'],['Revisión de parámetros','Reporte técnico detallado con recomendaciones'],
   REP_CARDS[:2]+[('i-limpieza','Limpieza interna<br>y externa')]+REP_CARDS[2:])+campo([
@@ -295,7 +295,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .car-track::-webkit-scrollbar{display:none}
 .slide{position:relative;margin:0;flex:0 0 78%;max-width:360px;scroll-snap-align:center;aspect-ratio:330/450;border-radius:20px;overflow:hidden;background:#dfe4ef;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
 @media (min-width:900px){.slide{flex-basis:30%}}
-.slide:not(.active){transform:scale(.92);opacity:.55}
+.slide:not(.active){transform:scale(.92);opacity:.55;cursor:pointer}
 .slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 4s ease-out}
 .slide.active img{transform:scale(1.12)}
 .slide figcaption{position:absolute;inset:auto 0 0;padding:60px 14px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));color:#fff;display:grid;gap:2px}
@@ -355,9 +355,8 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 .snake li:nth-child(5){left:20%;top:92.1%}
 .po-por{display:grid;background:#f5f6fa}
 @media (min-width:900px){.po-por{grid-template-columns:1.6fr 1fr}}
-.po-por .txt{display:grid;gap:16px;align-content:center;padding:48px 28px;background:linear-gradient(180deg,#2db8ee,#148bcc);color:#fff;font-size:18px}
+.po-por .txt{display:grid;gap:16px;align-content:center;text-align:center;padding:48px 28px;background:linear-gradient(180deg,#2db8ee,#148bcc);color:#fff;font-size:18px}
 .po-por h2{font:700 clamp(30px,3.4vw,42px)/1.15 var(--cond);text-align:center}
-.po-por p{text-align:justify}
 .po-por ul{margin:10px 0 0;padding:0;list-style:none;text-align:center;display:grid;gap:2px}
 .po-por li::before{content:"• "}
 /* Emergencia */
@@ -495,6 +494,7 @@ script='''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.m
     function stop(){clearTimeout(auto);if(anim)gsap.killTweensOf(timer)}
     function restart(){stop();if(reduce||!visible)return;if(anim)gsap.fromTo(timer,{scaleX:0},{scaleX:1,duration:DUR/1000,ease:'none'});auto=setTimeout(function(){if(!paused)go(cur+1);restart()},DUR)}
     [].forEach.call(c.querySelectorAll('.arrows button'),function(b){b.addEventListener('click',function(){go(cur+ +b.dataset.dir,true)})});
+    slides.forEach(function(s,i){s.addEventListener('click',function(){if(i!==cur)go(i,true)})});
     var st;track.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var m=track.scrollLeft+track.clientWidth/2,best=0,bd=1e9;slides.forEach(function(s,j){var d=Math.abs(s.offsetLeft+s.clientWidth/2-m);if(d<bd){bd=d;best=j}});if(best!==cur)mark(best)},80)},{passive:true});
     track.addEventListener('pointerdown',function(){paused=true});track.addEventListener('pointerup',function(){paused=false;restart()});
     mark(0);
