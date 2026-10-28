@@ -104,6 +104,20 @@ header.top .wrap{display:flex;align-items:center;gap:20px;min-height:var(--hh)}
 .fria .eq b{color:var(--fria)}
 .caliente .eq b{color:var(--caliente)}
 @media (min-width:1000px){.htrack{padding-left:calc(max(16px,(100vw - 1240px)/2 + 16px))}.eq{flex-basis:340px}}
+.eq-more{margin-top:26px;display:flex}
+.eq-more .btn{cursor:pointer;white-space:normal;text-align:center;line-height:1.3;padding-block:10px}
+.eq-dlg{width:min(94vw,820px);padding:0;border:0;border-radius:16px;background:#fff;color:var(--night);overflow:visible}
+.eq-dlg::backdrop{background:rgba(10,12,30,.85)}
+.eq-dlg .x{position:absolute;right:0;top:-52px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.eq-list{max-height:min(76svh,680px);overflow:auto;padding:30px clamp(22px,5vw,44px) 34px}
+.eq-list h4{margin:0;font:700 clamp(28px,6vw,40px)/1 var(--cond)}
+.fria .eq-list h4{color:var(--fria)}
+.caliente .eq-list h4{color:var(--caliente)}
+.eq-list p{margin:10px 0 18px;font:400 16px/1.5 var(--body)}
+.eq-list ul{list-style:none;margin:0;padding:0;columns:2 180px;column-gap:28px}
+.eq-list li{break-inside:avoid;position:relative;padding:7px 0 7px 18px;border-bottom:1px solid #e6e9f2;font:400 15px/1.35 var(--tech)}
+.eq-list li::before{content:"";position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;background:var(--g-blue)}
+.caliente .eq-list li::before{background:var(--g-warm)}
 
 /* Cotización */
 .quote{background:var(--light);color:var(--ink-d);padding-block:80px 100px}
@@ -518,6 +532,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="494" height="367"></figure><b>Mesas frías</b></div>
       <div class="eq"><figure><img src="img/final/equipos/congeladores.webp" alt="" loading="lazy" width="408" height="551"></figure><b>Congeladores</b></div>
     </div>
+    <div class="wrap eq-more"><button type="button" class="btn btn-blue" aria-haspopup="dialog">Ver todos los equipos de línea fría</button></div>
+    <dialog class="eq-dlg" aria-label="Equipos de línea fría que atendemos"><button type="button" class="x" aria-label="Cerrar listado"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="eq-list"><h4>Equipos de línea fría que atendemos</h4><p>Damos mantenimiento preventivo y reparación a:</p>
+      <ul><li>Abatidor</li><li>Cámara de congelación</li><li>Cámara de refrigeración</li><li>Congelador</li><li>Cubicadora de hielo</li><li>Enfriador de agua</li><li>Fábrica de hielo</li><li>Frigobar</li><li>Máquina de helado</li><li>Mesa fría</li><li>Refrigerador</li><li>Vitrina</li></ul></div></dialog>
   </div>
   <div class="hrow caliente" id="mantenimiento-preventivo-linea-caliente">
     <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="259" height="327"></div>
@@ -533,6 +551,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <div class="eq"><figure><img src="img/final/equipos/trampa-de-grasa.webp" alt="" loading="lazy" width="357" height="365"></figure><b>Trampa de grasa</b></div>
       <div class="eq"><figure><img src="img/final/equipos/salamandra.webp" alt="" loading="lazy" width="437" height="437"></figure><b>Salamandra</b></div>
     </div>
+    <div class="wrap eq-more"><button type="button" class="btn btn-blue" aria-haspopup="dialog">Ver todos los equipos de línea caliente</button></div>
+    <dialog class="eq-dlg" aria-label="Equipos de línea caliente que atendemos"><button type="button" class="x" aria-label="Cerrar listado"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="eq-list"><h4>Equipos de línea caliente que atendemos</h4><p>Damos mantenimiento preventivo y reparación a:</p>
+      <ul><li>Amasadora</li><li>Arrocera</li><li>Baño María</li><li>Batidora</li><li>Cafetera</li><li>Cámara de fermentación</li><li>Chocolatera</li><li>Empacadora de alto vacío</li><li>Estufón exprimidor</li><li>Frapera</li><li>Freidora</li><li>Grill</li><li>Horno</li><li>Horno microondas</li><li>Horno de pizzas</li><li>Horno Rational</li><li>Horno TurboChef</li><li>Laminadora</li><li>Lavaloza</li><li>Licuadora</li><li>Máquina tortilladora</li><li>Máquina tortilladora de harina</li><li>Marmita</li><li>Molino de café</li><li>Paninera</li><li>Parrilla eléctrica</li><li>Plancha</li><li>Robot Coupe</li><li>Salamandra</li><li>Vitrina caliente</li></ul></div></dialog>
   </div>
 </section>
   <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1920" height="900" loading="lazy"><div class="wrap">
@@ -568,6 +590,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <div class="eq"><figure><img src="img/final/equipos/mesas-frias.webp" alt="" loading="lazy" width="494" height="367"></figure><b>Mesas frías</b></div>
       <div class="eq"><figure><img src="img/final/equipos/congeladores.webp" alt="" loading="lazy" width="408" height="551"></figure><b>Congeladores</b></div>
     </div>
+    <div class="wrap eq-more"><button type="button" class="btn btn-blue" aria-haspopup="dialog">Ver todos los equipos de línea fría</button></div>
+    <dialog class="eq-dlg" aria-label="Equipos de línea fría que atendemos"><button type="button" class="x" aria-label="Cerrar listado"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="eq-list"><h4>Equipos de línea fría que atendemos</h4><p>Damos mantenimiento preventivo y reparación a:</p>
+      <ul><li>Abatidor</li><li>Cámara de congelación</li><li>Cámara de refrigeración</li><li>Congelador</li><li>Cubicadora de hielo</li><li>Enfriador de agua</li><li>Fábrica de hielo</li><li>Frigobar</li><li>Máquina de helado</li><li>Mesa fría</li><li>Refrigerador</li><li>Vitrina</li></ul></div></dialog>
   </div>
   <div class="hrow caliente" id="reparacion-linea-caliente">
     <div class="wrap ttl"><h3>Línea Caliente</h3><img src="img/final/iconos/fuego.webp" alt="" width="259" height="327"></div>
@@ -583,6 +609,10 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <div class="eq"><figure><img src="img/final/equipos/trampa-de-grasa.webp" alt="" loading="lazy" width="357" height="365"></figure><b>Trampa de grasa</b></div>
       <div class="eq"><figure><img src="img/final/equipos/salamandra.webp" alt="" loading="lazy" width="437" height="437"></figure><b>Salamandra</b></div>
     </div>
+    <div class="wrap eq-more"><button type="button" class="btn btn-blue" aria-haspopup="dialog">Ver todos los equipos de línea caliente</button></div>
+    <dialog class="eq-dlg" aria-label="Equipos de línea caliente que atendemos"><button type="button" class="x" aria-label="Cerrar listado"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="eq-list"><h4>Equipos de línea caliente que atendemos</h4><p>Damos mantenimiento preventivo y reparación a:</p>
+      <ul><li>Amasadora</li><li>Arrocera</li><li>Baño María</li><li>Batidora</li><li>Cafetera</li><li>Cámara de fermentación</li><li>Chocolatera</li><li>Empacadora de alto vacío</li><li>Estufón exprimidor</li><li>Frapera</li><li>Freidora</li><li>Grill</li><li>Horno</li><li>Horno microondas</li><li>Horno de pizzas</li><li>Horno Rational</li><li>Horno TurboChef</li><li>Laminadora</li><li>Lavaloza</li><li>Licuadora</li><li>Máquina tortilladora</li><li>Máquina tortilladora de harina</li><li>Marmita</li><li>Molino de café</li><li>Paninera</li><li>Parrilla eléctrica</li><li>Plancha</li><li>Robot Coupe</li><li>Salamandra</li><li>Vitrina caliente</li></ul></div></dialog>
   </div>
 </section>
   <section class="sv-inc"><img class="bg" src="img/final/servicios/incluye-fondo.webp" alt="" width="1920" height="900" loading="lazy"><div class="wrap">
@@ -868,6 +898,14 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       })
       .catch(function(){say('No pudimos enviar tu solicitud. Escríbenos por WhatsApp al 56 4603 7573.',false)})
       .finally(function(){fbtn.disabled=false;fbtn.textContent='Enviar'});
+  });
+
+  // Listado completo de equipos: el texto ya está en el HTML (SEO); el botón solo abre su ventana
+  [].forEach.call(document.querySelectorAll('.eq-more'),function(m){
+    var dlg=m.nextElementSibling;
+    m.querySelector('button').addEventListener('click',function(){dlg.showModal()});
+    dlg.querySelector('.x').addEventListener('click',function(){dlg.close()});
+    dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
   });
 
 
