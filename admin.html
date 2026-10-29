@@ -468,7 +468,7 @@ Herramienta y uniforme.</textarea></div>
     <!-- Postulaciones -->
     <main class="page view" id="v-postulaciones" data-crumb="Bolsa de trabajo / Postulaciones" data-perm="postulaciones.ver" hidden>
       <div class="ph"><div><h1>Postulaciones</h1><p>Da seguimiento a cada candidato desde que se postula hasta su contratación.</p></div>
-        <div class="acts"><select class="sel" id="jobFilter" aria-label="Vacante"><option value="">Todas las vacantes</option></select><button class="btn sec" type="button" data-perm="postulaciones.exportar" data-toast="Se descargó postulaciones.csv"><svg class="ico"><use href="#i-dl"/></svg>Exportar</button></div></div>
+        <div class="acts"><select class="sel" id="jobFilter" aria-label="Vacante"><option value="">Todas las vacantes</option></select></div></div>
       <div class="kanban" id="kanban"></div>
     </main>
 
@@ -521,9 +521,7 @@ Herramienta y uniforme.</textarea></div>
     <section><h3>Datos de contacto</h3><dl class="kv"><dt>Correo</dt><dd id="dMail">carlos.mendez@correo.com</dd><dt>Teléfono</dt><dd>55 1234 5678</dd><dt>Ciudad</dt><dd>Iztapalapa, CDMX</dd><dt>Experiencia</dt><dd>3 a 5 años</dd><dt>Recibida</dt><dd id="dDate">20 oct 2026, 18:42</dd></dl></section>
     <section><h3>CV</h3><div class="file"><span class="fi">PDF</span><div class="grow"><b style="font:600 14px var(--head)">CV-Carlos-Mendez.pdf</b><br><small style="color:var(--muted)">412 KB</small></div><button class="btn sec sm" type="button" data-perm="postulaciones.descargar-cv" data-toast="Descargando CV"><svg class="ico"><use href="#i-dl"/></svg>Descargar</button></div></section>
     <section><h3>Mensaje del candidato</h3><p style="font-size:15px">Tengo experiencia en mantenimiento de cámaras de refrigeración y mesas frías para cadenas de restaurantes. Disponibilidad inmediata.</p></section>
-    <section><h3>Notas internas</h3><textarea class="inp" rows="3" placeholder="Solo las ve el equipo de Tecnobg"></textarea><button class="btn sec sm" type="button" style="justify-self:start" data-toast="Nota guardada">Agregar nota</button>
-      <ul class="timeline"><li><div><b>Mariana Díaz</b>: buena experiencia, agendar entrevista el jueves.<small>Hoy, 10:15</small></div></li><li><div>Estado cambiado de Nueva a En revisión<small>Ayer, 09:02 · Mariana Díaz</small></div></li><li><div>Postulación recibida desde el sitio<small>20 oct 2026, 18:42</small></div></li></ul>
-    </section>
+    <section><h3>Comentarios</h3><textarea class="inp" id="dComments" rows="3" placeholder="Solo los ve el equipo de Tecnobg">Buena experiencia, agendar entrevista el jueves.</textarea><button class="btn sec sm" type="button" style="justify-self:start" data-perm="postulaciones.cambiar-estado" data-toast="Comentarios guardados">Guardar comentarios</button></section>
   </div>
 </div>
 
@@ -573,7 +571,7 @@ Herramienta y uniforme.</textarea></div>
   var MODS=[
     ['blog','Blog',['ver','crear','editar','publicar','eliminar'],[]],
     ['vacantes','Vacantes',['ver','crear','editar','publicar','eliminar'],[]],
-    ['postulaciones','Postulaciones',['ver','eliminar'],['cambiar-estado','descargar-cv','exportar']],
+    ['postulaciones','Postulaciones',['ver','eliminar'],['cambiar-estado','descargar-cv']],
     ['usuarios','Usuarios',['ver','crear','editar','eliminar'],[]],
     ['roles','Roles y permisos',[],['gestionar']]
   ];
@@ -581,7 +579,7 @@ Herramienta y uniforme.</textarea></div>
   var ROLES={
     admin:{name:'Administrador',desc:'Acceso total al panel.',c:'#334f9d',users:1,perms:ALL.slice()},
     editor:{name:'Editor de contenido',desc:'Escribe y publica artículos del blog.',c:'#219fda',users:2,perms:['blog.ver','blog.crear','blog.editar','blog.publicar','blog.eliminar']},
-    rh:{name:'Recursos Humanos',desc:'Publica vacantes y da seguimiento a postulaciones.',c:'#1f8f4e',users:2,perms:['vacantes.ver','vacantes.crear','vacantes.editar','vacantes.publicar','vacantes.eliminar','postulaciones.ver','postulaciones.cambiar-estado','postulaciones.descargar-cv','postulaciones.exportar']}
+    rh:{name:'Recursos Humanos',desc:'Publica vacantes y da seguimiento a postulaciones.',c:'#1f8f4e',users:2,perms:['vacantes.ver','vacantes.crear','vacantes.editar','vacantes.publicar','vacantes.eliminar','postulaciones.ver','postulaciones.cambiar-estado','postulaciones.descargar-cv']}
   };
   var ME={admin:'Ana Ramírez',editor:'Luis Ortega',rh:'Mariana Díaz'};
   var role='admin';
