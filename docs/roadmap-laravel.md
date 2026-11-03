@@ -1,6 +1,6 @@
 # Roadmap técnico: tecnobg.com en Laravel 13
 
-Versión 1 · 3 de noviembre de 2026
+Versión 1.1 · 3 de noviembre de 2026 · Infraestructura en DreamHost, con el plan actual de Tecnobg
 
 Plan para llevar a producción, en una aplicación Laravel, el diseño final que ya está en `main` y publicado en Vercel (`final.html` y `final-paginas.html`) junto con la propuesta del [PR #3](https://github.com/Luot-h/prototypes-for-tecnobg-/pull/3): panel de administración (`admin.html`), blog, bolsa de trabajo, usuarios, roles y permisos. Las versiones de cada herramienta se revisaron en esta fecha (ver [Fuentes](#15-fuentes)).
 
@@ -34,11 +34,11 @@ Una sola aplicación **Laravel 13** con dos caras:
 
 Decisiones principales:
 
-1. **Laravel 13**, la versión actual (salió el 17 de marzo de 2026 y recibe parches de seguridad hasta marzo de 2028), sobre **PHP 8.5**. El mínimo es PHP 8.4 porque lo exigen varias paqueterías de Spatie.
+1. **Laravel 13**, la versión actual (salió el 17 de marzo de 2026 y recibe parches de seguridad hasta marzo de 2028), sobre **PHP 8.5**, que DreamHost ya ofrece. El mínimo es PHP 8.4 porque lo exigen varias paqueterías de Spatie.
 2. **Starter kit oficial de React para el panel.** Ya trae inicio de sesión, recuperación de contraseña, verificación en dos pasos (2FA), passkeys, perfil y un layout con barra lateral. Solo se quita el registro público.
 3. **Sitio público en Blade, no en React.** El diseño ya está terminado en HTML, CSS y GSAP: en Blade se reutiliza casi entero, sale renderizado desde el servidor (lo mejor para SEO) y no carga React en páginas de marketing.
 4. **Paqueterías probadas en lugar de código propio**: `spatie/laravel-permission` v8 con los mismos nombres de permiso de la propuesta (`blog.publicar`, `postulaciones.descargar-cv`…), más Media Library, Activitylog, Sluggable, Sitemap, Honeypot y Backup de Spatie.
-5. **Infraestructura**: Laravel Cloud (con entornos de vista previa por PR, como hoy en Vercel), PostgreSQL, almacenamiento S3 con un disco privado para los CV y Resend para el correo, que ya se usa.
+5. **Infraestructura en DreamHost, con el plan actual de Tecnobg**: MySQL 8, archivos en el disco del servidor (los CV fuera de la carpeta pública), cron para el scheduler y la cola, y Resend para el correo, que ya se usa. Como el hosting compartido no tiene Node ni permite procesos permanentes, todo se prueba y se compila en GitHub Actions y se sube ya armado por SSH.
 
 **Tiempo estimado:** unas 13 semanas con una persona full-stack (9 a 10 con dos), en 8 fases. El sitio institucional puede salir a producción al terminar la fase 2, antes que el blog y la bolsa de trabajo, como ya se había decidido para el lanzamiento («el sitio sale sin ellos»).
 
@@ -65,17 +65,24 @@ Notas:
 flowchart LR
     V["Visitantes y candidatos"] --> S
     E["Equipo de Tecnobg"] --> A
-    subgraph APP["Laravel 13: un repositorio y un deploy"]
-        S["Sitio público<br/>Blade + Vite + GSAP"]
-        A["Panel /admin<br/>Inertia v3 + React 19 + shadcn/ui"]
-        D["Núcleo compartido<br/>modelos, policies, acciones y eventos"]
-        S --> D
-        A --> D
+    GH["GitHub Actions<br/>pruebas y compilación"] -- "SSH + rsync" --> APP
+    subgraph DH["DreamHost, plan actual"]
+        subgraph APP["Laravel 13: un repositorio y un deploy"]
+            S["Sitio público<br/>Blade + Vite + GSAP"]
+            A["Panel /admin<br/>Inertia v3 + React 19 + shadcn/ui"]
+            D["Núcleo compartido<br/>modelos, policies, acciones y eventos"]
+            S --> D
+            A --> D
+        end
+        DB[("MySQL 8")]
+        F[("Disco del servidor<br/>público: imágenes / privado: CV")]
+        C["Cron cada minuto<br/>scheduler y cola"]
     end
-    D --> DB[("PostgreSQL")]
-    D --> F[("Almacenamiento S3<br/>público: imágenes / privado: CV")]
-    D --> Q["Colas y scheduler"]
-    Q --> M["Resend<br/>correos"]
+    D --> DB
+    D --> F
+    C --> D
+    D --> M["Resend<br/>correos"]
+    D -. "respaldo diario" .-> B[("DreamObjects<br/>u otro bucket S3")]
 ```
 
 | Decisión | En lugar de | Por qué |
@@ -83,18 +90,42 @@ flowchart LR
 | Sitio público en Blade + Vite | Todo en Inertia/React con SSR | Reutiliza el HTML, CSS y GSAP aprobados casi sin cambios. El servidor entrega el HTML completo sin depender de un proceso de Node para SSR y sin hidratar páginas cargadas de animaciones. |
 | Panel con el starter kit de React | Filament 5 (Livewire) | El kit ya resuelve autenticación, 2FA, passkeys y ajustes de la cuenta. Con shadcn/ui se reproduce fiel el diseño de `admin.html` (kanban, ficha lateral, matriz de permisos), que en Filament pediría plugins y se vería como Filament. Filament queda como plan B si el tiempo aprieta. |
 | Monolito: un repositorio y un deploy | API + SPA por separado | Una sola sesión y un solo sistema de permisos, sin CORS ni tokens y con la mitad de infraestructura. Inertia da la experiencia de SPA sin escribir una API. |
-| PostgreSQL | MySQL 8.4 | Sólido, con JSON nativo y búsqueda de texto en español si más adelante se agrega un buscador. Si el hosting impone MySQL, el código no cambia. |
-| Laravel Cloud | Forge + VPS | Base de datos, bucket, colas y scheduler administrados, escalado a cero y vistas previas por PR (ilimitadas desde el plan Growth). Forge con un VPS sale más barato a gran escala, pero hay que mantener el servidor. |
-| Colas en la base de datos | Redis + Horizon | El volumen (correos y conversiones de imágenes) es bajo. Si crece, se cambia a Redis con Horizon sin tocar el código. |
+| DreamHost, con el plan actual de Tecnobg | Laravel Cloud, Forge + VPS | Decisión de Tecnobg: se aprovechan el hosting, el dominio, el DNS y el correo que ya tiene. El compartido no tiene Node, no permite procesos permanentes y limita memoria y CPU, así que el resto de esta tabla se ajusta a eso. |
+| MySQL 8 de DreamHost | PostgreSQL | Es la base que administra DreamHost (PostgreSQL solo cabría en DreamCompute o un servidor dedicado). Laravel la usa sin cambios, y sus límites en compartido, como no permitir triggers ni procedimientos, no afectan a esta app. |
+| Cola en la base de datos, procesada por el cron cada minuto | Worker permanente con Supervisor o Horizon | En compartido no se permiten procesos permanentes. Con el cron, los correos salen en menos de un minuto. |
+| Archivos en el disco del servidor | Bucket S3 | Más simple y sin costo extra. Los CV quedan en `storage/app/private`, fuera de la carpeta pública, y todo se respalda a diario fuera del servidor. |
+| Compilar en GitHub Actions y subir por SSH con Deployer | Compilar en el servidor | El compartido no tiene Node, y `composer install` puede rebasar el límite de memoria. Cada release llega armado y se activa cambiando un symlink: sin caída y con vuelta atrás inmediata. |
+| Sentry para errores | Laravel Nightwatch | El agente de Nightwatch es un proceso permanente, que el compartido no permite. |
 
-Este repositorio de prototipos se queda en Vercel como referencia de diseño. Vercel no es buen lugar para Laravel: no tiene colas, scheduler ni disco persistente.
+Este repositorio de prototipos puede seguir en Vercel como referencia de diseño; `api/cotizacion.js` deja de usarse cuando el sitio pase a DreamHost.
+
+### Cómo queda en DreamHost
+
+El plan se arma para el caso más restrictivo, el hosting compartido. En un VPS de DreamHost funciona igual y además permite un worker de colas permanente. DreamPress no sirve: solo admite WordPress.
+
+| Tema | Configuración |
+|---|---|
+| PHP | 8.5 para el sitio en el panel (mínimo 8.4). En SSH, cron y deploy se usa la ruta completa `/usr/local/php85/bin/php`, porque `php` puede ser otra versión |
+| Directorio web | `tecnobg.com/current/public` (y lo mismo en staging). `current` es el symlink que Deployer cambia en cada release |
+| Base de datos | MySQL 8 creada desde el panel (DreamHost no deja crearla por SSH). `DB_HOST` es el hostname de MySQL que asigna el panel, no `localhost` |
+| Ajustes de PHP | En `~/.php/8.5/phprc`, porque DreamHost no acepta `php_value` en `.htaccess`: `upload_max_filesize = 10M` y `post_max_size = 12M` para los CV de 5 MB |
+| Cron | Crontab por SSH, porque el panel puede no permitir cada minuto y sus cambios sobrescriben el crontab: `* * * * * /usr/local/php85/bin/php /home/USUARIO/tecnobg.com/current/artisan schedule:run`. El servidor usa la hora del Pacífico, pero las tareas siguen la zona de la app (`America/Mexico_City`) |
+| Cola | `QUEUE_CONNECTION=database`. El scheduler lanza `queue:work --stop-when-empty --max-time=50` cada minuto, sin traslaparse |
+| Caché y sesiones | En la base de datos o en archivos; no hay Redis |
+| Archivos | Imágenes en `storage/app/public` (con `storage:link`) y CV en `storage/app/private`. `storage` vive en la carpeta `shared` de Deployer para sobrevivir a cada release |
+| Deploy | GitHub Actions corre las pruebas, instala Composer sin dependencias de desarrollo, compila con Vite y sube el release con Deployer (receta de Laravel y `rsync`). Después migra, cachea la configuración y cambia el symlink. Volver atrás es reactivar el release anterior |
+| Correo | Resend, con DKIM y SPF en el DNS de DreamHost. Los buzones (MX) siguen en DreamHost |
+| SSL | Let's Encrypt desde el panel, en producción y staging |
+| Staging | Subdominio `staging.tecnobg.com` con su propia base de datos, contraseña (`.htpasswd`) y `noindex` |
+| Respaldos | DreamHost guarda 5 días de base de datos y sin garantía, así que `spatie/laravel-backup` respalda a diario en DreamObjects (compatible con S3) u otro bucket |
+| Monitoreo | Sentry y un monitor de disponibilidad externo, más un ping del scheduler para saber si el cron dejó de correr |
 
 ## 4. Stack y paqueterías
 
 ### Base: starter kit oficial de React
 
 ```bash
-laravel new tecnobg-web --react --pest --database=pgsql
+laravel new tecnobg-web --react --pest --database=mysql
 ```
 
 | Pieza | Versión en el kit | Uso |
@@ -106,7 +137,7 @@ laravel new tecnobg-web --react --pest --database=pgsql
 | React + React Compiler | 19.2 | |
 | TypeScript | ^5.7 | |
 | Tailwind CSS, shadcn/ui (Radix), lucide-react, sonner | Tailwind 4 | Tablas, diálogos, *Sheet* para la ficha de postulación y avisos |
-| Vite+ (`vp dev`, `vp build`, `vp check`) | 1.4 | Compilación, lint y formato del frontend |
+| Vite+ (`vp dev`, `vp build`, `vp check`) | 1.4 | Compilación, lint y formato del frontend. Para producción corre en GitHub Actions, porque DreamHost compartido no tiene Node |
 | Larastan, Pint, Sail, Pail | | Análisis estático, estilo de código, entorno local y logs |
 
 ### Backend
@@ -123,12 +154,14 @@ laravel new tecnobg-web --react --pest --database=pgsql
 | `spatie/laravel-sitemap` ^8 | `sitemap.xml` con páginas, artículos y vacantes abiertas |
 | `spatie/schema-org` | JSON-LD: `Organization`, `BlogPosting`, `JobPosting` y `BreadcrumbList` |
 | `spatie/laravel-honeypot` | Anti-spam en los formularios de cotización y postulación |
-| `spatie/laravel-backup` ^10 | Respaldo diario de base de datos y archivos en otro bucket |
+| `spatie/laravel-backup` ^10 | Respaldo diario de base de datos y archivos fuera del servidor: DreamObjects u otro bucket S3, con `league/flysystem-aws-s3-v3` |
 | `symfony/html-sanitizer` | Limpia el HTML del editor antes de guardarlo (evita XSS) |
 | `resend/resend-php` | Driver `resend` de Laravel para el correo |
 | `laravel-lang/common` | Mensajes de validación, autenticación y paginación en español |
-| `laravel/nightwatch` (o Sentry) | Errores, consultas lentas y trabajos fallidos |
+| `sentry/sentry-laravel` | Errores, consultas lentas y trabajos fallidos. Nightwatch no sirve en compartido porque su agente es un proceso permanente |
+| `spatie/laravel-responsecache` | Caché de páginas públicas en disco, para compensar la velocidad del hosting compartido |
 | `laravel/boost` (desarrollo) | Da a los agentes de IA, como Claude Code, la documentación de Laravel 13 y de las paqueterías instaladas |
+| `deployer/deployer` (desarrollo) | Deploy por SSH a DreamHost con releases y symlink `current`: sin caída y con vuelta atrás inmediata |
 
 ### Frontend del panel
 
@@ -282,14 +315,16 @@ Las rutas del panel van en español con `Route::resourceVerbs(['create' => 'crea
 
 ## 8. Fases
 
-Cada fase termina con algo que se puede revisar en un entorno de vista previa. «Listo cuando» es la condición para pasar a la siguiente.
+Cada fase termina con algo que se puede revisar en staging (`staging.tecnobg.com`). «Listo cuando» es la condición para pasar a la siguiente.
 
 ### Fase 0 · Preparación (1 semana)
 
 - [ ] Crear el repositorio nuevo `tecnobg-web`. Este repositorio se queda como referencia de diseño.
 - [ ] Pedir a Tecnobg lo que bloquea fases posteriores (sección 13), sobre todo el aviso de privacidad, los correos de ventas y RH, las URLs actuales y el acceso al DNS.
 - [ ] Cerrar dudas de la propuesta: plazo de conservación de CV, cómo funciona el CV espontáneo y quién puede abrir vacantes.
-- [ ] Crear cuentas: Laravel Cloud, bucket S3 (o R2) y dominio verificado en Resend.
+- [ ] Revisar el plan de DreamHost con la tabla de [Cómo queda en DreamHost](#cómo-queda-en-dreamhost): que no sea DreamPress, que tenga PHP 8.5 u 8.4, usuario SSH con llaves, MySQL 8 y un subdominio libre para staging; que existan `mysqldump` y las extensiones `gd` o `imagick` con WebP, `intl`, `fileinfo` y `zip`; y que el directorio web acepte un symlink.
+- [ ] Respaldar el sitio actual de tecnobg.com (archivos y base de datos) antes de tocar nada.
+- [ ] Verificar el dominio en Resend (DKIM y SPF en el DNS de DreamHost, sin tocar los MX) y crear el bucket de respaldos.
 - [ ] Revisar el modelo de datos y los enums de la sección 5.
 - [ ] Acordar la forma de trabajo de la sección 10.
 
@@ -300,13 +335,14 @@ Cada fase termina con algo que se puede revisar en un entorno de vista previa. �
 - [ ] Crear la app con el starter kit de React y Pest.
 - [ ] Quitar `Features::registration()` y la verificación de correo de `config/fortify.php` (con su página y sus pruebas), y mover el login, los ajustes y el panel a `/admin` (`prefix` y `home` de Fortify).
 - [ ] Todo en español: `APP_LOCALE=es`, `APP_FAKER_LOCALE=es_MX`, zona horaria `America/Mexico_City`, `laravel-lang/common` y verbos de ruta en español.
-- [ ] Instalar y configurar las paqueterías de la sección 4, Resend y Nightwatch.
+- [ ] Instalar y configurar las paqueterías de la sección 4, Resend y Sentry.
 - [ ] `PermissionsEnum`, `RolesEnum`, seeder idempotente de roles y permisos, y el primer Administrador desde variables de entorno.
 - [ ] Tema del panel con los colores y tipografías de la propuesta (`#191c37`, `#1e2d5f`, `#334f9d`, degradado `#4cc1f0 → #148bcc`; Lexend, HP Simplified y Recharge): barra lateral oscura con los grupos *Contenido*, *Bolsa de trabajo* y *Administración*, y login sobre fondo degradado.
 - [ ] CI en GitHub Actions: Pint, Larastan, Pest, `vp check` y compilación.
-- [ ] Staging en Laravel Cloud con base de datos, bucket, cola y scheduler, más un entorno de vista previa por PR.
+- [ ] Staging en DreamHost: subdominio `staging.tecnobg.com` con su base de datos, `phprc`, crontab del scheduler, contraseña y `noindex`.
+- [ ] Deploy con Deployer desde GitHub Actions: automático a staging al fusionar en `main` y manual a producción.
 
-**Listo cuando:** un Administrador entra a `/admin/login` en staging con 2FA, `/register` no existe y el CI pasa.
+**Listo cuando:** un Administrador entra a `staging.tecnobg.com/admin/login` con 2FA, `/register` no existe, el CI pasa, un merge a `main` se despliega solo y un correo de prueba sale por la cola en menos de un minuto.
 
 ### Fase 2 · Sitio público en Blade (2 semanas)
 
@@ -317,12 +353,12 @@ Cada fase termina con algo que se puede revisar en un entorno de vista previa. �
 - [ ] Listas de equipos, preguntas frecuentes y clientes como datos (config o arrays) en lugar de HTML repetido.
 - [ ] Cotización: `POST /cotizacion` con las mismas reglas que `api/cotizacion.js`, honeypot, límite por IP y correo en cola por Resend con `reply-to` del cliente. Responde JSON para que el JS actual no cambie.
 - [ ] SEO técnico: título y descripción por página, canonical, Open Graph, JSON-LD de la empresa, `sitemap.xml`, `robots.txt` por entorno y `X-Robots-Tag: noindex` fuera de producción.
-- [ ] Rendimiento: imagen de portada con `fetchpriority="high"`, `width` y `height` en todas las imágenes, fachada para YouTube y caché larga de recursos versionados.
+- [ ] Rendimiento: imagen de portada con `fetchpriority="high"`, `width` y `height` en todas las imágenes, fachada para YouTube, caché larga de recursos versionados y caché de páginas con `spatie/laravel-responsecache`, que en hosting compartido marca la diferencia.
 - [ ] Pruebas de navegador con Pest 4: cada página responde, sin errores de consola y sin scroll horizontal a 390 px, lo mismo que hoy se revisa a mano con Playwright.
 
 **Listo cuando:** staging se ve igual que `/final` de Vercel a 1440 y 390 px, Lighthouse móvil da 90 o más en Rendimiento, Accesibilidad y SEO, y la cotización llega al correo de ventas.
 
-**Hito A: sitio institucional listo.** Si se lanza aquí, se adelantan de la fase 7 el DNS, las redirecciones 301, los respaldos y el monitoreo.
+**Hito A: sitio institucional listo.** Si se lanza aquí, se adelantan de la fase 7 el cambio de directorio web de tecnobg.com, las redirecciones 301, los respaldos y el monitoreo.
 
 ### Fase 3 · Panel: usuarios, roles y permisos (1.5 semanas)
 
@@ -393,11 +429,11 @@ Panel, postulaciones:
 ### Fase 7 · Calidad, seguridad y lanzamiento (1.5 semanas)
 
 - [ ] Seguridad: cabeceras (CSP y HSTS), 2FA obligatoria para Administrador, cookies seguras y `composer audit` y `npm audit` en el CI.
-- [ ] Respaldos diarios con `spatie/laravel-backup` en otro bucket y una **prueba de restauración**.
-- [ ] Monitoreo: Nightwatch (o Sentry), disponibilidad y alertas de trabajos fallidos.
+- [ ] Respaldos diarios con `spatie/laravel-backup` fuera del servidor y una **prueba de restauración**.
+- [ ] Monitoreo: Sentry, monitor de disponibilidad externo, alertas de trabajos fallidos y ping del scheduler para enterarse si el cron deja de correr.
 - [ ] Caché: `php artisan optimize` en cada deploy y caché de páginas públicas que se limpia al guardar contenido y vence en pocos minutos, para que los artículos programados aparezcan a su hora.
 - [ ] Pruebas de navegador de los flujos críticos: login, publicar artículo, postularse y mover una postulación.
-- [ ] Salida: redirecciones 301 desde las URLs actuales, quitar `noindex`, DNS y SSL, SPF, DKIM y DMARC para Resend, alta en Google Search Console con el sitemap y banner de cookies si se usa GA4.
+- [ ] Salida: respaldar otra vez el sitio actual y apuntar el directorio web de tecnobg.com a `current/public` (volver atrás es regresar el directorio anterior); SSL de Let's Encrypt; redirecciones 301 desde las URLs actuales; quitar `noindex`; DMARC para el dominio; alta en Google Search Console con el sitemap; y banner de cookies si se usa GA4. Los buzones de correo de DreamHost no se tocan.
 - [ ] Entrega: guía corta para Tecnobg (publicar un artículo, abrir una vacante, dar seguimiento a postulaciones, dar de alta usuarios) y documentación técnica en el repositorio.
 
 **Listo cuando:** tecnobg.com corre en producción, los respaldos están probados, el monitoreo está activo y el equipo de Tecnobg sabe usar el panel.
@@ -443,18 +479,18 @@ gantt
 
 ## 10. Forma de trabajo y calidad
 
-- **Definition of Done**: PR chico con pruebas; CI en verde (Pint, Larastan nivel 6 o más, Pest y `vp check`); revisado en su entorno de vista previa; capturas a 1440 y 390 px si cambia la interfaz; textos en español.
+- **Definition of Done**: PR chico con pruebas; CI en verde (Pint, Larastan nivel 6 o más, Pest y `vp check`); revisado en local y, ya fusionado, en staging; capturas a 1440 y 390 px si cambia la interfaz; textos en español.
 - **Código**: controladores delgados; Form Requests para validar, policies para autorizar, enums para estados y clases de acción para la lógica del negocio (`PublishPost`, `SubmitJobApplication`, `MoveApplicationToStage`, `InviteUser`); efectos secundarios como correos en eventos y colas.
 - **Pruebas de backend** (Pest): permisos por rol, reglas de publicación (con viaje en el tiempo para los programados), formularios con `Storage::fake()` y `Mail::fake()`, y borrado automático de datos.
 - **Pruebas de navegador** (Pest 4 con Playwright): páginas públicas y flujos críticos del panel.
-- **Entornos**: local con Laravel Herd o Sail, vista previa por PR, staging y producción. `main` protegida y paso a producción manual.
+- **Entornos**: local con Laravel Herd o Sail, con MySQL 8 como en DreamHost; staging en `staging.tecnobg.com`, que se despliega solo al fusionar en `main`; y producción, que se despliega a mano desde GitHub Actions. `main` protegida.
 
 ## 11. Seguridad y datos personales
 
 Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares:
 
 - La bolsa de trabajo no se publica sin el aviso de privacidad; la aceptación queda registrada con fecha, versión del aviso e IP.
-- Los CV viven en un disco privado y solo los descarga quien tiene `postulaciones.descargar-cv`; cada descarga queda en la bitácora.
+- Los CV viven en `storage/app/private`, fuera de la carpeta pública, y solo los descarga quien tiene `postulaciones.descargar-cv`; cada descarga queda en la bitácora.
 - Los correos avisan de la postulación con un enlace al panel, sin adjuntar el CV.
 - Las postulaciones y sus CV se borran solos al vencer el plazo acordado, y una persona con `postulaciones.eliminar` puede borrarlos antes si el candidato lo pide (derechos ARCO).
 - El HTML del blog se limpia antes de guardarse, los formularios públicos tienen honeypot y límite por IP, y el login de Fortify ya limita los intentos.
@@ -463,6 +499,7 @@ Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Fed
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
+| El plan actual es DreamPress (solo admite WordPress) o no deja crear el subdominio de staging | No se puede instalar Laravel o no hay staging | Revisarlo en la fase 0; si hace falta, cambiar a un plan de hosting web o a un VPS dentro de DreamHost |
 | Faltan el aviso de privacidad y los textos legales | Sin aviso no se pueden recibir CV; la fase 5 no sale | Pedirlos en la fase 0; la bolsa de trabajo no se publica sin aviso |
 | Blog, bolsa de trabajo y legales siguen sin diseño final | Retrabajo visual | Usar las vistas del PR #3, que ya siguen el estilo de `/final`; Blade separa el diseño de la lógica |
 | Licencias web de Recharge y HP Simplified sin confirmar; Acumin Condensed sin entregar | Uso no autorizado o tipografía sustituta | Confirmar con el diseñador antes de producción; Barlow Condensed se queda de respaldo |
@@ -472,13 +509,18 @@ Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Fed
 | Fuga de datos de candidatos | Riesgo legal y de reputación | Disco privado, permiso específico, bitácora y borrado automático |
 | Crecimiento del alcance | Retraso | Respetar las decisiones del PR #3; lo nuevo va a la sección 14 |
 | Paquetes jóvenes (Wayfinder 0.x, Inertia 3) | Cambios que rompen | Versiones fijadas en los archivos lock y actualizaciones en su propio PR, con pruebas |
+| El monitor del hosting compartido mata procesos que usan mucha memoria o CPU | Trabajos o deploys a medias | Compilar en GitHub Actions, trabajos de cola cortos (`--max-time`) e imágenes de tamaño razonable |
+| El cron deja de correr sin avisar | Correos y tareas detenidos | Ping del scheduler a un monitor externo que avisa si deja de llegar |
+| El hosting compartido responde más lento | Peor tiempo de carga | Caché de páginas, recursos con caché larga y, si hace falta, Cloudflare gratuito delante |
+| DreamHost guarda pocos respaldos y sin garantía | Pérdida de datos | Respaldo propio diario fuera del servidor y prueba de restauración |
 
 ## 13. Pendientes por confirmar con Tecnobg
 
 - [ ] Aviso de privacidad (indispensable para la bolsa de trabajo), términos y condiciones y política de cookies.
 - [ ] Correo que recibe las cotizaciones (hoy `ventas@tecnobg.com`) y correo de RH para los avisos de postulación.
 - [ ] Plazo de conservación de postulaciones y CV (propuesta: 12 meses).
-- [ ] Lista de URLs actuales de tecnobg.com y acceso al DNS y al hosting actual.
+- [ ] Plan exacto de DreamHost y acceso al panel, para crear el usuario SSH, la base de datos y el subdominio de staging y, el día del lanzamiento, cambiar el directorio web.
+- [ ] Lista de URLs actuales de tecnobg.com.
 - [ ] Licencias web de las tipografías y el archivo de Acumin Condensed.
 - [ ] Si el diseñador entregará el diseño final de Blog, Bolsa de trabajo y legales.
 - [ ] Quiénes tendrán los roles de Administrador, Editor de contenido y Recursos Humanos al arrancar.
@@ -490,7 +532,7 @@ Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Fed
 - **Cotizaciones en el panel**: guardar cada solicitud del formulario y darle seguimiento por etapas, como a las postulaciones. Hoy solo llegan por correo.
 - **Contenido del sitio editable**: preguntas frecuentes, listas de equipos y logos de clientes.
 - **Ayudas con el AI SDK de Laravel**: sugerir título y descripción SEO de un artículo o el texto alternativo de una imagen.
-- **Aviso en tiempo real** de nuevas postulaciones con Laravel Reverb.
+- **Si después se cambia a un VPS de DreamHost**: worker de colas permanente, para que los correos salgan al instante, y avisos en tiempo real de nuevas postulaciones con Laravel Reverb.
 - **RSS del blog** con `spatie/laravel-feed`.
 
 ## 15. Fuentes
@@ -507,4 +549,6 @@ Revisadas el 3 de noviembre de 2026.
 - [Filament 5](https://laravel-news.com/filament-5): enero de 2026, igual a la v4 con soporte de Livewire 4.
 - [Pest 4](https://laravel-news.com/pest-4): pruebas de navegador con Playwright.
 - [GSAP](https://cdn.jsdelivr.net/npm/gsap@3.15.0/README.md): gratuito con todos sus plugins.
-- [Entornos de vista previa de Laravel Cloud](https://cloud.laravel.com/docs/preview-environments): uno por PR, con escalado a cero.
+- `composer.json` de [laravel-responsecache](https://github.com/spatie/laravel-responsecache) (PHP 8.4+), [sentry-laravel](https://github.com/getsentry/sentry-laravel) (acepta Laravel 13) y [Deployer](https://github.com/deployphp/deployer) (receta de Laravel y `contrib/rsync`).
+- [Nightwatch con otros proveedores](https://nightwatch.laravel.com/docs/guides/other-providers): el agente corre como servicio permanente.
+- Base de conocimiento de DreamHost: [versiones de PHP](https://help.dreamhost.com/hc/en-us/articles/215082337-What-versions-of-PHP-are-available-at-DreamHost) (8.4 y 8.5 en el panel), [PHP en línea de comandos](https://help.dreamhost.com/hc/en-us/articles/214202238-Command-line-PHP-overview), [versión de MySQL](https://help.dreamhost.com/hc/en-us/articles/215099117) (MySQL 8), [límites de MySQL en compartido](https://help.dreamhost.com/hc/en-us/articles/115000263911), [preguntas sobre bases de datos](https://help.dreamhost.com/hc/en-us/articles/215571837-Database-FAQs) (respaldos de 5 días sin garantía), [procesos detenidos](https://help.dreamhost.com/hc/en-us/articles/216540488) (monitor del compartido), [software compatible](https://help.dreamhost.com/hc/en-us/articles/217141627) (Node.js solo en VPS y dedicados), [DreamPress](https://help.dreamhost.com/hc/en-us/articles/214581728) (solo WordPress), [Composer](https://help.dreamhost.com/hc/en-us/articles/214899037-Installing-Composer-overview), [cron personalizado](https://help.dreamhost.com/hc/en-us/articles/215767047), [usuario con SSH](https://help.dreamhost.com/hc/en-us/articles/216385837) y [límite de subida con phprc](https://help.dreamhost.com/hc/en-us/articles/214200558).
