@@ -13,6 +13,7 @@ Sitio estático de presentación con 3 propuestas. No necesita compilación: se 
 | `final.html` | Versión final en construcción (base: propuesta 05 + diseño del diseñador) |
 | `final-paginas.html` | Páginas internas de la versión final, por `#hash`. Las 4 de servicios ya tienen el diseño del diseñador; Nosotros, Bolsa de trabajo, Blog y legales siguen en diseño preliminar. Se genera con `python3 herramientas/generar-paginas.py` |
 | `api/cotizacion.js` | Función de Vercel que envía el formulario de cotización al correo de ventas |
+| `docs/roadmap-laravel.md` | Roadmap técnico para construir el sitio y el panel (blog, bolsa de trabajo, usuarios, roles y permisos) en Laravel 13 |
 | `fonts/` | Tipografías del diseñador en WOFF2 (Recharge Bold y HP Simplified) |
 | `img/` | Logo y fotografías optimizadas (WebP); `img/final/` trae los recursos sacados de los PDF del diseñador (`img/final/servicios/`: páginas de servicios) |
 | `robots.txt` | Bloquea la indexación en buscadores |
