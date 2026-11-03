@@ -1,6 +1,6 @@
 # Roadmap técnico: tecnobg.com en Laravel 13
 
-Versión 1.1 · 3 de noviembre de 2026 · Infraestructura en DreamHost, con el plan actual de Tecnobg
+Versión 1.2 · 3 de noviembre de 2026 · Infraestructura en DreamHost, con el plan actual de Tecnobg (Shared Unlimited)
 
 Plan para llevar a producción, en una aplicación Laravel, el diseño final que ya está en `main` y publicado en Vercel (`final.html` y `final-paginas.html`) junto con la propuesta del [PR #3](https://github.com/Luot-h/prototypes-for-tecnobg-/pull/3): panel de administración (`admin.html`), blog, bolsa de trabajo, usuarios, roles y permisos. Las versiones de cada herramienta se revisaron en esta fecha (ver [Fuentes](#15-fuentes)).
 
@@ -38,7 +38,7 @@ Decisiones principales:
 2. **Starter kit oficial de React para el panel.** Ya trae inicio de sesión, recuperación de contraseña, verificación en dos pasos (2FA), passkeys, perfil y un layout con barra lateral. Solo se quita el registro público.
 3. **Sitio público en Blade, no en React.** El diseño ya está terminado en HTML, CSS y GSAP: en Blade se reutiliza casi entero, sale renderizado desde el servidor (lo mejor para SEO) y no carga React en páginas de marketing.
 4. **Paqueterías probadas en lugar de código propio**: `spatie/laravel-permission` v8 con los mismos nombres de permiso de la propuesta (`blog.publicar`, `postulaciones.descargar-cv`…), más Media Library, Activitylog, Sluggable, Sitemap, Honeypot y Backup de Spatie.
-5. **Infraestructura en DreamHost, con el plan actual de Tecnobg**: MySQL 8, archivos en el disco del servidor (los CV fuera de la carpeta pública), cron para el scheduler y la cola, y Resend para el correo, que ya se usa. Como el hosting compartido no tiene Node ni permite procesos permanentes, todo se prueba y se compila en GitHub Actions y se sube ya armado por SSH.
+5. **Infraestructura en DreamHost, con el plan actual de Tecnobg (Shared Unlimited)**: MySQL 8, archivos en el disco del servidor (los CV fuera de la carpeta pública), cron para el scheduler y la cola, y Resend para el correo, que ya se usa. Como el hosting compartido no tiene Node ni permite procesos permanentes, todo se prueba y se compila en GitHub Actions y se sube ya armado por SSH.
 
 **Tiempo estimado:** unas 13 semanas con una persona full-stack (9 a 10 con dos), en 8 fases. El sitio institucional puede salir a producción al terminar la fase 2, antes que el blog y la bolsa de trabajo, como ya se había decidido para el lanzamiento («el sitio sale sin ellos»).
 
@@ -66,7 +66,7 @@ flowchart LR
     V["Visitantes y candidatos"] --> S
     E["Equipo de Tecnobg"] --> A
     GH["GitHub Actions<br/>pruebas y compilación"] -- "SSH + rsync" --> APP
-    subgraph DH["DreamHost, plan actual"]
+    subgraph DH["DreamHost Unlimited"]
         subgraph APP["Laravel 13: un repositorio y un deploy"]
             S["Sitio público<br/>Blade + Vite + GSAP"]
             A["Panel /admin<br/>Inertia v3 + React 19 + shadcn/ui"]
@@ -90,7 +90,7 @@ flowchart LR
 | Sitio público en Blade + Vite | Todo en Inertia/React con SSR | Reutiliza el HTML, CSS y GSAP aprobados casi sin cambios. El servidor entrega el HTML completo sin depender de un proceso de Node para SSR y sin hidratar páginas cargadas de animaciones. |
 | Panel con el starter kit de React | Filament 5 (Livewire) | El kit ya resuelve autenticación, 2FA, passkeys y ajustes de la cuenta. Con shadcn/ui se reproduce fiel el diseño de `admin.html` (kanban, ficha lateral, matriz de permisos), que en Filament pediría plugins y se vería como Filament. Filament queda como plan B si el tiempo aprieta. |
 | Monolito: un repositorio y un deploy | API + SPA por separado | Una sola sesión y un solo sistema de permisos, sin CORS ni tokens y con la mitad de infraestructura. Inertia da la experiencia de SPA sin escribir una API. |
-| DreamHost, con el plan actual de Tecnobg | Laravel Cloud, Forge + VPS | Decisión de Tecnobg: se aprovechan el hosting, el dominio, el DNS y el correo que ya tiene. El compartido no tiene Node, no permite procesos permanentes y limita memoria y CPU, así que el resto de esta tabla se ajusta a eso. |
+| DreamHost Shared Unlimited, el plan actual de Tecnobg | Laravel Cloud, Forge + VPS | Decisión de Tecnobg: se aprovechan el hosting, el dominio, el DNS y el correo que ya tiene. El compartido no tiene Node, no permite procesos permanentes y limita memoria y CPU, así que el resto de esta tabla se ajusta a eso. |
 | MySQL 8 de DreamHost | PostgreSQL | Es la base que administra DreamHost (PostgreSQL solo cabría en DreamCompute o un servidor dedicado). Laravel la usa sin cambios, y sus límites en compartido, como no permitir triggers ni procedimientos, no afectan a esta app. |
 | Cola en la base de datos, procesada por el cron cada minuto | Worker permanente con Supervisor o Horizon | En compartido no se permiten procesos permanentes. Con el cron, los correos salen en menos de un minuto. |
 | Archivos en el disco del servidor | Bucket S3 | Más simple y sin costo extra. Los CV quedan en `storage/app/private`, fuera de la carpeta pública, y todo se respalda a diario fuera del servidor. |
@@ -101,7 +101,7 @@ Este repositorio de prototipos puede seguir en Vercel como referencia de diseño
 
 ### Cómo queda en DreamHost
 
-El plan se arma para el caso más restrictivo, el hosting compartido. En un VPS de DreamHost funciona igual y además permite un worker de colas permanente. DreamPress no sirve: solo admite WordPress.
+Tecnobg tiene, por confirmar en el panel, el plan **Shared Unlimited**: hosting compartido con sitios, subdominios, bases de datos MySQL y usuarios SSH ilimitados, y correo incluido. Alcanza para producción y staging sin pagar más. DreamHost ya no lo vende a clientes nuevos, pero los planes contratados siguen activos y con soporte. Si algún día se cambia a sus planes compartidos nuevos (Launch, Growth o Scale), este roadmap no cambia. Lo que el compartido no permite, procesos permanentes y Node, se resuelve con el cron y con GitHub Actions.
 
 | Tema | Configuración |
 |---|---|
@@ -322,7 +322,7 @@ Cada fase termina con algo que se puede revisar en staging (`staging.tecnobg.com
 - [ ] Crear el repositorio nuevo `tecnobg-web`. Este repositorio se queda como referencia de diseño.
 - [ ] Pedir a Tecnobg lo que bloquea fases posteriores (sección 13), sobre todo el aviso de privacidad, los correos de ventas y RH, las URLs actuales y el acceso al DNS.
 - [ ] Cerrar dudas de la propuesta: plazo de conservación de CV, cómo funciona el CV espontáneo y quién puede abrir vacantes.
-- [ ] Revisar el plan de DreamHost con la tabla de [Cómo queda en DreamHost](#cómo-queda-en-dreamhost): que no sea DreamPress, que tenga PHP 8.5 u 8.4, usuario SSH con llaves, MySQL 8 y un subdominio libre para staging; que existan `mysqldump` y las extensiones `gd` o `imagick` con WebP, `intl`, `fileinfo` y `zip`; y que el directorio web acepte un symlink.
+- [ ] Confirmar en el panel que el plan es Shared Unlimited y revisar con la tabla de [Cómo queda en DreamHost](#cómo-queda-en-dreamhost): PHP 8.5 u 8.4, usuario SSH con llaves, `mysqldump`, las extensiones `gd` o `imagick` con WebP, `intl`, `fileinfo` y `zip`, y que el directorio web acepte un symlink.
 - [ ] Respaldar el sitio actual de tecnobg.com (archivos y base de datos) antes de tocar nada.
 - [ ] Verificar el dominio en Resend (DKIM y SPF en el DNS de DreamHost, sin tocar los MX) y crear el bucket de respaldos.
 - [ ] Revisar el modelo de datos y los enums de la sección 5.
@@ -499,7 +499,7 @@ Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Fed
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
-| El plan actual es DreamPress (solo admite WordPress) o no deja crear el subdominio de staging | No se puede instalar Laravel o no hay staging | Revisarlo en la fase 0; si hace falta, cambiar a un plan de hosting web o a un VPS dentro de DreamHost |
+| El plan resulta no ser Shared Unlimited, por ejemplo DreamPress, que solo admite WordPress | No se puede instalar Laravel | Confirmarlo en el panel en la fase 0; si hace falta, cambiar a un plan compartido nuevo (Launch, Growth o Scale) o a un VPS dentro de DreamHost |
 | Faltan el aviso de privacidad y los textos legales | Sin aviso no se pueden recibir CV; la fase 5 no sale | Pedirlos en la fase 0; la bolsa de trabajo no se publica sin aviso |
 | Blog, bolsa de trabajo y legales siguen sin diseño final | Retrabajo visual | Usar las vistas del PR #3, que ya siguen el estilo de `/final`; Blade separa el diseño de la lógica |
 | Licencias web de Recharge y HP Simplified sin confirmar; Acumin Condensed sin entregar | Uso no autorizado o tipografía sustituta | Confirmar con el diseñador antes de producción; Barlow Condensed se queda de respaldo |
@@ -519,7 +519,7 @@ Las postulaciones guardan datos personales y CV, así que, conforme a la Ley Fed
 - [ ] Aviso de privacidad (indispensable para la bolsa de trabajo), términos y condiciones y política de cookies.
 - [ ] Correo que recibe las cotizaciones (hoy `ventas@tecnobg.com`) y correo de RH para los avisos de postulación.
 - [ ] Plazo de conservación de postulaciones y CV (propuesta: 12 meses).
-- [ ] Plan exacto de DreamHost y acceso al panel, para crear el usuario SSH, la base de datos y el subdominio de staging y, el día del lanzamiento, cambiar el directorio web.
+- [ ] Confirmar en el panel que el plan es Shared Unlimited y dar acceso al panel, para crear el usuario SSH, las bases de datos y el subdominio de staging y, el día del lanzamiento, cambiar el directorio web.
 - [ ] Lista de URLs actuales de tecnobg.com.
 - [ ] Licencias web de las tipografías y el archivo de Acumin Condensed.
 - [ ] Si el diseñador entregará el diseño final de Blog, Bolsa de trabajo y legales.
@@ -551,4 +551,4 @@ Revisadas el 3 de noviembre de 2026.
 - [GSAP](https://cdn.jsdelivr.net/npm/gsap@3.15.0/README.md): gratuito con todos sus plugins.
 - `composer.json` de [laravel-responsecache](https://github.com/spatie/laravel-responsecache) (PHP 8.4+), [sentry-laravel](https://github.com/getsentry/sentry-laravel) (acepta Laravel 13) y [Deployer](https://github.com/deployphp/deployer) (receta de Laravel y `contrib/rsync`).
 - [Nightwatch con otros proveedores](https://nightwatch.laravel.com/docs/guides/other-providers): el agente corre como servicio permanente.
-- Base de conocimiento de DreamHost: [versiones de PHP](https://help.dreamhost.com/hc/en-us/articles/215082337-What-versions-of-PHP-are-available-at-DreamHost) (8.4 y 8.5 en el panel), [PHP en línea de comandos](https://help.dreamhost.com/hc/en-us/articles/214202238-Command-line-PHP-overview), [versión de MySQL](https://help.dreamhost.com/hc/en-us/articles/215099117) (MySQL 8), [límites de MySQL en compartido](https://help.dreamhost.com/hc/en-us/articles/115000263911), [preguntas sobre bases de datos](https://help.dreamhost.com/hc/en-us/articles/215571837-Database-FAQs) (respaldos de 5 días sin garantía), [procesos detenidos](https://help.dreamhost.com/hc/en-us/articles/216540488) (monitor del compartido), [software compatible](https://help.dreamhost.com/hc/en-us/articles/217141627) (Node.js solo en VPS y dedicados), [DreamPress](https://help.dreamhost.com/hc/en-us/articles/214581728) (solo WordPress), [Composer](https://help.dreamhost.com/hc/en-us/articles/214899037-Installing-Composer-overview), [cron personalizado](https://help.dreamhost.com/hc/en-us/articles/215767047), [usuario con SSH](https://help.dreamhost.com/hc/en-us/articles/216385837) y [límite de subida con phprc](https://help.dreamhost.com/hc/en-us/articles/214200558).
+- Base de conocimiento de DreamHost: [Shared Unlimited](https://help.dreamhost.com/hc/en-us/articles/34357904873108-Shared-Unlimited-hosting-overview) (ya no se vende; los planes contratados siguen activos y con soporte), [planes Launch, Growth y Scale](https://www.dreamhost.com/news/announcements/new-hosting-plans-launch-growth-scale/), [versiones de PHP](https://help.dreamhost.com/hc/en-us/articles/215082337-What-versions-of-PHP-are-available-at-DreamHost) (8.4 y 8.5 en el panel), [PHP en línea de comandos](https://help.dreamhost.com/hc/en-us/articles/214202238-Command-line-PHP-overview), [versión de MySQL](https://help.dreamhost.com/hc/en-us/articles/215099117) (MySQL 8), [límites de MySQL en compartido](https://help.dreamhost.com/hc/en-us/articles/115000263911), [preguntas sobre bases de datos](https://help.dreamhost.com/hc/en-us/articles/215571837-Database-FAQs) (respaldos de 5 días sin garantía), [procesos detenidos](https://help.dreamhost.com/hc/en-us/articles/216540488) (monitor del compartido), [software compatible](https://help.dreamhost.com/hc/en-us/articles/217141627) (Node.js solo en VPS y dedicados), [DreamPress](https://help.dreamhost.com/hc/en-us/articles/214581728) (solo WordPress), [Composer](https://help.dreamhost.com/hc/en-us/articles/214899037-Installing-Composer-overview), [cron personalizado](https://help.dreamhost.com/hc/en-us/articles/215767047), [usuario con SSH](https://help.dreamhost.com/hc/en-us/articles/216385837) y [límite de subida con phprc](https://help.dreamhost.com/hc/en-us/articles/214200558).
